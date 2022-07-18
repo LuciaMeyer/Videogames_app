@@ -1,5 +1,16 @@
 API: b5d0d6eb583547aebcc9043d888d8ca2
 contraseña página API: ApiPILu*
 
-GET: https://api.rawg.io/api/platforms?key=b5d0d6eb583547aebcc9043d888d8ca2
+Json ppal: https://api.rawg.io/api/platforms?key=b5d0d6eb583547aebcc9043d888d8ca2
+
+
+Únicos Endpoints/Flags que pueden utilizar
+GET https://api.rawg.io/api/games >> https://api.rawg.io/api/games?key=b5d0d6eb583547aebcc9043d888d8ca2
+GET https://api.rawg.io/api/games?search={game}
+GET https://api.rawg.io/api/genres
+GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key=b5d0d6eb583547aebcc9043d888d8ca2
+
+
+
+
 
