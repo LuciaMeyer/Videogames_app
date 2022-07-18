@@ -1,0 +1,5 @@
+API: b5d0d6eb583547aebcc9043d888d8ca2
+contraseña página API: ApiPILu*
+
+GET: https://api.rawg.io/api/platforms?key=b5d0d6eb583547aebcc9043d888d8ca2
+
