@@ -31,7 +31,10 @@ module.exports = (sequelize) => {
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true
+      defaultValue: true // todos los que cree van a ser true, el de la api este campo está vacío
     }
+  },
+  {
+    timestamps: false
   });
 };
