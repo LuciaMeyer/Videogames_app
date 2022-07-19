@@ -1,27 +1,65 @@
+require('dotenv').config();
+const { apikey, apiGames, apiGenres } = process.env;
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 const axios = require('axios');
-
-
+const { Videogame, Genre } = require('../db');
 const router = Router();
 
-const key = 'b5d0d6eb583547aebcc9043d888d8ca2'
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-const getApiUrl = async () => {
-    const apiUrl = await axios.get('https:api.rawg.io/api/games?key=b5d0d6eb583547aebcc9043d888d8ca2');
-    const apiInfo = await apiUrl.data.results.map(ob => {
+
+// controller
+const getApiGames = async () => {  
+    let games = (await axios(apiGames + apikey)).data.results.map(ob => {
         return {
-            id: ob.id, // desde el fornt voy a acceder como el nombre de la propiedad
+            id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
             name: ob.name,
             img: ob.background_image,
             rating: ob.rating,
-            genres: ob.genres.map(ob => ob),
+            genres: ob.genres.map(g => g)
         }
     });
-    return apiInfo;
+    return games;  
+};
+// controller
+const getDbGames = async () => {
+    return await Videogame.findAll({ include: Genre })
+};
+// controller
+const getAll = async () => {
+    const api = await getApiGames();
+    const db = await getDbGames();
+    const allInfo = api.concat(db);
+    return allInfo;
 };
 
+// route /videogames and /videogames?=name...(falta agregar que sean los primeros 15)
+router.get('/videogames', async (req, res, next) => {
+    const name = req.query.name;
+    const getAllGames = await getAll();
+    try {
+        if(name) {
+            let gamesByName = await getAllGames.filter(n => n.name.toLowerCase().includes(name.toLowerCase()));
+            gamesByName.length
+            ? res.send(gamesByName)
+            : res.status(404).json('The video game with that name was not found');
+        } else {
+            res.send(getAllGames);
+        };        
+    } catch (err) {
+        next(err);
+    }
+});
+
+// controller
+// const getApiGenres = async () => {
+
+// };
+
+
+
+
+
+router.get('/genres', (req, res, next) => {
+
+});
 
 module.exports = router;
