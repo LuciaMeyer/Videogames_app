@@ -1,64 +1,21 @@
-require('dotenv').config();
-const { apikey, apiGames, apiGenres } = process.env;
 const { Router } = require('express');
-const axios = require('axios');
-const { Videogame, Genre } = require('../db');
+const { getAll, getGenres } = require('../controllers/index')
+const { Genre } = require('../controllers')
+
 const router = Router();
 
 
-
-// controller
-const getApiGames = async () => {
-    
-    let allPageGames = [];
-    let numPage = 1;
-    
-    for (let i = 0; i < 5; i++) {    
-        let page = numPage.toString();
-        let url = apiGames + apikey +'&page=' + page;
-        let eachPageGames = (await axios(url))
-            .data.results.map(ob => {
-                return {
-                    id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
-                    name: ob.name,
-                    img: ob.background_image,
-                    rating: ob.rating,
-                    genres: ob.genres.map(g => g)
-                }
-            });
-    numPage++;
-    allPageGames.push(eachPageGames);
-    }
-    let infoApiGames = allPageGames.flat(1);
-    console.log(infoApiGames);
-    return infoApiGames;
-};
-
-// controller
-const getDbGames = async () => {
-    return await Videogame.findAll({ include: Genre })
-};
-
-// controller
-const getAll = async () => {
-    const api = await getApiGames();
-    const db = await getDbGames();
-    const allInfo = api.concat(db);
-    return allInfo;
-};
-
-// route Home
-router.get('/', async (req, res, next) => {
+router.get('/', (req, res, next) => {
     try {
-        res.send(await home() + 'this is the home')
+        res.send('landing page')
     } catch (err) {
         next(err)
     }
 })
 
-// route /videogames and /videogames?=name...(falta agregar que sean los primeros 15)
+// GET /videogames y GET /videogames?name=...
 router.get('/videogames', async (req, res, next) => {
-    const name = req.query.name;
+    const { name } = req.query;
     const getAllGames = await getAll();
     try {
         if(name) {
@@ -74,17 +31,29 @@ router.get('/videogames', async (req, res, next) => {
     }
 });
 
-// controller
-// const getApiGenres = async () => {
+router.get('/videogames/:id', (req, res, next) => {
+    const { id } = req.params;
+    try {
+        res.send('video by id')
+    } catch (err) {
+        next();
+    }
+});
 
-// };
+router.get('/genres', async (req, res, next) => {
+    try {     
+        res.send(await Genre.findAll());
+    } catch (err) {
+        next(err);
+    }
+});
 
-
-
-
-
-router.get('/genres', (req, res, next) => {
-
+router.post('/videogames', (req, res, next) => {
+    try {
+        
+    } catch (err) {
+        
+    }
 });
 
 module.exports = router;

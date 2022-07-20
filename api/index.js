@@ -18,12 +18,13 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
+// const { getGenres } = require('./src/controllers/index.js');
 const { conn } = require('./src/db.js');
-const { getApiGenres } = require('./src/routes/index.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+conn.sync({ force: false }).then(() => { // cambiar 
+  server.listen(3001, () => { // agregar el async para usar getGenres
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+    // await getGenres()
   });
 });
