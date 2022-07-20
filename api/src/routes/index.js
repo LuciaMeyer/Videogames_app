@@ -6,9 +6,12 @@ const { Videogame, Genre } = require('../db');
 const router = Router();
 
 
+const num = '5'
+const page = '&page='
 // controller
 const getApiGames = async () => {  
-    let games = (await axios(apiGames + apikey)).data.results.map(ob => {
+    const games = (await axios(apiGames + apikey + page + num)).data
+    .results.map(ob => {
         return {
             id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
             name: ob.name,
@@ -19,10 +22,18 @@ const getApiGames = async () => {
     });
     return games;  
 };
+
+// link para ir a proxima 
+const home = async () => {
+    const nextGames = (await axios(apiGames + apikey)).data.next
+    return nextGames
+};
+
 // controller
 const getDbGames = async () => {
     return await Videogame.findAll({ include: Genre })
 };
+
 // controller
 const getAll = async () => {
     const api = await getApiGames();
@@ -30,6 +41,15 @@ const getAll = async () => {
     const allInfo = api.concat(db);
     return allInfo;
 };
+
+// route Home
+router.get('/', async (req, res, next) => {
+    try {
+        res.send(await home() + 'this is the home')
+    } catch (err) {
+        next(err)
+    }
+})
 
 // route /videogames and /videogames?=name...(falta agregar que sean los primeros 15)
 router.get('/videogames', async (req, res, next) => {
