@@ -8,47 +8,30 @@ const router = Router();
 
 
 // controller
-
 const getApiGames = async () => {
-    let numPage = 1
-    let page = numPage.toString()
-
-    for (let i = 0; i < 6; i++) {
-        numPage++
-        let games = (await axios(`${apiGames}${apikey}&page=${page}`)).data
-        .results.map(ob => {
-            return {
-                id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
-                name: ob.name,
-                img: ob.background_image,
-                rating: ob.rating,
-                genres: ob.genres.map(g => g)
-            }
-        });
-    games = [...games]
-    console.log(games)
+    
+    let allPageGames = [];
+    let numPage = 1;
+    
+    for (let i = 0; i < 5; i++) {    
+        let page = numPage.toString();
+        let url = apiGames + apikey +'&page=' + page;
+        let eachPageGames = (await axios(url))
+            .data.results.map(ob => {
+                return {
+                    id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
+                    name: ob.name,
+                    img: ob.background_image,
+                    rating: ob.rating,
+                    genres: ob.genres.map(g => g)
+                }
+            });
+    numPage++;
+    allPageGames.push(eachPageGames);
     }
-     
-};
-
-// const getApiGames = async () => {  
-//     const games = (await axios(apiGames + apikey + page + num)).data
-//     .results.map(ob => {
-//         return {
-//             id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
-//             name: ob.name,
-//             img: ob.background_image,
-//             rating: ob.rating,
-//             genres: ob.genres.map(g => g)
-//         }
-//     });
-//     return games;  
-// };
-
-// link para ir a proxima 
-const home = async () => {
-    const nextGames = (await axios(apiGames + apikey)).data.next
-    return nextGames
+    let infoApiGames = allPageGames.flat(1);
+    console.log(infoApiGames);
+    return infoApiGames;
 };
 
 // controller
