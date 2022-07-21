@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { apikey, apiGames, apiGenres } = process.env;
 const axios = require('axios');
-const { Videogame, Genre } = require('../db');
+const { Videogame, Genre, Plataform } = require('../db');
 
 
 const getApiGames = async () => {
@@ -25,9 +25,9 @@ const getApiGames = async () => {
     numPage++;
     allPageGames.push(eachPageGames);
     }
-    let infoApiGames = allPageGames.flat(1);
-    console.log(infoApiGames);
-    return infoApiGames; // 100 juegos de 5 páginas
+    let infoApiGames = allPageGames.flat();
+    // console.log(infoApiGames); 100 juegos desde 5 páginas de la api
+    return infoApiGames; 
 };
 
 const getDbGames = async () => {
@@ -41,22 +41,59 @@ const getAll = async () => {
     return allInfo;
 };
 
-// función para cargar generos a la db y mostrarlos
-const getGenres = async () => {
-    const genresApi = (await axios(apiGenres + apikey))
-        .data.results.map(ob => {
-            return {
-                id: ob.id,
-                name: ob.name
-            }
-        });
-    await Genre.bulkCreate(genresApi, { ignoreDuplicates: true });
-    console.log('episodios cargados');
-    // return await Genre.findAll()
+// const getByName = async (req, res) => {
+//     const { name } = req.query;
+//     const getAllGames = await getAll();
+//     let findName = getAllGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
+//     findName.length
+//     ? res.send(findName)
+//     : res.status(404).send('The video game with that name was not found');
+// };
+
+// función para cargar generos a la db 
+const getGenres = async () => { // no hago control de errores, ver!
+        const genresApi = (await axios(apiGenres + apikey))
+            .data.results.map(ob => {
+                return {
+                    id: ob.id,
+                    nameGenre: ob.name
+                }
+            });
+        await Genre.bulkCreate(genresApi, { ignoreDuplicates: true });
+        console.log('genres loaded in the db');      
 };
+
+// función para cargar plataformas en la db
+const getPlatform = async () => {
+    const typeOfPlatforms = [
+        {namePlatform: 'Dreamcast'},
+        {namePlatform: 'iOS'},
+        {namePlatform: 'Linux'},
+        {namePlatform: 'macOS'},
+        {namePlatform: 'Nintendo 3DS'},
+        {namePlatform: 'Nintendo Switch'},
+        {namePlatform: 'PC'},
+        {namePlatform: 'PlayStation 2'},
+        {namePlatform: 'PlayStation 3'},
+        {namePlatform: 'PlayStation 4'},
+        {namePlatform: 'PlayStation 5'},
+        {namePlatform: 'PS Vita'},
+        {namePlatform: 'Web'},
+        {namePlatform: 'Wii U'},
+        {namePlatform: 'Xbox'},
+        {namePlatform: 'Xbox 360'},
+        {namePlatform: 'Xbox One'},
+        {namePlatform: 'Xbox Series S/X'}
+    ]
+    await Plataform.bulkCreate(typeOfPlatforms);
+    console.log('platform loaded in the db');  
+};
+
 
 
 module.exports = {
     getAll,
-    getGenres
+    getGenres,
+    getPlatform,
+    // getByName
 }

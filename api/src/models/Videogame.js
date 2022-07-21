@@ -14,18 +14,18 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Descripción: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    FechaLanzamiento: {
-      type: DataTypes.STRING, // released. Ejemplo: "2013-09-17"
+    released: {
+      type: DataTypes.STRING, // Ejemplo: "2013-09-17"
     },
-    Rating: {
+    rating: {
       type: DataTypes.INTEGER,
     },
-    Plataformas: {
-      type: DataTypes.STRING,
+    platforms: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
     createdInDb: {

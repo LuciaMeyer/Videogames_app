@@ -1,16 +1,48 @@
-API: b5d0d6eb583547aebcc9043d888d8ca2
-contraseña página API: ApiPILu*
+página de la API: ApiPILu* usuario el mail
+DB_USER=postgres
+DB_PASSWORD=PostgresLu*
+DB_HOST=localhost
+apikey='b5d0d6eb583547aebcc9043d888d8ca2'
+apiGames='https://api.rawg.io/api/games?key='
+apiGenres='https://api.rawg.io/api/genres?key='
 
-Json ppal: https://api.rawg.io/api/platforms?key=b5d0d6eb583547aebcc9043d888d8ca2 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Únicos Endpoints/Flags que pueden utilizar
+Únicos Endpoints/Flags que pueden utilizar:
 GET https://api.rawg.io/api/games >> https://api.rawg.io/api/games?key=b5d0d6eb583547aebcc9043d888d8ca2
 GET https://api.rawg.io/api/games?search={game}
 GET https://api.rawg.io/api/genres >> https://api.rawg.io/api/genres?key=b5d0d6eb583547aebcc9043d888d8ca2
 GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key=b5d0d6eb583547aebcc9043d888d8ca2
 
-instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+DATOS Y ANOTACIONES:
+- instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
+BACK:
+- controllers --> no hago control de errores en getGenres, ver si es necesario
+- routes --> videogames?name=... me falta la lógica de traer las primeras 15 coincidencias
+- modularizar las rutas?
+- separar lógica de rutas
+- plataformas crear nuevo modelo?
 
+Listado de Plataformas por orden alfabetico:
+{namePlatform: 'Dreamcast'},
+{namePlatform: 'iOS'},
+{namePlatform: 'Linux'},
+{namePlatform: 'macOS'},
+{namePlatform: 'Nintendo 3DS'},
+{namePlatform: 'Nintendo Switch'},
+{namePlatform: 'PC'},
+{namePlatform: 'PlayStation 2'},
+{namePlatform: 'PlayStation 3'},
+{namePlatform: 'PlayStation 4'},
+{namePlatform: 'PlayStation 5'},
+{namePlatform: 'PS Vita'},
+{namePlatform: 'Web'},
+{namePlatform: 'Wii U'},
+{namePlatform: 'Xbox'},
+{namePlatform: 'Xbox 360'},
+{namePlatform: 'Xbox One'},
+{namePlatform: 'Xbox Series S/X'}
