@@ -1,10 +1,16 @@
+import React from "react"
+// importar todos los componentes que use
+
 import './App.css';
+
 
 function App() {
   return (
-    <div className="App">
+    <>
+
       <h1>Henry Videogames</h1>
-    </div>
+
+    </>
   );
 }
 

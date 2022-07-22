@@ -22,10 +22,10 @@ const { getGenres, getPlatform } = require('./src/controllers/index.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => { // cambiar 
-  server.listen(3001, async () => { // agregar el async para usar getGenres
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-    await getGenres();
-    await getPlatform();
+conn.sync({ force: false }).then(() => { // cambiar 
+  server.listen(3001, async () => { 
+    console.log('%s listening at 3001'); 
+    // await getGenres();
+    // await getPlatform();
   });
 });

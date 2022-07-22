@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { apikey, apiGames, apiGenres } = process.env;
 const axios = require('axios');
-const { Videogame, Genre, Plataform } = require('../db');
+const { Videogame, Genre, Platform } = require('../db');
 
 
 const getApiGames = async () => {
@@ -44,10 +44,10 @@ const getAll = async () => {
 // const getByName = async (req, res) => {
 //     const { name } = req.query;
 //     const getAllGames = await getAll();
-//     let findName = getAllGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
+//     let findName = await getAllGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
 //     findName.length
-//     ? res.send(findName)
-//     : res.status(404).send('The video game with that name was not found');
+//     ? findName
+//     : 'The video game with that name was not found'
 // };
 
 // función para cargar generos a la db 
@@ -85,7 +85,7 @@ const getPlatform = async () => {
         {namePlatform: 'Xbox One'},
         {namePlatform: 'Xbox Series S/X'}
     ]
-    await Plataform.bulkCreate(typeOfPlatforms);
+    await Platform.bulkCreate(typeOfPlatforms);
     console.log('platform loaded in the db');  
 };
 

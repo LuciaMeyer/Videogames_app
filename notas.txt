@@ -19,30 +19,22 @@ GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DATOS Y ANOTACIONES:
-- instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
+
+DATABASE:
+
+- controlar el index, funciones de almacenamiento y force: true/false
+
 BACK:
+
+- instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 - controllers --> no hago control de errores en getGenres, ver si es necesario
 - routes --> videogames?name=... me falta la lógica de traer las primeras 15 coincidencias
-- modularizar las rutas?
-- separar lógica de rutas
-- plataformas crear nuevo modelo?
+- separar lógica de rutas en get /videogames y /videogames/:id
 
-Listado de Plataformas por orden alfabetico:
-{namePlatform: 'Dreamcast'},
-{namePlatform: 'iOS'},
-{namePlatform: 'Linux'},
-{namePlatform: 'macOS'},
-{namePlatform: 'Nintendo 3DS'},
-{namePlatform: 'Nintendo Switch'},
-{namePlatform: 'PC'},
-{namePlatform: 'PlayStation 2'},
-{namePlatform: 'PlayStation 3'},
-{namePlatform: 'PlayStation 4'},
-{namePlatform: 'PlayStation 5'},
-{namePlatform: 'PS Vita'},
-{namePlatform: 'Web'},
-{namePlatform: 'Wii U'},
-{namePlatform: 'Xbox'},
-{namePlatform: 'Xbox 360'},
-{namePlatform: 'Xbox One'},
-{namePlatform: 'Xbox Series S/X'}
+FRONT:
+
+- instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
+- Pagina inicial: landing page
+- Ruta principal: busqueda, filtrado, paginado, etc
+- Ruta de detalle de videojuego
+- Ruta de creación de videojuego

@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID, // identificadores universales únicos, combinación letras y números
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false, // no puede estar vacío
+      allowNull: false, 
       primaryKey: true 
     },
     name: {
@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     released: {
@@ -24,14 +24,14 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.INTEGER,
     },
-    platforms: {
+    platforms_: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true // todos los que cree van a ser true, el de la api este campo está vacío
+      defaultValue: true 
     }
   },
   {

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('plataform', {
+    sequelize.define('platform', {
         namePlatform: {
             type: DataTypes.STRING,
             allowNull: false,

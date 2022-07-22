@@ -1,16 +1,16 @@
 const { Router } = require('express');
 const { getAll, getByName } = require('../controllers');
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 
 const router = Router();
 
-//GET /videogames y GET /videogames?name=...
+// GET /videogames y GET /videogames?name=...
 router.get('/', async (req, res, next) => {
     const { name } = req.query;
     const getAllGames = await getAll();
     try {
         if(name) {
-            let gamesByName = await getAllGames.filter(n => n.name.toLowerCase().includes(name.toLowerCase()));
+            let gamesByName = await getAllGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
             gamesByName.length
             ? res.send(gamesByName) 
             : res.status(404).send('The video game with that name was not found');
@@ -25,31 +25,39 @@ router.get('/', async (req, res, next) => {
 // router.get('/', async (req, res, next) => {
 //     const { name } = req.query;
 //     try {
-//         if(name) await getByName();
-//         else await getAll();       
+//         if(name) {
+//            const ver = await getByName();
+//            if (Array.isArray(ver)) res.send(ver);
+//            res.status(404).send(ver)
+//         } else await getAll();       
 //     } catch (err) {
 //         next(err);
 //     }
 // });
 
-router.get('/:id', (req, res, next) => {
+// necesito comprobar el id if(id) ¿? si me pasan /texto entra a la ruta de name
+router.get('/:id', async (req, res, next) => { 
     const { id } = req.params;
-    try {
-        res.send('video by id')
+    const getAllGames = await getAll();
+    try {       
+        let gamesById = await getAllGames.filter(g => g.id == id); // son == porque en la ruta llega como string
+        gamesById.length 
+        ? res.send(gamesById)
+        : res.status(404).send('the Videogame with that id was not found')
     } catch (err) {
-        next();
+        next(err);
     }
 });
 
 router.post('/', async (req, res, next) => {
     try {
-      const { name, description, released, rating, platforms } = req.body;
+      const { name, description, released, rating, platforms_ } = req.body;
       const bodyGenre = req.body.nameGenre;
 
       let infoGame = await Videogame.create(req.body);
       let infoGenre = await Genre.findAll({ where: { nameGenre: bodyGenre }});
       infoGame.addGenre(infoGenre);
-      res.json('Successfully created Videogame ');   
+      res.json('Videogame created successfully');   
     } catch (err) {
         next(err);       
     }   
