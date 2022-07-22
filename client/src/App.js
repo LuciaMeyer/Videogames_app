@@ -1,17 +1,12 @@
 import React from "react"
+import { Route, Switch } from "react-router-dom";
+import { Home } from './components/Home';
 // importar todos los componentes que use
 
-import './App.css';
-
-
-function App() {
+export const App = () => {
   return (
     <>
-
-      <h1>Henry Videogames</h1>
-
+      <Home />
     </>
   );
 }
-
-export default App;
