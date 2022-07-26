@@ -13,12 +13,10 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             videogames: action.payload
           }
-            
-            
-    
+
         default: return {...state}
     }
 };
 
 
-  export default rootReducer;
+export default rootReducer;

@@ -9,14 +9,4 @@ router.use('/videogames', gamesRouter);
 router.use('/genres', genresRoutes);
 
 
-////////  PROVISORIO  /////////////
-router.get('/', (req, res, next) => {
-    try {
-        res.send('landing page')
-    } catch (err) {
-        next(err)
-    }
-})
-
-
 module.exports = router;
