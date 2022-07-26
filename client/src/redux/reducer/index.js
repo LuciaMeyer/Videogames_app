@@ -4,7 +4,7 @@ const initialState = {
     videogames: []
 }
 
-function rootReducer (state = initialState, action) {
+function reducer (state = initialState, action) {
     switch (action.type) {
         case 'GET_GAMES':
             return {
@@ -15,5 +15,5 @@ function rootReducer (state = initialState, action) {
     }
 };
 
-export default rootReducer;
+export default reducer;
 

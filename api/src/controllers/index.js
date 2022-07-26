@@ -4,66 +4,87 @@ const axios = require('axios');
 const { Videogame, Genre, Platform } = require('../db');
 
 
-const getApiGames = async () => {
-    
-    let allPageGames = [];
-    let numPage = 1;
-    
-    for (let i = 0; i < 5; i++) {    
-        let page = numPage.toString();
-        let url = apiGames + apikey +'&page=' + page;
-        let eachPageGames = (await axios(url))
-            .data.results.map(ob => {
-                return {
-                    id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
-                    name: ob.name,
-                    img: ob.background_image,
-                    rating: ob.rating,
-                    genres: ob.genres.map(g => g)
-                }
-            });
-    numPage++;
-    allPageGames.push(eachPageGames);
+const getApiGames = async () => {    
+    try {
+        let allPageGames = [];
+        let numPage = 1;
+        
+        for (let i = 0; i < 5; i++) {    
+            let page = numPage.toString();
+            let url = apiGames + apikey +'&page=' + page;
+            let eachPageGames = (await axios(url))
+                .data.results.map(ob => {
+                    return {
+                        id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
+                        name: ob.name,
+                        img: ob.background_image,
+                        rating: ob.rating,
+                        genres: ob.genres.map(g => g)
+                    }
+                });
+        numPage++;
+        allPageGames.push(eachPageGames);
+        }
+        let infoApiGames = allPageGames.flat();
+        // console.log(infoApiGames); 100 juegos desde 5 páginas de la api
+        return infoApiGames;       
+    } catch (err) {
+        console.log(err.message)
     }
-    let infoApiGames = allPageGames.flat();
-    // console.log(infoApiGames); 100 juegos desde 5 páginas de la api
-    return infoApiGames; 
 };
 
 const getDbGames = async () => {
     return await Videogame.findAll({ include: Genre })
 }; 
 
-const getAll = async () => {
+const getAll = async (req, res, next) => {
+    const { name } = req.query;
     const api = await getApiGames();
     const db = await getDbGames();
     const allInfo = api.concat(db);
-    return allInfo;
+
+    try {
+        if(name) {
+            let gamesByName = await allInfo.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
+            gamesByName.length
+            ? res.send(gamesByName) 
+            : res.status(404).send('The video game was not found');
+        } else {
+            res.send(allInfo); 
+        };        
+    } catch (err) {
+        next(err);
+    }
 };
 
-// const getByName = async (req, res) => {
-//     const { name } = req.query;
-//     const getAllGames = await getAll();
-//     let findName = await getAllGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
-//     findName.length
-//     ? findName
-//     : 'The video game with that name was not found'
-// };
-
-// función para cargar generos a la db 
-const getGenres = async () => { // no hago control de errores, ver!
+// cargar generos en la db 
+const getApiGenres = async (req, res, next) => { 
+    try {
         const genresApi = (await axios(apiGenres + apikey))
-            .data.results.map(ob => {
-                return {
-                    id: ob.id,
-                    nameGenre: ob.name
-                }
-            });
-        await Genre.bulkCreate(genresApi, { ignoreDuplicates: true });
-        console.log('genres loaded in the db');      
+        .data.results.map(ob => {
+            return {
+                id: ob.id,
+                nameGenre: ob.name
+            }
+        });
+    await Genre.bulkCreate(genresApi, { ignoreDuplicates: true });
+    console.log('genres loaded in the db'); 
+    } catch (err) {
+        next(err)
+    }     
 };
 
-// función para cargar plataformas en la db
+// buscar genres en la db
+const getDbGenres = async (req, res, next) => {
+    try {
+        const genresDb = await Genre.findAll()
+        res.send(genresDb)
+    } catch (err) {
+        next(err)
+    }
+}
+
+// cargar platforms en la db
 const getPlatform = async () => {
     const typeOfPlatforms = [
         {namePlatform: 'Dreamcast'},
@@ -89,11 +110,23 @@ const getPlatform = async () => {
     console.log('platform loaded in the db');  
 };
 
+// buscar platforms en la db
+const getDbPlatforms = async (req, res, next) => {
+    try {
+        const platformDb = await Platform.findAll()
+        res.send(platformDb)
+    } catch (err) {
+        next(err)
+    }
+};
+
+
 
 
 module.exports = {
     getAll,
-    getGenres,
+    getApiGenres,
     getPlatform,
-    // getByName
+    getDbGenres,
+    getDbPlatforms
 }

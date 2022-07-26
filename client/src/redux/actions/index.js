@@ -1,11 +1,9 @@
 import axios from 'axios';
+import { GET_GAMES } from './actions_types'
 
-export function getGames () {
-    return async function(dispatch) {
-        var json = await axios('http://localhost:3001/videogames')
-        return dispatch({
-            type: 'GET_GAMES',
-            payload: json.data
-        })
-    }
+
+export const getGames = () => {
+    return dispatch => axios('http://localhost:3001/videogames')
+        .then(res => dispatch({ type: GET_GAMES, payload: res.data }))
 };
+

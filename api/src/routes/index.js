@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const gamesRouter = require('./gamesRouter');
 const genresRoutes = require('./genresRoutes');
-const { Genre } = require('../db');
 
 const router = Router();
 

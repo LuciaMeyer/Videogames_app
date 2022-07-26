@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useEffect} from 'react'; // agregar el useState
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 
-export default function Home () {
+export function Home () {
 
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.videogames);
@@ -46,11 +46,15 @@ export default function Home () {
                 {
                     allGames?.map(e => {
                         return (
-                            <>
+                            <div key={e.id}>
                                 <Link to={'/home/' + e.id }>
-                                    <Card key={e.id} name={e.name} />
+                                    <Card
+                                    name={e.name}
+                                    img={e.img}
+                                    rating={e.rating}
+                                    />
                                 </Link>
-                            </>                           
+                            </div>                           
                         )                       
                     })
                 }

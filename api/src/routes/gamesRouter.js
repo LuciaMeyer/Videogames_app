@@ -1,39 +1,10 @@
 const { Router } = require('express');
-const { getAll, getByName } = require('../controllers');
+const { getAll } = require('../controllers');
 const { Videogame, Genre } = require('../db');
 
 const router = Router();
 
-// GET /videogames y GET /videogames?name=...
-router.get('/', async (req, res, next) => {
-    const { name } = req.query;
-    const getAllGames = await getAll();
-    try {
-        if(name) {
-            let gamesByName = await getAllGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
-            gamesByName.length
-            ? res.send(gamesByName) 
-            : res.status(404).send('The video game with that name was not found');
-        } else {
-            res.send(getAllGames); 
-        };        
-    } catch (err) {
-        next(err);
-    }
-});
-
-// router.get('/', async (req, res, next) => {
-//     const { name } = req.query;
-//     try {
-//         if(name) {
-//            const ver = await getByName();
-//            if (Array.isArray(ver)) res.send(ver);
-//            res.status(404).send(ver)
-//         } else await getAll();       
-//     } catch (err) {
-//         next(err);
-//     }
-// });
+router.get('/', getAll);
 
 // necesito comprobar el id if(id) ¿? si me pasan /texto entra a la ruta de name
 router.get('/:id', async (req, res, next) => { 
