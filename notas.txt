@@ -32,8 +32,8 @@ BACK:
 - separar lógica de rutas en get /videogames y /videogames/:id
 
 FRONT:
-- instalar extensión de Visual: ES7+ React/Redux/React-Native snippets y con el comando rfc te arma la estructura de un componente
-- instalar axios npm i axios, si uso fetch no es necesario instalar
+
+- instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 - Pagina inicial: landing page
 - Ruta principal: busqueda, filtrado, paginado, etc
 - Ruta de detalle de videojuego
