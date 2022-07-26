@@ -60,7 +60,7 @@ router.post('/', async (req, res, next) => {
       res.json('Videogame created successfully');   
     } catch (err) {
         next(err);       
-    }   
+    }
 });
 
 

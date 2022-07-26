@@ -1,15 +1,16 @@
 import React from "react"
-// importar todos los componentes que use
-
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Landing from './components/Landing';
+import Home from './components/Home';
 
 
 function App() {
   return (
     <>
-
-      <h1>Henry Videogames</h1>
-
+      <Switch>
+        <Route exact path= '/' component= {Landing} />
+        <Route exact path= '/home' component= {Home} />
+      </Switch>
     </>
   );
 }
