@@ -1,16 +1,9 @@
 const { Router } = require('express');
-const { Genre } = require('../db');
+const { getDbGenres } = require('../controllers/genresControllers');
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
-    try {     
-        const genresFromDb = await Genre.findAll()
-        res.send(genresFromDb);
-    } catch (err) {
-        next(err);
-    }
-});
+router.get('/', getDbGenres);
 
 
 module.exports = router;

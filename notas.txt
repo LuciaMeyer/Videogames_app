@@ -10,8 +10,9 @@ apiGenres='https://api.rawg.io/api/genres?key='
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Únicos Endpoints/Flags que pueden utilizar:
+
 GET https://api.rawg.io/api/games >> https://api.rawg.io/api/games?key=b5d0d6eb583547aebcc9043d888d8ca2
-GET https://api.rawg.io/api/games?search={game}
+GET https://api.rawg.io/api/games?search={game} >> https://api.rawg.io/api/games?search={grand}&key=b5d0d6eb583547aebcc9043d888d8ca2
 GET https://api.rawg.io/api/genres >> https://api.rawg.io/api/genres?key=b5d0d6eb583547aebcc9043d888d8ca2
 GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key=b5d0d6eb583547aebcc9043d888d8ca2
 

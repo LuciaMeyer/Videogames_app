@@ -18,7 +18,8 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { getApiGenres, getPlatform } = require('./src/controllers/index.js');
+const { insertPlatform } = require('./src/controllers/platformsControllers');
+const { getApiGenres } = require('./src/controllers/genresControllers')
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
@@ -26,6 +27,6 @@ conn.sync({ force: false }).then(() => { // cambiar
   server.listen(3001, async () => { 
     console.log('%s listening at 3001'); 
     // await getApiGenres();
-    // await getPlatform();
+    // await insertPlatform();
   });
 });
