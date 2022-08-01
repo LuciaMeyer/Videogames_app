@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getGameID, postGame } = require('../controllers/oneGameControllers');
+const { getGameID, postGame } = require('../controllers/gameControllers');
 
 const router = Router();
 

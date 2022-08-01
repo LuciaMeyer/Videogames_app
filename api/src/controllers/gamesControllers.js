@@ -1,10 +1,11 @@
 require('dotenv').config();
-const { apikey, apiGames } = process.env;
+const { apikey, apiGames, apiGameByName } = process.env;
 const axios = require('axios');
 const { Videogame, Genre } = require('../db');
 
 
-const getApiGames = async () => {    
+const getApiGames = async () => {
+        
     try {
         let allPageGames = [];
         let numPage = 1;
@@ -43,13 +44,28 @@ const getAllGames = async (req, res, next) => {
     const api = await getApiGames();
     const db = await getDbGames();
     const allInfo = api.concat(db);
+    const urlSearchName = apiGameByName + name + '&key=' + apikey;
 
     try {
         if(name) {
-            let gamesByName = await allInfo.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
-            gamesByName.length
-            ? res.send(gamesByName) 
-            : res.status(404).send('The video game was not found');
+            // esta primera opción busca entre los 100 que traigo, la otra opción busca con el endpoint 
+            // let gameByName = await allInfo.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
+            // gameByName.length
+            // ? res.send(gameByName) 
+            // : res.status(404).send('The video game was not found');
+        let gameByName = (await axios(urlSearchName))
+            .data.results.slice(0,15).map(ob => {
+                return {
+                    id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
+                    name: ob.name,
+                    img: ob.background_image,
+                    rating: ob.rating,
+                    genres: ob.genres.map(g => g),
+                }
+            });
+        gameByName.length
+        ? res.send(gameByName) 
+        : res.status(404).send('The video game was not found');
         } else {
             res.send(allInfo); 
         };        

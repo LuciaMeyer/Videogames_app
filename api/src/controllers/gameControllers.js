@@ -9,7 +9,7 @@ const getGameID = async (req, res) => {
     const { id } = req.params;
     const urlId = apiGameID + id + '?key=' + apikey;
 
-    if(id.length > 4 ) {
+    if(id.length > 4 ) { // UUID
         try {
             let gameDb = await Videogame.findOne({where: {id}, include: Genre})
             gameDb
@@ -20,17 +20,17 @@ const getGameID = async (req, res) => {
         }
     } else {
         try {
-            let findGameApi = (await axios(urlId)).data
-            if(findGameApi.id) {
+            let gameApi = (await axios(urlId)).data
+            if(gameApi.id) {
                 game = {
-                    id: findGameApi.id,
-                    name: findGameApi.name,
-                    img: findGameApi.background_image,
-                    genres: findGameApi.genres.map(e => e.name),
-                    description: findGameApi.description,
-                    released: findGameApi.released,
-                    rating: findGameApi.rating,
-                    platforms: findGameApi.platforms.map(e => e.platform.name)
+                    id: gameApi.id,
+                    name: gameApi.name,
+                    img: gameApi.background_image,
+                    genres: gameApi.genres.map(g => g.name),
+                    description: gameApi.description,
+                    released: gameApi.released,
+                    rating: gameApi.rating,
+                    platforms: gameApi.platforms.map(p => p.platform.name)
                 }
             }
             res.send(game);
@@ -41,13 +41,16 @@ const getGameID = async (req, res) => {
 };
 
 const postGame = async (req, res, next) => {
-    try {
-      const { name, description, released, rating, platforms_ } = req.body;
-      const bodyGenre = req.body.nameGenre;
 
+    let { name, description, released, rating, platforms_, image } = req.body;
+    let nameGenre = req.body.nameGenre;
+    if(!name || !description || !platforms_ || !nameGenre) return res.status(404).send('Essential data missing');
+    try {  
       let infoGame = await Videogame.create(req.body);
-      let infoGenre = await Genre.findAll({ where: { nameGenre: bodyGenre }});
-      infoGame.addGenre(infoGenre);
+    //   console.log(infoGame.toJSON());
+      let infoGenre = await Genre.findAll({ where: { nameGenre }}); 
+    //   console.log(infoGenre.map(i=>i.toJSON()))
+      infoGame.addGenre(infoGenre);    
       res.json('Videogame created successfully');   
     } catch (err) {
         next(err);       
