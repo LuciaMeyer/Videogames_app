@@ -20,7 +20,7 @@ const getApiGames = async () => {
                         name: ob.name,
                         img: ob.background_image,
                         rating: ob.rating,
-                        genres: ob.genres.map(g => g),
+                        genres: ob.genres.map(g => g.name)
                     }
                 });
         numPage++;
@@ -60,7 +60,7 @@ const getAllGames = async (req, res, next) => {
                     name: ob.name,
                     img: ob.background_image,
                     rating: ob.rating,
-                    genres: ob.genres.map(g => g),
+                    genres: ob.genres.map(g => g)
                 }
             });
         gameByName.length

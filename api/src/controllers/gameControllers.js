@@ -42,16 +42,16 @@ const getGameID = async (req, res) => {
 
 const postGame = async (req, res, next) => {
 
-    let { name, description, released, rating, platforms_, image } = req.body;
-    let nameGenre = req.body.nameGenre;
-    if(!name || !description || !platforms_ || !nameGenre) return res.status(404).send('Essential data missing');
+    let { name, description, released, rating, platforms_, img } = req.body;
+    let genres = req.body.genres;
+    if(!name || !description || !platforms_ || !genres) return res.status(404).send('Essential data missing');
     try {  
       let infoGame = await Videogame.create(req.body);
-    //   console.log(infoGame.toJSON());
-      let infoGenre = await Genre.findAll({ where: { nameGenre }}); 
-    //   console.log(infoGenre.map(i=>i.toJSON()))
+      console.log(infoGame.toJSON());
+      let infoGenre = await Genre.findAll({ where: { name: genres }}); 
+      console.log(infoGenre.map(i=>i.toJSON()))
       infoGame.addGenre(infoGenre);    
-      res.json('Videogame created successfully');   
+      res.status(201).send('Videogame created successfully');   
     } catch (err) {
         next(err);       
     }

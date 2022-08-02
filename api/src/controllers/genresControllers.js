@@ -10,7 +10,7 @@ const getApiGenres = async (req, res, next) => {
         .data.results.map(ob => {
             return {
                 id: ob.id,
-                nameGenre: ob.name
+                name: ob.name
             }
         });
     await Genre.bulkCreate(genresApi, { ignoreDuplicates: true });
