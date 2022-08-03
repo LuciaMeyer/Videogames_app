@@ -1,31 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Search } from "./Search";
-import { useDispatch } from 'react-redux';
-import { getGames } from '../redux/actions';
 import { Filters } from './Filters';
+import { SetFilters } from "./SetFilters";
 
 export const Nav = () => {
 
-const dispatch = useDispatch();
-
-
-const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(getGames());
-}   
     return(
         <div>
             <div>
                 <Search/>
+                <br/>
+                <button><Link to='/home'>Home</Link></button>
                 <button><Link to='/'>Exit</Link></button>
-                <button><Link to = '/jadshjdh'>Create</Link></button>          
+                <button><Link to ='/create'>Create</Link></button>
+                <button><Link to ='/about'>About</Link></button>       
             </div>
-            <div>
-                <h5>Filter By</h5>
-                <Filters/>
-                <button onClick={handleClick}>reset</button>
-            </div>
+            <br/>
+                <Filters />
+                <SetFilters />
         </div>
     )
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE } from './actions_types';
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_FILTER, RATING_FILTER } from './actions_types';
 
 
 export const getGames = () => {
@@ -32,8 +32,21 @@ export const showCurrentPage = payload => {
     }
 };
 
+export const showNameFilter = payload => {
+    return dispatch => {
+        dispatch({ type: NAME_FILTER, payload })
+    }
+};
+
+export const showRatingFilter = payload => {
+    return dispatch => {
+        dispatch({ type: RATING_FILTER, payload })
+    }
+};
+
 export const resetPage = payload => {
     return dispatch => {
         dispatch({ type: RESET_PAGE, payload})
     }
 }
+

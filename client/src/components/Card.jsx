@@ -4,7 +4,7 @@ export function Card({ name, img, rating, genres }) {
     return (
         <div>
             <h3>{name}</h3>
-            <h1>{rating}</h1>
+            <h3>{rating}</h3>
             <div>
             {
                 typeof genres[0] === 'string'

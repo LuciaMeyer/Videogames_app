@@ -1,11 +1,13 @@
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE } from '../actions/actions_types'
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_FILTER, RATING_FILTER } from '../actions/actions_types'
 
 const initialState = {
     allGames: [],
     genres: [],
+    currentPage: 1,
     genresFilter: '',
     typeFilter: '',
-    currentPage: 1
+    nameFilter:'',
+    ratingFilter: 0
 }
 
 export const reducer = (state = initialState, action) => {
@@ -20,6 +22,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 genres: action.payload
             }
+        case CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload
+            }
         case GENRE_FILTER:
             return {
                 ...state,
@@ -30,13 +37,18 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 typeFilter: action.payload
             }
-        case CURRENT_PAGE:
-            return {
-                ...state,
-                currentPage: action.payload
-            }
-        case RESET_PAGE:
-            return {
+            case NAME_FILTER:
+                return {
+                    ...state,
+                    nameFilter: action.payload
+                }
+            case RATING_FILTER:
+                return {
+                    ...state,
+                    ratingFilter: action.payload
+                }
+            case RESET_PAGE:
+                return {
                 ...state,
                 currentPage: action.payload
             }   
