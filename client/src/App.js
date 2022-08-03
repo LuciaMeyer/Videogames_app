@@ -1,10 +1,10 @@
 import React from "react"
 import { Route, Switch } from 'react-router-dom';
 import { Landing } from './components/Landing';
-import { Home } from './components/Home';
+import { Home } from './components/Home'
 
 
-export function App () {
+export const App = () => {
   return (
     <>
       <Switch>
