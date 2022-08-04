@@ -3,24 +3,24 @@ const { Platform } = require('../db');
 
 const insertPlatform = async () => {
     const typeOfPlatforms = [
-        {namePlatform: 'Dreamcast'},
-        {namePlatform: 'iOS'},
-        {namePlatform: 'Linux'},
-        {namePlatform: 'macOS'},
-        {namePlatform: 'Nintendo 3DS'},
-        {namePlatform: 'Nintendo Switch'},
-        {namePlatform: 'PC'},
-        {namePlatform: 'PlayStation 2'},
-        {namePlatform: 'PlayStation 3'},
-        {namePlatform: 'PlayStation 4'},
-        {namePlatform: 'PlayStation 5'},
-        {namePlatform: 'PS Vita'},
-        {namePlatform: 'Web'},
-        {namePlatform: 'Wii U'},
-        {namePlatform: 'Xbox'},
-        {namePlatform: 'Xbox 360'},
-        {namePlatform: 'Xbox One'},
-        {namePlatform: 'Xbox Series S/X'}
+        {name: 'Dreamcast'},
+        {name: 'iOS'},
+        {name: 'Linux'},
+        {name: 'macOS'},
+        {name: 'Nintendo 3DS'},
+        {name: 'Nintendo Switch'},
+        {name: 'PC'},
+        {name: 'PlayStation 2'},
+        {name: 'PlayStation 3'},
+        {name: 'PlayStation 4'},
+        {name: 'PlayStation 5'},
+        {name: 'PS Vita'},
+        {name: 'Web'},
+        {name: 'Wii U'},
+        {name: 'Xbox'},
+        {name: 'Xbox 360'},
+        {name: 'Xbox One'},
+        {name: 'Xbox Series S/X'}
     ]
     await Platform.bulkCreate(typeOfPlatforms);
     console.log('platform loaded in the db');  

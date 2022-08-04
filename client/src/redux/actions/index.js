@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_FILTER, RATING_FILTER } from './actions_types';
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
+    RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER } from './actions_types';
 
 
 export const getGames = () => {
@@ -14,9 +15,21 @@ export const getGenres = () => {
     .catch(err => console.log(err));  
 };
 
+export const getPlatforms = () => {
+    return dispatch => axios('http://localhost:3001/platforms')
+    .then  (res => dispatch({ type: GET_PLATFORMS, payload: res.data}))
+    .catch(err => console.log(err));  
+};
+
 export const showGenresFilter = payload => {
     return dispatch => {
         dispatch({ type: GENRE_FILTER, payload})
+    }
+};
+
+export const showPlatformsFilter = payload => {
+    return dispatch => {
+        dispatch({ type: PLATFORMS_FILTER, payload})
     }
 };
 

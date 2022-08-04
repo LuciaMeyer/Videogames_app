@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { showGenresFilter, showNameFilter, showRatingFilter, showTypeFilter } from "../redux/actions";
+import { showGenresFilter, showNameFilter, showPlatformsFilter, showRatingFilter, showTypeFilter } from "../redux/actions";
 
 export const SetFilters = () => {
 
     const dispatch = useDispatch();
     const genresFilter = useSelector(state => state.genresFilter);
+    const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
     const nameFilter = useSelector(state => state.nameFilter);
     const ratingFilter = useSelector(state => state.ratingFilter);
@@ -12,6 +13,7 @@ export const SetFilters = () => {
 
     const handleResetAll = () => {
         if(genresFilter !== '') dispatch(showGenresFilter(''));
+        if(platformsFilter !== '') dispatch(showPlatformsFilter(''));
         if(typeFilter !== '') dispatch(showTypeFilter(''));
         if(nameFilter !== '') dispatch(showNameFilter(''));
         if(ratingFilter !== '') dispatch(showRatingFilter(0));
@@ -19,6 +21,10 @@ export const SetFilters = () => {
 
     const handleResetGenres = () => {
         if(genresFilter !== '') dispatch(showGenresFilter(''));
+    };
+
+    const handleResetPlatforms = () => {
+        if(platformsFilter !== '') dispatch(showPlatformsFilter(''));
     };
 
     const handleResetType = () => {
@@ -33,14 +39,19 @@ export const SetFilters = () => {
         if(ratingFilter !== '') dispatch(showRatingFilter(0));
     };
 
-
     return (
         <>
+            <br />
             <button onClick={handleResetAll}>Reset</button>
-            <h5>Filters:</h5>
+            <h5>your research:</h5>
             {
                 genresFilter.length !== 0 
                 ? <button onClick= {handleResetGenres}>Genre: {genresFilter} x</button>
+                : ''
+            }
+            {
+                platformsFilter.length !== 0 
+                ? <button onClick= {handleResetPlatforms}>Platforms: {platformsFilter} x</button>
                 : ''
             }
             {           
@@ -60,6 +71,5 @@ export const SetFilters = () => {
             }     
         </>
     )
-
 
 };

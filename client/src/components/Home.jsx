@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getGames, getGenres } from '../redux/actions';
+import { getGames, getGenres, getPlatforms } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { Pagination } from './Pagination';
@@ -14,18 +14,21 @@ export const Home = () => {
     const dispatch = useDispatch();
     let allGames = useSelector(state => state.allGames);
     const genres = useSelector(state => state.genres);
+    const platforms = useSelector(state => state.genres);
     const genresFilter = useSelector(state => state.genresFilter);
+    const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
     const nameFilter = useSelector(state => state.nameFilter);
-    const ratingFilter = useSelector(state => state.ratingFilter)
+    const ratingFilter = useSelector(state => state.ratingFilter);
     const currentPage = useSelector(state => state.currentPage);
 
     const gamesPerPage = 15;
     // let allGames = allGames; // por si si a allgames no lo uso en otro lado no hacer la copia
     
-    const filterAndOrder  = () => {
+    // const filterAndOrder  = () => {
 
         if(genresFilter.length !== 0 && genresFilter !== 'all') allGames = allGames.filter(g => g.genres.includes(genresFilter));
+        if(platformsFilter.length !== 0 && platformsFilter !== 'all') allGames = allGames.filter(g => g.platforms.includes(platformsFilter));
 
         if(typeFilter === 'created') allGames = allGames.filter(g => typeof g.id === 'string');
         if(typeFilter === 'existing') allGames = allGames.filter(g => typeof g.id === 'number');
@@ -59,9 +62,9 @@ export const Home = () => {
             })
         }
         
-        return allGames
-    }
-    filterAndOrder()
+    //     return allGames
+    // }
+    // filterAndOrder()
     
     // paginado
     const indexLastGame = currentPage * gamesPerPage;
@@ -69,9 +72,10 @@ export const Home = () => {
     const currentGames = allGames.slice(indexFirstGame, indexLastGame); // si hay filtros toma el arreglo de los filtros, sino el global
 
     // mostrar todo
-    if(!allGames.length && !genres.length) {
+    if(!allGames.length && !genres.length && !platforms.length) {
         dispatch(getGames());
         dispatch(getGenres());
+        dispatch(getPlatforms());
     }
 
     return (
@@ -92,6 +96,7 @@ export const Home = () => {
                                     img={e.img}
                                     rating={e.rating}
                                     genres={e.genres}
+                                    platforms={e.platforms}
                                     />
                                 </Link>
                             </div>                           
