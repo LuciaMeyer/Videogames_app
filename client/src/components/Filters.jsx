@@ -32,7 +32,7 @@ export const Filters = () => {
 
     const handleNameFilter = e => {
         dispatch(showNameFilter(e.target.value))
-        dispatch(showRatingFilter(0))
+        dispatch(showRatingFilter(''))
         console.log(e.target.value)
         dispatch(resetPage(1)) 
     };

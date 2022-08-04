@@ -7,6 +7,7 @@ export const About = () => {
 
     return (
         <>
+            <h5>About</h5>
             <button><Link to='/home'>Back</Link></button>
         </>
     )

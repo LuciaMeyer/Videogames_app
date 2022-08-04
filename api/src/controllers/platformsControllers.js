@@ -1,4 +1,4 @@
-const { Platform } = require('../db');
+const { Platform_ } = require('../db');
 
 
 const insertPlatform = async () => {
@@ -22,13 +22,13 @@ const insertPlatform = async () => {
         {name: 'Xbox One'},
         {name: 'Xbox Series S/X'}
     ]
-    await Platform.bulkCreate(typeOfPlatforms);
+    await Platform_.bulkCreate(typeOfPlatforms);
     console.log('platform loaded in the db');  
 };
 
 const getDbPlatforms = async (req, res, next) => {
     try {
-        const platformDb = await Platform.findAll()
+        const platformDb = await Platform_.findAll()
         res.send(platformDb)
     } catch (err) {
         next(err)

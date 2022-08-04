@@ -1,16 +1,21 @@
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
-    RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER } from '../actions/actions_types'
+    RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER,
+    GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, INPUT_SEARCH
+ } from '../actions/actions_types'
 
 const initialState = {
     allGames: [],
     genres: [],
     platforms: [],
+    gameByName: [],
+    valueInput: '',
+    gameDetail: {},
     currentPage: 1,
     genresFilter: '',
     platformsFilter: '',
     typeFilter: '',
     nameFilter:'',
-    ratingFilter: 0
+    ratingFilter: ''
 }
 
 export const reducer = (state = initialState, action) => {
@@ -29,6 +34,26 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 platforms: action.payload
+            }
+        case GET_GAME_BY_NAME:
+            return {
+                ...state,
+                gameByName: action.payload
+            }
+        case INPUT_SEARCH:
+            return {
+                ...state,
+                valueInput: action.payload,
+            }
+        case GET_GAME_DETAIL:
+            return {
+                ...state,
+                gameDetail: action.payload
+            }
+        case CLEAR_STATE_BY_NAME:
+            return {
+                ...state,
+                gameByName: action.payload
             }
         case CURRENT_PAGE:
             return {

@@ -7,25 +7,26 @@ import { Nav } from './Nav';
 import { NotFound } from './NotFound';
 
 
-
 export const Home = () => {
 
-    // estado global y actions
     const dispatch = useDispatch();
     let allGames = useSelector(state => state.allGames);
     const genres = useSelector(state => state.genres);
     const platforms = useSelector(state => state.genres);
+    const gameByName = useSelector(state => state.gameByName);
     const genresFilter = useSelector(state => state.genresFilter);
     const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
     const nameFilter = useSelector(state => state.nameFilter);
     const ratingFilter = useSelector(state => state.ratingFilter);
     const currentPage = useSelector(state => state.currentPage);
+    
 
     const gamesPerPage = 15;
-    // let allGames = allGames; // por si si a allgames no lo uso en otro lado no hacer la copia
-    
-    // const filterAndOrder  = () => {
+       
+    if(gameByName.length !== 0) allGames = gameByName // ojo...si no lo encuentra rompe
+
+    const filterAndOrder  = () => {
 
         if(genresFilter.length !== 0 && genresFilter !== 'all') allGames = allGames.filter(g => g.genres.includes(genresFilter));
         if(platformsFilter.length !== 0 && platformsFilter !== 'all') allGames = allGames.filter(g => g.platforms.includes(platformsFilter));
@@ -62,9 +63,9 @@ export const Home = () => {
             })
         }
         
-    //     return allGames
-    // }
-    // filterAndOrder()
+        return allGames
+    }
+    filterAndOrder()
     
     // paginado
     const indexLastGame = currentPage * gamesPerPage;
@@ -90,7 +91,7 @@ export const Home = () => {
                     currentGames?.map(e => { 
                         return (
                             <div key={e.id}>
-                                <Link to={'/home/' + e.id }>
+                                <Link to={'/game/' + e.id }>
                                     <Card
                                     name={e.name}
                                     img={e.img}

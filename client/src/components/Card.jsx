@@ -1,6 +1,9 @@
 import React from 'react';
 
 export function Card({ name, img, rating, genres, platforms }) {
+
+
+
     return (
         <div>
             <h3>{name}</h3>
@@ -8,17 +11,11 @@ export function Card({ name, img, rating, genres, platforms }) {
             <div>
                 {
                     typeof genres[0] === 'string'
-                    ? genres.join(' / ')
-                    : (genres.map(g => g.name).join(' / '))               
+                    ? genres.join(' / ')                        // search en api (ruta game?name y games)
+                    : (genres.map(g => g.name).join(' / '))     // search in db     
                 }            
             </div>
-            <div>
-                {
-                    typeof platforms[0] === 'string'
-                    ? platforms.join(' / ')
-                    : (platforms.map(p => p.name).join(' / '))               
-                }
-            </div>
+            <div> {platforms.join(' / ')} </div>
             <img src={img} alt='img not found' width='100px' heght='100px'/>
         </div>
     )

@@ -9,7 +9,7 @@ const getGameID = async (req, res) => {
     const { id } = req.params;
     const urlId = apiGameID + id + '?key=' + apikey;
 
-    if(id.length > 4 ) { // UUID
+    if(id.length > 5 ) { // UUID
         try {
             let gameDb = await Videogame.findOne({where: {id}, include: Genre})
             gameDb
@@ -42,9 +42,9 @@ const getGameID = async (req, res) => {
 
 const postGame = async (req, res, next) => {
 
-    let { name, description, released, rating, platforms_, img } = req.body;
+    let { name, description, released, rating, platforms, img } = req.body;
     let genres = req.body.genres;
-    if(!name || !description || !platforms_ || !genres) return res.status(404).send('Essential data missing');
+    if(!name || !description || !platforms || !genres) return res.status(404).send('Essential data missing');
 
     try {  
       let infoGame = await Videogame.create(req.body);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
-    RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER } from './actions_types';
+    RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER,
+    GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, INPUT_SEARCH } from './actions_types';
 
 
 export const getGames = () => {
@@ -11,15 +12,38 @@ export const getGames = () => {
 
 export const getGenres = () => {
     return dispatch => axios('http://localhost:3001/genres')
-    .then  (res => dispatch({ type: GET_GENRES, payload: res.data}))
+    .then(res => dispatch({ type: GET_GENRES, payload: res.data}))
     .catch(err => console.log(err));  
 };
 
 export const getPlatforms = () => {
     return dispatch => axios('http://localhost:3001/platforms')
-    .then  (res => dispatch({ type: GET_PLATFORMS, payload: res.data}))
+    .then(res => dispatch({ type: GET_PLATFORMS, payload: res.data}))
     .catch(err => console.log(err));  
 };
+
+export const getGameByName = name => {
+    return dispatch => axios(`http://localhost:3001/games?name=${name}`)
+    .then(res => dispatch({ type: GET_GAME_BY_NAME, payload: res.data}))
+};
+
+export const clearStateByName = payload => {
+    return dispatch => {
+        dispatch({ type: CLEAR_STATE_BY_NAME, payload })
+    }
+};
+
+export const inputSearch = payload => {
+    return dispatch => {
+        dispatch({ type: INPUT_SEARCH, payload })
+    }
+};
+export const getGameDetail = id => {
+    return dispatch => axios(`http://localhost:3001/game/${id}`)
+    .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))
+    .catch(err => console.log(err));
+};
+
 
 export const showGenresFilter = payload => {
     return dispatch => {

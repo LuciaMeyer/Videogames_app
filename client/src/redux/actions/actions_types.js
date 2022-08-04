@@ -8,3 +8,7 @@ export const RESET_PAGE = 'RESET_PAGE';
 export const NAME_FILTER = 'NAME_FILTER';
 export const RATING_FILTER = 'RATING_FILTER';
 export const PLATFORMS_FILTER = 'PLATFORMS_FILTER';
+export const GET_GAME_DETAIL = 'GET_GAME_DETAIL';
+export const GET_GAME_BY_NAME = 'GET_GAME_BY_NAME';
+export const CLEAR_STATE_BY_NAME = 'CLEAR_STATE_BY_NAME';
+export const INPUT_SEARCH= 'INPUT_SEARCH';
