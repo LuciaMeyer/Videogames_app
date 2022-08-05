@@ -1,23 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { showGenresFilter, showNameFilter, showPlatformsFilter, showRatingFilter, showTypeFilter, clearStateByName, inputSearch } from "../redux/actions";
+import { getGames, getGenres, getPlatforms, showGenresFilter, showNameFilter, showPlatformsFilter, showRatingFilter, showTypeFilter, clearStateByName, changeSearchGame, resetPage } from "../redux/actions";
 
-export const SetFilters = () => {
+export const SetFilters = ({ setInput, button }) => {  
 
     const dispatch = useDispatch();
+    const allGames = useSelector(state => state.allGames);
+    const genres = useSelector(state => state.genres);
+    const platforms = useSelector(state => state.genres);
+    const gameByName = useSelector(state => state.gameByName);
+    const searchGame = useSelector(state => state.searchGame);
+    const currentPage = useSelector(state => state.currentPage)
     const genresFilter = useSelector(state => state.genresFilter);
     const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
     const nameFilter = useSelector(state => state.nameFilter);
     const ratingFilter = useSelector(state => state.ratingFilter);
-    const gameByName = useSelector(state => state.gameByName);
-    const valueInput = useSelector(state => state.valueInput);
 
     const handleResetAll = () => {
+        if(!allGames.length) dispatch(getGames());
+        if(!genres.length0) dispatch(getGenres());
+        if(!platforms) dispatch(getPlatforms());
+        if(gameByName.length !== 0) dispatch(clearStateByName([]));
+        if(searchGame) dispatch(changeSearchGame(false));
+        if(currentPage !== 1) dispatch(resetPage(1))
         if(genresFilter !== '') dispatch(showGenresFilter(''));
         if(platformsFilter !== '') dispatch(showPlatformsFilter(''));
         if(typeFilter !== '') dispatch(showTypeFilter(''));
         if(nameFilter !== '') dispatch(showNameFilter(''));
         if(ratingFilter !== '') dispatch(showRatingFilter(''));
+        setInput('');
     }
 
     const handleResetGenres = () => {
@@ -41,8 +52,8 @@ export const SetFilters = () => {
     };
 
     const handleResetSearchGame = () => {
-        dispatch(clearStateByName([]))
-        dispatch(inputSearch(''))
+        dispatch(clearStateByName([]));
+        setInput('');
     };
 
     return (
@@ -52,7 +63,7 @@ export const SetFilters = () => {
             <h5>your research:</h5>
                 {
                     gameByName.length !== 0
-                    ? <button onClick={handleResetSearchGame}>Video Game: "{valueInput}" x</button>
+                    ? <button onClick={handleResetSearchGame}>Video Game: "{button}" x</button>
                     : ''
                 }     
                 {

@@ -2,14 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showCurrentPage } from "../redux/actions";
 
-export const Pagination = ({ allGames, gamesPerPage }) => {
+export const Pagination = ({ games, gamesPerPage }) => {
 
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage)
 
     
     const pageNumber = [];
-    for(let i = 1; i <= Math.ceil(allGames / gamesPerPage); i++) { // itera hasta llegar a la cant. de pag q necesito
+    for(let i = 1; i <= Math.ceil(games / gamesPerPage); i++) { // itera hasta llegar a la cant. de pag q necesito
         pageNumber.push(i)
     }
 

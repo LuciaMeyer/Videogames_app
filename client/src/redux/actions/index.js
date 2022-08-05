@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
     RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER,
-    GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, INPUT_SEARCH } from './actions_types';
+    GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME } from './actions_types';
 
 
 export const getGames = () => {
@@ -33,11 +33,11 @@ export const clearStateByName = payload => {
     }
 };
 
-export const inputSearch = payload => {
+export const changeSearchGame = payload => {
     return dispatch => {
-        dispatch({ type: INPUT_SEARCH, payload })
+        dispatch({ type: SEARCH_GAME, payload})
     }
-};
+}
 export const getGameDetail = id => {
     return dispatch => axios(`http://localhost:3001/game/${id}`)
     .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))

@@ -5,11 +5,13 @@ import { Home } from './components/Home'
 import { Create } from './components/Create';
 import { About } from './components/About';
 import { GameDetail } from './components/GameDetail';
+import { Nav } from "./components/Nav";
 
 
 export const App = () => {
   return (
     <>
+      <Nav />
       <Switch>
         <Route exact path= '/' component= {Landing} />
         <Route exact path= '/home' component= {Home} />

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGameByName, showGenresFilter, showNameFilter, showPlatformsFilter, showRatingFilter, showTypeFilter, inputSearch } from "../redux/actions";
-
-
+import { Filters } from './Filters';
+import { SetFilters } from "./SetFilters";
+import { getGameByName, showGenresFilter, showNameFilter, showPlatformsFilter, showRatingFilter, showTypeFilter, changeSearchGame } from "../redux/actions";
 
 
 export const Search = () => {
@@ -13,16 +13,21 @@ export const Search = () => {
     const typeFilter = useSelector(state => state.typeFilter);
     const nameFilter = useSelector(state => state.nameFilter);
     const ratingFilter = useSelector(state => state.ratingFilter);
-    const valueInput = useSelector(state => state.valueInput);
+
+    const [input, setInput] = useState('');
+    const [button, setButton] = useState('');
 
     const handleInputChange = e => {
-        dispatch(inputSearch(e.target.value))
+        setInput(e.target.value);
+        setButton(e.target.value);
     };
 
     const handleSubmit = e => {
         e.preventDefault();
-        if(valueInput.length !== 0) { // sino despacharia la accion de busqueda sin valor
-            dispatch(getGameByName(valueInput))
+        setInput('');
+        if(input) { // sino despacharia la accion de busqueda sin valor
+            dispatch(getGameByName(input));
+            dispatch(changeSearchGame(true));
             if(genresFilter !== '') dispatch(showGenresFilter(''));
             if(platformsFilter !== '') dispatch(showPlatformsFilter(''));
             if(typeFilter !== '') dispatch(showTypeFilter(''));
@@ -39,10 +44,12 @@ export const Search = () => {
                     type='text'
                     placeholder='Search'
                     onChange={handleInputChange}
-                    value={valueInput}
+                    value={input}
                 />
                 <input type='submit' value='🔍︎' />
             </form>
+            <Filters />
+            <SetFilters setInput= {setInput} button={button} />
         </div>
     )
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const GameDetail = (props) => {
 
-    const id = props.match.params.id
+    // const id = props.match.params.id
 
     return (
         <>

@@ -3,14 +3,14 @@ import { getGames, getGenres, getPlatforms } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { Pagination } from './Pagination';
-import { Nav } from './Nav';
 import { NotFound } from './NotFound';
+import { Search } from "./Search";
 
 
 export const Home = () => {
 
     const dispatch = useDispatch();
-    let allGames = useSelector(state => state.allGames);
+    const allGames = useSelector(state => state.allGames);
     const genres = useSelector(state => state.genres);
     const platforms = useSelector(state => state.genres);
     const gameByName = useSelector(state => state.gameByName);
@@ -20,60 +20,62 @@ export const Home = () => {
     const nameFilter = useSelector(state => state.nameFilter);
     const ratingFilter = useSelector(state => state.ratingFilter);
     const currentPage = useSelector(state => state.currentPage);
+    const searchGame = useSelector(state => state.searchGame);
     
 
-    const gamesPerPage = 15;
+    let games = []
        
-    if(gameByName.length !== 0) allGames = gameByName // ojo...si no lo encuentra rompe
+    searchGame ? games = gameByName : games = allGames
 
     const filterAndOrder  = () => {
 
-        if(genresFilter.length !== 0 && genresFilter !== 'all') allGames = allGames.filter(g => g.genres.includes(genresFilter));
-        if(platformsFilter.length !== 0 && platformsFilter !== 'all') allGames = allGames.filter(g => g.platforms.includes(platformsFilter));
+        if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
+        if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
 
-        if(typeFilter === 'created') allGames = allGames.filter(g => typeof g.id === 'string');
-        if(typeFilter === 'existing') allGames = allGames.filter(g => typeof g.id === 'number');
+        if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
+        if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');
 
         if(nameFilter === 'asc' ) {
-            allGames && allGames.sort((a,b) => {
+            games && games.sort((a,b) => {
                 if(a.name > b.name) return 1;
                 if(a.name < b.name) return -1;
                 return 0
             })
         }
         if(nameFilter === 'desc') {
-            allGames && allGames.sort((a,b) => {
+            games && games.sort((a,b) => {
                     if(a.name > b.name) return -1;
                     if(a.name < b.name) return 1;
                     return 0 
             })
         }
         if(ratingFilter === 'worst rating' ) {
-            allGames.sort((a,b) => {
+            games.sort((a,b) => {
                 if(a.rating > b.rating) return 1;
                 if(a.rating < b.rating) return -1;
                 return 0
             })
         }   
         if (ratingFilter === 'best  rating') {
-            allGames.sort((a,b) => {
+            games.sort((a,b) => {
                 if(a.rating > b.rating) return -1;
                 if(a.rating < b.rating) return 1;
                 return 0 
             })
         }
         
-        return allGames
+        return games
     }
     filterAndOrder()
     
     // paginado
+    const gamesPerPage = 15;
     const indexLastGame = currentPage * gamesPerPage;
     const indexFirstGame = indexLastGame - gamesPerPage;
-    const currentGames = allGames.slice(indexFirstGame, indexLastGame); // si hay filtros toma el arreglo de los filtros, sino el global
+    const currentGames = games.slice(indexFirstGame, indexLastGame); // si hay filtros toma el arreglo de los filtros, sino el global
 
     // mostrar todo
-    if(!allGames.length && !genres.length && !platforms.length) {
+    if(!games.length && !genres.length && !platforms.length) {
         dispatch(getGames());
         dispatch(getGenres());
         dispatch(getPlatforms());
@@ -81,11 +83,9 @@ export const Home = () => {
 
     return (
         <div>
-            <Nav />
-            <Pagination allGames = {allGames.length} gamesPerPage = {gamesPerPage} />
-            {
-                allGames.length === 0 && <NotFound />
-            }
+            <Search/>
+            <hr />
+            <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />
             <div>
                 {
                     currentGames?.map(e => { 
@@ -104,6 +104,7 @@ export const Home = () => {
                         )                       
                     })
                 }
+                { searchGame && games.length === 0 && <NotFound /> }
             </div>
         </div>
     )
