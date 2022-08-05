@@ -1,8 +1,10 @@
-página de la API: ApiPILu* usuario el mail
+página de la API: ApiPILu* usuario el mail - 
 DB_USER=postgres
 DB_PASSWORD=PostgresLu*
 DB_HOST=localhost
 apikey='b5d0d6eb583547aebcc9043d888d8ca2'
+nueva: 0e5347247ecb4f28a3d4895d4348739a
+
 apiGames='https://api.rawg.io/api/games?key='
 apiGenres='https://api.rawg.io/api/genres?key='
 
@@ -12,6 +14,12 @@ apiGenres='https://api.rawg.io/api/genres?key='
 Únicos Endpoints/Flags que pueden utilizar:
 
 GET https://api.rawg.io/api/games >> https://api.rawg.io/api/games?key=b5d0d6eb583547aebcc9043d888d8ca2
+
+nueva: 
+https://api.rawg.io/api/games?key=0e5347247ecb4f28a3d4895d4348739a
+
+
+
 GET https://api.rawg.io/api/games?search={game} >> https://api.rawg.io/api/games?search={grand}&key=b5d0d6eb583547aebcc9043d888d8ca2
 GET https://api.rawg.io/api/genres >> https://api.rawg.io/api/genres?key=b5d0d6eb583547aebcc9043d888d8ca2
 GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key=b5d0d6eb583547aebcc9043d888d8ca2

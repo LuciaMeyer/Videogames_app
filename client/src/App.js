@@ -11,7 +11,6 @@ import { Nav } from "./components/Nav";
 export const App = () => {
   return (
     <>
-      <Nav />
       <Switch>
         <Route exact path= '/' component= {Landing} />
         <Route exact path= '/home' component= {Home} />

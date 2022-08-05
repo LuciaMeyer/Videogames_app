@@ -83,6 +83,7 @@ export const Home = () => {
 
     return (
         <div>
+            <Nav />
             <Search/>
             <hr />
             <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />
