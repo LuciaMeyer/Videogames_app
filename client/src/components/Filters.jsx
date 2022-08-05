@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { showGenresFilter, showTypeFilter, showNameFilter, showRatingFilter, resetPage, showPlatformsFilter } from "../redux/actions";
+import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter } from "../redux/actions";
 
 export const Filters = () => {
 
@@ -9,38 +9,45 @@ export const Filters = () => {
     const genresFilter = useSelector(state => state.genresFilter);
     const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
-    const nameFilter = useSelector(state => state.nameFilter);
-    const ratingFilter = useSelector(state => state.ratingFilter);
+    const nameOrder = useSelector(state => state.nameOrder);
+    const ratingOrder = useSelector(state => state.ratingOrder);
     
+    genres && genres.sort((a,b) => {
+        if(a.name > b.name) return 1;
+        if(a.name < b.name) return -1;
+        return 0
+    })
+
+    platforms && platforms.sort((a,b) => {
+        if(a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+        if(a.name.toUpperCase() < b.name) return -1;
+        return 0
+    })
+
     const handleGenreFilter = e => {
-        dispatch(showGenresFilter(e.target.value));
-        console.log(e.target.value)
+        dispatch(changeGenresFilter(e.target.value));       
         dispatch(resetPage(1)) 
     };
 
     const handlePaltformsFilter = e => {
-        dispatch(showPlatformsFilter(e.target.value));
-        console.log(e.target.value)
+        dispatch(changePlatformsFilter(e.target.value));        
         dispatch(resetPage(1))
     }
 
     const handleTypeFilter = e => {
-        dispatch(showTypeFilter(e.target.value))
-        console.log(e.target.value)
+        dispatch(changeTypeFilter(e.target.value))        
         dispatch(resetPage(1))
     };
 
-    const handleNameFilter = e => {
-        dispatch(showNameFilter(e.target.value))
-        dispatch(showRatingFilter(''))
-        console.log(e.target.value)
+    const handleNameOrder = e => {
+        dispatch(changeNameOrder(e.target.value))
+        dispatch(changeRatingOrder(''))        
         dispatch(resetPage(1)) 
     };
 
-    const handleRatingFilter = e => {
-        dispatch(showRatingFilter(e.target.value))
-        dispatch(showNameFilter(''))
-        console.log(e.target.value)     
+    const handleRatingOrder = e => {
+        dispatch(changeRatingOrder(e.target.value))
+        dispatch(changeNameOrder(''))             
         dispatch(resetPage(1)) 
     };
 
@@ -73,12 +80,12 @@ export const Filters = () => {
                     <option value= 'existing'>Existing</option>
                 </select>
                 <h5>order by:</h5>
-                <select value= {nameFilter} onChange={handleNameFilter}>
+                <select value= {nameOrder} onChange={handleNameOrder}>
                     <option value= ''>Name</option>
                     <option value= 'asc'>A - Z</option>
                     <option value= 'desc'>Z - A</option>
                 </select>
-                <select value= {ratingFilter} onChange={handleRatingFilter}>
+                <select value= {ratingOrder} onChange={handleRatingOrder}>
                     <option value= ''>Rating</option>
                     <option value= 'best  rating'>Best Rating</option>
                     <option value= 'worst rating'>Worst Rating</option>

@@ -2,6 +2,7 @@ require('dotenv').config();
 const { apikey, apiGames, apiGameByName } = process.env;
 const axios = require('axios');
 const { Videogame, Genre } = require('../db');
+const { Op } = require('sequelize'); 
 
 
 const getApiGames = async () => {
@@ -37,24 +38,19 @@ const getApiGames = async () => {
 
 const getDbGames = async () => {
     return await Videogame.findAll({ include: Genre })
-}; 
+};
 
 const getAllGames = async (req, res, next) => {
     
     const { name } = req.query;
     const api = await getApiGames();
     const db = await getDbGames();
-    const allInfo = api.concat(db);
+    const allInfo = api.concat(db);   
     const urlSearchName = apiGameByName + name + '&key=' + apikey;
 
     try {
         if(name) {
-            // esta primera opción busca entre los 100 que traigo, la otra opción busca con el endpoint 
-            // let gameByName = await allInfo.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
-            // gameByName.length
-            // ? res.send(gameByName) 
-            // : res.status(404).send('The video game was not found');
-        let gameByName = (await axios(urlSearchName))
+        let getApiByName = (await axios(urlSearchName))
             .data.results.slice(0,15).map(ob => {
                 return {
                     id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
@@ -65,19 +61,22 @@ const getAllGames = async (req, res, next) => {
                     platforms: ob.platforms.map(p => p.platform.name)
                 }
             });
+        let getDbByName = await Videogame.findAll({
+            where: {
+                name: { [Op.iLike]: `%${name}%`}
+            }, include: Genre })
+        
+        let gameByName = getApiByName.concat(getDbByName);
         gameByName.length
         ? res.send(gameByName) 
-        : res.send([]); // ojo acá!! si no lo encuetra rompe
+        : res.json({ msg: 'not found' })
         } else {
-            res.send(allInfo); 
+            res.send(allInfo);
         };        
     } catch (err) {
         next(err);
     }
 };
 
-module.exports = {
-    getApiGames,
-    getDbGames,
-    getAllGames    
-}
+
+module.exports = { getAllGames }

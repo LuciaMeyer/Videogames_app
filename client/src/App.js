@@ -5,7 +5,7 @@ import { Home } from './components/Home'
 import { Create } from './components/Create';
 import { About } from './components/About';
 import { GameDetail } from './components/GameDetail';
-import { Nav } from "./components/Nav";
+
 
 
 export const App = () => {

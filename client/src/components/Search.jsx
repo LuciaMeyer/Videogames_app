@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Filters } from './Filters';
 import { SetFilters } from "./SetFilters";
-import { getGameByName, showGenresFilter, showNameFilter, showPlatformsFilter, showRatingFilter, showTypeFilter, changeSearchGame } from "../redux/actions";
+import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame } from "../redux/actions";
 
 
-export const Search = () => {
+export const Search = ({ games }) => {
 
     const dispatch = useDispatch();
     const genresFilter = useSelector(state => state.genresFilter);
     const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
-    const nameFilter = useSelector(state => state.nameFilter);
-    const ratingFilter = useSelector(state => state.ratingFilter);
+    const nameOrder = useSelector(state => state.nameOrder);
+    const ratingOrder = useSelector(state => state.ratingOrder);
 
     const [input, setInput] = useState('');
     const [button, setButton] = useState('');
@@ -28,13 +28,12 @@ export const Search = () => {
         if(input) { // sino despacharia la accion de busqueda sin valor
             dispatch(getGameByName(input));
             dispatch(changeSearchGame(true));
-            if(genresFilter !== '') dispatch(showGenresFilter(''));
-            if(platformsFilter !== '') dispatch(showPlatformsFilter(''));
-            if(typeFilter !== '') dispatch(showTypeFilter(''));
-            if(nameFilter !== '') dispatch(showNameFilter(''));
-            if(ratingFilter !== '') dispatch(showRatingFilter(''));
+            if(genresFilter !== '') dispatch(changeGenresFilter(''));
+            if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
+            if(typeFilter !== '') dispatch(changeTypeFilter(''));
+            if(nameOrder !== '') dispatch(changeNameOrder(''));
+            if(ratingOrder !== '') dispatch(changeRatingOrder(''));
         }
-        console.log('submit sin name')
     };
     
     return (
@@ -49,7 +48,8 @@ export const Search = () => {
                 <input type='submit' value='🔍︎' />
             </form>
             <Filters />
-            <SetFilters setInput= {setInput} button={button} />
+            <SetFilters games= {games} setInput= {setInput} button={button} />
+            <hr />
         </div>
     )
 };

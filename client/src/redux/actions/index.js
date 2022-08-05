@@ -1,8 +1,19 @@
 import axios from 'axios';
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
-    RESET_PAGE, NAME_FILTER, RATING_FILTER, GET_PLATFORMS, PLATFORMS_FILTER,
+    RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER,
     GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME } from './actions_types';
 
+export const changeCurrentPage = payload => {
+    return dispatch => {
+        dispatch({ type: CURRENT_PAGE, payload})
+    }
+};
+
+export const resetPage = payload => {
+    return dispatch => {
+        dispatch({ type: RESET_PAGE, payload})
+    }
+}
 
 export const getGames = () => {
     return dispatch => axios('http://localhost:3001/games')
@@ -25,12 +36,7 @@ export const getPlatforms = () => {
 export const getGameByName = name => {
     return dispatch => axios(`http://localhost:3001/games?name=${name}`)
     .then(res => dispatch({ type: GET_GAME_BY_NAME, payload: res.data}))
-};
-
-export const clearStateByName = payload => {
-    return dispatch => {
-        dispatch({ type: CLEAR_STATE_BY_NAME, payload })
-    }
+    .catch(err => console.log(err));
 };
 
 export const changeSearchGame = payload => {
@@ -38,52 +44,48 @@ export const changeSearchGame = payload => {
         dispatch({ type: SEARCH_GAME, payload})
     }
 }
+
+export const clearStateByName = payload => {
+    return dispatch => {
+        dispatch({ type: CLEAR_STATE_BY_NAME, payload })
+    }
+};
+
 export const getGameDetail = id => {
     return dispatch => axios(`http://localhost:3001/game/${id}`)
     .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))
     .catch(err => console.log(err));
 };
 
-
-export const showGenresFilter = payload => {
+export const changeGenresFilter = payload => {
     return dispatch => {
         dispatch({ type: GENRE_FILTER, payload})
     }
 };
 
-export const showPlatformsFilter = payload => {
+export const changePlatformsFilter = payload => {
     return dispatch => {
         dispatch({ type: PLATFORMS_FILTER, payload})
     }
 };
 
-export const showTypeFilter = payload => {
+export const changeTypeFilter = payload => {
     return dispatch => {
         dispatch({ type: TYPE_FILTER, payload})
     }
 };
 
-export const showCurrentPage = payload => {
+export const changeRatingOrder = payload => {
     return dispatch => {
-        dispatch({ type: CURRENT_PAGE, payload})
+        dispatch({ type: RATING_ORDER, payload })
     }
 };
 
-export const showNameFilter = payload => {
+export const changeNameOrder = payload => {
     return dispatch => {
-        dispatch({ type: NAME_FILTER, payload })
+        dispatch({ type: NAME_ORDER, payload })
     }
 };
 
-export const showRatingFilter = payload => {
-    return dispatch => {
-        dispatch({ type: RATING_FILTER, payload })
-    }
-};
 
-export const resetPage = payload => {
-    return dispatch => {
-        dispatch({ type: RESET_PAGE, payload})
-    }
-}
 

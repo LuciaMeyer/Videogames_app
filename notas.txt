@@ -2,9 +2,7 @@ página de la API: ApiPILu* usuario el mail -
 DB_USER=postgres
 DB_PASSWORD=PostgresLu*
 DB_HOST=localhost
-apikey='b5d0d6eb583547aebcc9043d888d8ca2'
-nueva: 0e5347247ecb4f28a3d4895d4348739a
-
+apikey='0e5347247ecb4f28a3d4895d4348739a'
 apiGames='https://api.rawg.io/api/games?key='
 apiGenres='https://api.rawg.io/api/genres?key='
 
@@ -13,16 +11,10 @@ apiGenres='https://api.rawg.io/api/genres?key='
 
 Únicos Endpoints/Flags que pueden utilizar:
 
-GET https://api.rawg.io/api/games >> https://api.rawg.io/api/games?key=b5d0d6eb583547aebcc9043d888d8ca2
-
-nueva: 
-https://api.rawg.io/api/games?key=0e5347247ecb4f28a3d4895d4348739a
-
-
-
-GET https://api.rawg.io/api/games?search={game} >> https://api.rawg.io/api/games?search={grand}&key=b5d0d6eb583547aebcc9043d888d8ca2
-GET https://api.rawg.io/api/genres >> https://api.rawg.io/api/genres?key=b5d0d6eb583547aebcc9043d888d8ca2
-GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key=b5d0d6eb583547aebcc9043d888d8ca2
+GET https://api.rawg.io/api/games >> https://api.rawg.io/api/games?key=0e5347247ecb4f28a3d4895d4348739a
+GET https://api.rawg.io/api/games?search={game} >> https://api.rawg.io/api/games?search={grand}&key=0e5347247ecb4f28a3d4895d4348739a
+GET https://api.rawg.io/api/genres >> https://api.rawg.io/api/genres?key=0e5347247ecb4f28a3d4895d4348739a
+GET https://api.rawg.io/api/games/{id} >> https://api.rawg.io/api/games/3498?key=0e5347247ecb4f28a3d4895d4348739a
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,8 +30,9 @@ AXIOS y FETCH:
 - instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 
 FALTA:
-- cuando pongo exit y vuelvo a cargar no refresca, lo dejo así? el home debería hacer un refresh
+- cuando pongo exit y vuelvo a cargar no refresca, lo dejo así? el home debería hacer un refresh?
 - img cuando creo uno nuevo, si no se pone que traiga algo por defecto 
-- en el search no estoy buscando en la db, dejar getAllGames solo concatenando info y hacer otra función donde busque por nombre en los dos arrays y los concatene, la db que se ponga primero
-- borrar el valor del input sin q se borre el boton de set filter
-- se rompe cuando busca un nombre que no existe
+- boton que toma el valor del input sobre escribe
+- loading
+- detail
+- create/form

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showCurrentPage } from "../redux/actions";
+import { changeCurrentPage } from "../redux/actions";
 
 export const Pagination = ({ games, gamesPerPage }) => {
 
@@ -14,7 +14,7 @@ export const Pagination = ({ games, gamesPerPage }) => {
     }
 
     const handlePage = num => {
-        if (currentPage !== num) dispatch(showCurrentPage(num))
+        if (currentPage !== num) dispatch(changeCurrentPage(num))
     }
 
     return (
@@ -23,7 +23,6 @@ export const Pagination = ({ games, gamesPerPage }) => {
                 {
                     pageNumber?.map(num => (
                         <li key={num}>
-                            {/* <button onClick={() => paginado(num)}>{num}</button> */}
                             <button onClick={() =>handlePage(num)}>{num}</button>
                         </li>
                     ))
