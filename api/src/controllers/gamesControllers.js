@@ -69,7 +69,8 @@ const getAllGames = async (req, res, next) => {
         let gameByName = getApiByName.concat(getDbByName);
         gameByName.length
         ? res.send(gameByName) 
-        : res.json({ msg: 'not found' })
+        : res.send({ msg: 'not found' })
+        // : res.status(404).send({msg: 'not found'})
         } else {
             res.send(allInfo);
         };        
