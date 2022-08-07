@@ -87,7 +87,7 @@ export const Filters = () => {
                 </select>
                 <select value= {ratingOrder} onChange={handleRatingOrder}>
                     <option value= ''>Rating</option>
-                    <option value= 'best  rating'>Best Rating</option>
+                    <option value= 'best rating'>Best Rating</option>
                     <option value= 'worst rating'>Worst Rating</option>
                 </select>
             </div>

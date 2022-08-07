@@ -2,7 +2,7 @@ import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
     RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER,
     GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME } from '../actions/actions_types'
 
-const initialState = {
+const initialState = {  
     currentPage: 1,
     allGames: [],
     genres: [],
@@ -10,6 +10,7 @@ const initialState = {
     gameByName: [],
     searchGame: false,
     gameDetail: {},
+    // filtersAndOrder: { genres: {f: false, g: ''}, platforms: {f: false, p: ''}, type: {f:false, t:''}, raiting: {f:false, r:''}},
     genresFilter: '',
     platformsFilter: '',
     typeFilter: '',

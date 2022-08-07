@@ -1,0 +1,53 @@
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  height: auto;
+  margin: 0;
+  font-family:Tahoma, Geneva, Verdana, sans-serif;  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: -10;
+  background: url('./img/background2.png');
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+@media only screen and (max-width: 700px) {
+  body:before {
+    transform: scale(2);
+  }
+}
+* {
+  box-sizing: border-box;
+  
+}
+h1, h2, h3, a, span, label, p {
+  color: white
+}
+
+button {
+  font-size: .8rem;
+  color: rgb(255, 251, 251);
+  padding: 0.3rem 0.4rem;
+  
+  border-radius: 0.3rem;
+  border-color: rgba(255, 251, 251, 0.453);
+  background-color: transparent
+}
+
+button:hover {
+background-color: #ffffff4b;
+transition: transform .4s;
+}
+
+

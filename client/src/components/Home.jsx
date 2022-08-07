@@ -6,7 +6,11 @@ import { Pagination } from './Pagination';
 import { NotFound } from './NotFound';
 import { Search } from "./Search";
 import { Nav } from './Nav';
-
+import { Loading } from './Loading'
+import { useEffect } from 'react';
+import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort';
+// import { useState } from 'react';
+ 
 
 export const Home = () => {
 
@@ -14,7 +18,7 @@ export const Home = () => {
     const currentPage = useSelector(state => state.currentPage);
     const allGames = useSelector(state => state.allGames);
     const genres = useSelector(state => state.genres);
-    const platforms = useSelector(state => state.genres);
+    const platforms = useSelector(state => state.platforms);
     const gameByName = useSelector(state => state.gameByName);
     const searchGame = useSelector(state => state.searchGame);
     const genresFilter = useSelector(state => state.genresFilter);
@@ -24,65 +28,41 @@ export const Home = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     
     let games = []
+    console.log(games.length)
+    // const [games, setGames] = useState([])
+
        
     searchGame && !gameByName.msg ? games = gameByName : games = allGames
+    // searchGame && !gameByName.msg ? setGames(gameByName)  : setGames(allGames)
     
-    const filterAndOrder  = () => {
-
-        if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
-        if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
-
-        if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
-        if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');
-
-        if(nameOrder === 'asc' ) {
-            games && games.sort((a,b) => {
-                if(a.name > b.name) return 1;
-                if(a.name < b.name) return -1;
-                return 0
-            })
-        }
-        if(nameOrder === 'desc') {
-            games && games.sort((a,b) => {
-                    if(a.name > b.name) return -1;
-                    if(a.name < b.name) return 1;
-                    return 0 
-            })
-        }
-        if(ratingOrder === 'worst rating' ) {
-            games.sort((a,b) => {
-                if(a.rating > b.rating) return 1;
-                if(a.rating < b.rating) return -1;
-                return 0
-            })
-        }   
-        if (ratingOrder === 'best  rating') {
-            games.sort((a,b) => {
-                if(a.rating > b.rating) return -1;
-                if(a.rating < b.rating) return 1;
-                return 0 
-            })
-        }
+ 
+    if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
+    if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
+    if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
+    if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');       
+    if(nameOrder === 'asc' ) games && games.sort(nameASC)
+    if(nameOrder === 'desc') games && games.sort(nameDES)      
+    if(ratingOrder === 'worst rating') games.sort(ratingWORST)          
+    if(ratingOrder === 'best rating') games.sort(ratingBEST)
         
-        return games
-    }
-    filterAndOrder()
-
     const gamesPerPage = 15;
     const indexLastGame = currentPage * gamesPerPage;
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
 
-    if(!games.length && !genres.length && !platforms.length) {
-        dispatch(getGames());
-        dispatch(getGenres());
-        dispatch(getPlatforms());
-    }
+    useEffect(()=> {
+        if(!platforms.length) dispatch(getPlatforms());
+        if(!games.length) dispatch(getGames()); 
+        if(!genres.length) dispatch(getGenres());
+    },[dispatch]);
+
 
     return (
         <div>
             <Nav />
             <Search games= {games} />
+                { games.length === 0 && <Loading />}
+                {/* { ERROR DE LA API --> COMPONENTE 404 } */}
                 { searchGame && gameByName.msg ? <NotFound /> :
                     (
                         currentGames?.map(e => { 
