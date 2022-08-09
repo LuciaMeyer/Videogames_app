@@ -39,3 +39,5 @@ FALTA:
 - loading
 - detail
 - create/form
+
+EXTENSIÓN vscode-styled-components

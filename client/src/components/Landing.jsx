@@ -122,6 +122,7 @@ const Section = styled.section`
     }
   }
 `;
+
 const IntroConteiner = styled.article`
   z-index: 2;
   text-align: center;

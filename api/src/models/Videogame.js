@@ -12,17 +12,19 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: false
     },
     released: {
-      type: DataTypes.STRING, // Ejemplo: "2013-09-17" o es DATEONLY???
+      type: DataTypes.DATEONLY, // Ejemplo: "2013-09-17" o es DATEONLY???
+      allowNull: false
     },
     rating: {
       type: DataTypes.FLOAT,
+      allowNull: false
     },
     platforms: {
       type: DataTypes.ARRAY(DataTypes.STRING),

@@ -20,7 +20,7 @@ export const Create = () => {
     genres: [],
     platforms: [],
   });
-  const [errors, setErrors] = useState({});  
+  const [errText, seterrText] = useState({});  
 
   useEffect(() => {
     if(genres.length === 0) dispatch(getGenres());
@@ -32,7 +32,7 @@ export const Create = () => {
       ...input,
       [e.target.name]: e.target.value
     });
-    setErrors(formControl({
+    seterrText(formControl({
       ...input,
       [e.target.name]: e.target.value
     }));
@@ -46,7 +46,7 @@ export const Create = () => {
           ...input,
           [e.target.name]: selected
         })
-        setErrors(formControl({
+        seterrText(formControl({
           ...input,
           [e.target.name]: selected
         }));
@@ -59,7 +59,8 @@ export const Create = () => {
       ...input,
       [category]: newValues
     })
-    setErrors(formControl({
+
+    seterrText(formControl({
       ...input,
       [category]: newValues
     }))
@@ -68,6 +69,23 @@ export const Create = () => {
   const handleSubmit = e => {
     e.preventDefault();
     postGame(input)
+  }
+
+  const disabled = Object.keys(errText).length || !input.name
+
+  const handlecheck = e => {
+    const selected = input[e.target.name]
+      if (!selected.includes(e.target.value)) {
+        selected.push(e.target.value)
+        setInput({
+          ...input,
+          [e.target.name]: selected
+        })
+        seterrText(formControl({
+          ...input,
+          [e.target.name]: selected
+        }));
+      }
   }
 
   return (
@@ -81,56 +99,57 @@ export const Create = () => {
         <div>
           <label >Name: </label>
           <input  name='name' value={input.name}  autoComplete='off' onChange={handleChange}  />
-          {errors.name && <span >{errors.name}</span>}
+          {errText.name && <span >{errText.name}</span>}
         </div><br/><br/>
         <hr />
 
         <div>
           <label >Description: </label>
           <textarea name='description' value={input.description} autoComplete='off' onChange={handleChange}  />
-          {errors.description && <span >{errors.description}</span>}
+          {errText.description && <span >{errText.description}</span>}
         </div><br/><br/>
         <hr />
 
         <div>
           <label >Genres: </label>
-          <select defaultValue='select' name='genres' onChange={handleSelect}>
-            <option value='select' >Select...</option>
               {genres.map( g => (
-              <option key={g.id} value={g.name}>{g.name}</option>
+              <div key={g.id}>
+                <input name='genres' type="checkbox" value={g.name} onChange={handlecheck} />
+                <label >{g.name}</label>
+              </div>
               ))}
-          </select>
+
           <div>
             {input.genres.map(g => {
               return (
                 <div >
-                  <span >{g}</span>
+                  <span>{g}</span>
                   <button type='button' onClick={() => handleDelete('genres', g)}>x</button>
                 </div>
               )
               })}
           </div>                       
-            {errors.genres && <span>{errors.genres}</span>}
+            {errText.genres && <span>{errText.genres}</span>}
         </div><br/><br/>
         <hr />
         
         <div>
           <label >Release date: </label>
-          <input name='released' value={input.released} autoComplete='off' onChange={handleChange} />
-          {errors.released && <span >{errors.released}</span>}
+          <input name='released' placeholder= '2022-08-09' value={input.released} autoComplete='off' onChange={handleChange} />
+          {errText.released && <span >{errText.released}</span>}
         </div><br></br>
         
         <div> 
           <label >Rating: </label>
-          <input type='number' step='0.1' min= '0' max= '5' value={input.rating} autoComplete='off' onChange={handleChange} />
-          {errors.rating && <span >{errors.rating}</span>}
+          <input name='rating' type='number' step='0.1' min='0' max='5' value={input.rating} autoComplete='off' onChange={handleChange} />
+          {errText.rating && <span >{errText.rating}</span>}
         </div><br></br>
         <hr />
 
         <div>
           <label >Image URL: </label>
-          <input name='image' value={input.image} autoComplete='off' onChange={handleChange} />
-          {errors.image && <span >{errors.image}</span>}
+          <input name='image' value={ input.image ? input.image : 'no se cargó'}autoComplete='off' onChange={handleChange} />
+          {errText.image && <span >{errText.image}</span>}
         </div><br></br>
         <hr />
 
@@ -152,10 +171,11 @@ export const Create = () => {
               )
               })}
           </div>
-          {errors.platforms && <span >{errors.platforms}</span>}
+          {errText.platforms && <span >{errText.platforms}</span>}
         </div><br></br>
         <hr />
-        <button type='submit' >Create</button>
+         
+           <button disabled={disabled} type='submit' >Create</button>        
       </form>
     </div>
   );

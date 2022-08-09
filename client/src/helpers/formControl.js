@@ -1,21 +1,25 @@
 export const formControl = input => {
-    let errors = {};
 
-    if (!input.name) errors.name = 'Name is required'
-    else if (!/^[^@#$%^&]+$/.test(input.name)) errors.name = 'Name must not contain special characters (@#$%^&)'
+    let errText = {}; 
 
-    if (!input.description) errors.description = 'Description is required'
+    if (!input.name) errText.name = 'Name is required'
+    else if (!/^[^@#$%^&]+$/.test(input.name)) errText.name = 'Name must not contain special characters (@#$%^&)'
 
-    if (!input.genres.length) errors.genres = 'Genres cannot be empty'
+    if(!input.description) errText.description = 'Description is required'
 
-    if (input.released && !/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(input.released)) errors.released = 'Release date must be in the format yyyy-mm-dd'
+    if(!input.genres.length) errText.genres = 'Genres cannot be empty'
+
+    if(!input.released) errText.released = 'Released is required'
+    else if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(input.released)) errText.released = 'Release date must be in the format yyyy-mm-dd, example: "2022-08-09"'
     
-    if (input.rating < 0 || input.rating > 5) errors.rating = 'Rating must be a number between 0 and 5';
+    if(!input.rating) errText.rating = 'Rating is required'
+    else if (input.rating < 0 || input.rating > 5) errText.rating = 'Rating must be a number between 0 and 5';
 
-    if (input.image && !/^(ftp|http|https):\/\/[^ "]+$/.test(input.image)) errors.image = "Image URL must have a valid URL format (http/https/ftp)"
-    else if (input.image && !/(\.|=)(jpg|png|gif)$/i.test(input.image)) errors.image = "Image URL must have a valid image format (jpg/png/gif)"
+    if(input.image && !/^(ftp|http|https):\/\/[^ "]+$/.test(input.image)) errText.image = "Image URL must have a valid URL format (http/https/ftp)"
+    else if (input.image && !/(\.|=)(jpg|png|gif)$/i.test(input.image)) errText.image = "Image URL must have a valid image format (jpg/png/gif)"
 
-    if (!input.platforms.length) errors.platforms = 'Platforms cannot be empty'
+    if (!input.platforms.length) errText.platforms = 'Platforms cannot be empty'
     
-    return errors;
+    return errText;
+
  };
