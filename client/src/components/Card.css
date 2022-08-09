@@ -1,0 +1,13 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;  
+    margin: .5rem;
+    padding: .5rem;
+    font-size: .8rem;
+    background-color: rgba(255, 255, 255, 0.249);
+}
+.card > img {
+    width: 20%;
+}

@@ -28,7 +28,6 @@ export const Home = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     
     let games = []
-    console.log(games.length)
     // const [games, setGames] = useState([])
 
        
@@ -54,7 +53,7 @@ export const Home = () => {
         if(!platforms.length) dispatch(getPlatforms());
         if(!games.length) dispatch(getGames()); 
         if(!genres.length) dispatch(getGenres());
-    },[dispatch]);
+    },[dispatch, platforms.length, games.length, genres.length]);
 
 
     return (

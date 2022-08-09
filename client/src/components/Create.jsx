@@ -1,241 +1,162 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Nav } from './Nav'
-import { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { getGenres, getPlatforms } from "../redux/actions";
-import styled from "styled-components";
-
-
+import { getGenres } from '../redux/actions'
+import { postGame } from '../helpers/postGame';
+import { formControl } from '../helpers/formControl';
+import { getPlatforms } from '../redux/actions'
 
 export const Create = () => {
 
-    const dispatch = useDispatch();
-    const genres = useSelector(state => state.genres);
-    const platforms = useSelector(state => state.genres);
-    const [input, setInput] = useState({
-        name: '',
-        description: '',
-        released: '',
-        rating: '',
-        platforms: [],
-        genres: [],
-        img: '',
-     });
+  const genres = useSelector(state => state.genres)
+  const platforms = useSelector(state => state.platforms);
+  const dispatch = useDispatch()
+  const [input, setInput] = useState({
+    name: '',
+    image: '',
+    description: '',
+    released: '',
+    rating: '',
+    genres: [],
+    platforms: [],
+  });
+  const [errors, setErrors] = useState({});  
 
-    useEffect(() => {
-        if(genres.length === 0) dispatch(getGenres()); // si entraron a Search ya está cargado, si entran a create se carga
-        if(platforms.length === 0) dispatch(getPlatforms());
-    }, [dispatch]);
+  useEffect(() => {
+    if(genres.length === 0) dispatch(getGenres());
+    if(platforms.length === 0) dispatch(getPlatforms());
+  }, [dispatch, genres.length, platforms.length]);
 
-    return (
-        <>
-            <Nav />
-            <h5>Create</h5>
-            <button><Link to='/home'>Back</Link></button>
-            <MainConteiner>
-                <FormConteiner>
-                    <Form>
-                        <div className="itemForm">             
-                            <label>Name:</label>                    
-                            <div>
-                                <div className="dualInputConteiner">
-                                    <input
-                                        type= 'text'
-                                        value= {input.name}
-                                        name= 'name'                            
-                                    />
-                                </div>
-                            </div>
-                        <hr />
-                        </div>
+  const handleChange = e => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    });
+    setErrors(formControl({
+      ...input,
+      [e.target.name]: e.target.value
+    }));
+  }
 
-                        <div className="itemForm">               
-                        <label>Description:</label>               
-                            <div >
-                                <textarea
-                                    className="multipleOptConteiner"
-                                    value={input.description}
-                                    name="description"                    
-                                />
-                            </div>
-                        </div>
-                        
-                        <div className="itemForm">
-                            <label>Release:</label>
-                            <div>
-                                <div className="dualInputConteiner">
-                                    <input
-                                        type= 'text'
-                                        value={input.released}
-                                        name="released"
-                                    />
-                                </div>
-                            </div>
-                        <hr />    
-                        </div>
+  const handleSelect = e => {
+    const selected = input[e.target.name]
+      if (!selected.includes(e.target.value)) {
+        selected.push(e.target.value)
+        setInput({
+          ...input,
+          [e.target.name]: selected
+        })
+        setErrors(formControl({
+          ...input,
+          [e.target.name]: selected
+        }));
+      }
+  }
 
-                        <div className="itemForm">
-                            <label>Rating:</label>
-                            <div>
-                                <div className="dualInputConteiner">
-                                    <input
-                                        type='number'
-                                        value={input.rating}
-                                        step='0.1'
-                                        min= '0'
-                                        max= '5'
-                                        name='rating'
-                                    />
-                                </div>
-                            </div>
-                        </div>
+  const handleDelete = (category, value) => {
+    const newValues = input[category].filter(e => e !== value)
+    setInput({
+      ...input,
+      [category]: newValues
+    })
+    setErrors(formControl({
+      ...input,
+      [category]: newValues
+    }))
+  }
 
-                        <div className='itemForm'>
-                            <label>Img:</label>
-                            <div>
-                                <div className="dualInputConteiner">
-                                    <input
-                                        type='text'
-                                        value={input.img}
-                                        name='img'
-                                    />
-                                </div>
-                            </div>
-                        <hr />
-                        </div>
+  const handleSubmit = e => {
+    e.preventDefault();
+    postGame(input)
+  }
 
-                        <div className='itemForm'>
-                            <label>Genres:</label>
-                            <div className="multipleOptConteiner">
-                                {genres.map(genres => (
-                                <>
-                                    <input
-                                        key={genres.id}
-                                        type='checkbox'
-                                        value={genres.id}
-                                        id={genres.id}
-                                    />
-                                    <label>{genres.name}</label>
-                                    <br />
-                                </>
-                                ))}
-                            </div>
-                        </div>
-                        
-                        <div className='itemForm'>
-                            <label>Platforms:</label>
-                            <div className="multipleOptConteiner">
-                                {platforms.map(platforms => (
-                                <>
-                                    <input
-                                        key={platforms.id}
-                                        type='checkbox'
-                                        value={platforms.id}
-                                        id={platforms.id}
-                                    />
-                                    <label>{platforms.name}</label>
-                                    <br />
-                                </>
-                                ))}
-                            </div>
-                        </div>
-                        <div>
-                            <input
-                            type='submit'
-                            value='create'
-                            />
-                        </div>         
-                    </Form>
-                </FormConteiner>
-            </MainConteiner>
-        </>
-    )
+  return (
+    <div >
+      <Nav />
+      <form onSubmit={handleSubmit} >
+        <div >
+          <h3 >Create your Video Game</h3>
+        </div>
+
+        <div>
+          <label >Name: </label>
+          <input  name='name' value={input.name}  autoComplete='off' onChange={handleChange}  />
+          {errors.name && <span >{errors.name}</span>}
+        </div><br/><br/>
+        <hr />
+
+        <div>
+          <label >Description: </label>
+          <textarea name='description' value={input.description} autoComplete='off' onChange={handleChange}  />
+          {errors.description && <span >{errors.description}</span>}
+        </div><br/><br/>
+        <hr />
+
+        <div>
+          <label >Genres: </label>
+          <select defaultValue='select' name='genres' onChange={handleSelect}>
+            <option value='select' >Select...</option>
+              {genres.map( g => (
+              <option key={g.id} value={g.name}>{g.name}</option>
+              ))}
+          </select>
+          <div>
+            {input.genres.map(g => {
+              return (
+                <div >
+                  <span >{g}</span>
+                  <button type='button' onClick={() => handleDelete('genres', g)}>x</button>
+                </div>
+              )
+              })}
+          </div>                       
+            {errors.genres && <span>{errors.genres}</span>}
+        </div><br/><br/>
+        <hr />
+        
+        <div>
+          <label >Release date: </label>
+          <input name='released' value={input.released} autoComplete='off' onChange={handleChange} />
+          {errors.released && <span >{errors.released}</span>}
+        </div><br></br>
+        
+        <div> 
+          <label >Rating: </label>
+          <input type='number' step='0.1' min= '0' max= '5' value={input.rating} autoComplete='off' onChange={handleChange} />
+          {errors.rating && <span >{errors.rating}</span>}
+        </div><br></br>
+        <hr />
+
+        <div>
+          <label >Image URL: </label>
+          <input name='image' value={input.image} autoComplete='off' onChange={handleChange} />
+          {errors.image && <span >{errors.image}</span>}
+        </div><br></br>
+        <hr />
+
+        <div>
+          <label >Platforms: </label>
+          <select defaultValue='select' name='platforms' onChange={handleSelect}>
+            <option value='select'>Select...</option>
+              {platforms.map( p => (
+              <option key={p.id} value={p.name}>{p.name}</option>
+              ))}
+          </select>
+          <div>
+            {input.platforms.map( p => {
+              return (
+                <div >
+                  <span >{p}</span>
+                  <button type='button' onClick={() => handleDelete('platforms', p)}>x</button>
+                </div>
+              )
+              })}
+          </div>
+          {errors.platforms && <span >{errors.platforms}</span>}
+        </div><br></br>
+        <hr />
+        <button type='submit' >Create</button>
+      </form>
+    </div>
+  );
 };
-
-const MainConteiner = styled.div`
-  display: flex;
-  padding: 95px 0 50px 0;
-  margin: 0 60px 0 60px;
-  justify-content: space-evenly;
-  @media screen and (max-width: 700px) {
-    margin: 0 20px 0 20px;
-    padding: 90px 0 50px 0;
-  }
-`;
-const FormConteiner = styled.div`
-  width: 60%;
-  background-color: rgba(0, 0, 0, 0.6);
-  border: 2px solid white;
-  text-align: center;
-  input[type="text"] {
-    font-size: inherit;
-  }
-  span {
-    font-size: 13px;
-  }
-  @media screen and (max-width: 700px) {
-    width: 100%;
-  }
-`;
-const Form = styled.form`
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  span {
-    color: red;
-  } 
-  input[type="text"] {
-    width: 100%;
-    color: white;
-    background-color: transparent;
-    border: none;
-    &:focus {
-      outline: none;
-    }
-  }
-  input[type="submit"] {
-    margin: 20px 0px 20px 0;
-    width: 75px;
-    height: 30px;
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-    &:hover {
-      background-color: black;
-    }
-  }
-  .invalid {
-    hr {
-      border-color: red;
-    }
-  }
-  .itemForm {
-    margin-top: 30px;
-    align-self: center;
-    width: 90%;
-    text-align: start;
-  }
-  .dualInputConteiner {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    div {
-      display: inline-block;
-      width: 47%;
-    }
-  }
-  .multipleOptConteiner {
-    border: 2px solid #ccc;
-    width: 100%;
-    height: 100px;
-    overflow-y: scroll;
-    background-color: transparent;
-  }
-  .buttonConteiner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;

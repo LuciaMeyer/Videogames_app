@@ -10,7 +10,13 @@ const initialState = {
     gameByName: [],
     searchGame: false,
     gameDetail: {},
-    // filtersAndOrder: { genres: {f: false, g: ''}, platforms: {f: false, p: ''}, type: {f:false, t:''}, raiting: {f:false, r:''}},
+    // filtersAndOrder: {
+    //     genres: {fil: false, g: ''},
+    //     platforms: {fil: false, p: ''},
+    //     type: {fil: false, t:''},
+    //     nameOrder: {or:false, n:''},
+    //     raiting: {or:false, r:''}
+    // },
     genresFilter: '',
     platformsFilter: '',
     typeFilter: '',
@@ -18,8 +24,15 @@ const initialState = {
     ratingOrder: ''
 }
 
+
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case 'FILTER_AND_ORDER':
+            return {
+                ...state,
+                filtersAndOrder: {...state.filtersAndOrder, genres: {f: true, g: action.payload}}
+            }
         case GET_GAMES:
             return {
                 ...state,
@@ -55,6 +68,11 @@ export const reducer = (state = initialState, action) => {
             ...state,
             genresFilter: action.payload
             }
+        // case GENRE_FILTER:
+        //     return {
+        //         ...state,
+        //         filtersAndOrder: {...state.filtersAndOrder, genres: {f: true, g: action.payload}}
+        //     }
         case PLATFORMS_FILTER:
             return {
             ...state,

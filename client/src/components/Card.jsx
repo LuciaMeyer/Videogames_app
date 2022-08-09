@@ -1,11 +1,12 @@
 import React from 'react';
+import './Card.css'
 
 
 export function Card({ name, img, rating, genres, platforms }) {
 
     return (
 
-            <div>
+            <div className='card'>
                 <h3>{name}</h3>
                 <h3>{rating}</h3>
                 <div>
@@ -16,7 +17,7 @@ export function Card({ name, img, rating, genres, platforms }) {
                     }            
                 </div>
                 <div> {platforms.join(' / ')} </div>
-                <img src={img} alt='img not found' width='100px' heght='100px'/>
+                <img src={img} alt='img not found' />
             </div>
 
     )
