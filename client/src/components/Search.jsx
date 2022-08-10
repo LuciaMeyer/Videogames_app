@@ -5,7 +5,7 @@ import { SetFilters } from "./SetFilters";
 import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame } from "../redux/actions";
 
 
-export const Search = ({ games }) => {
+export const Search = () => {
 
     const dispatch = useDispatch();
     const genresFilter = useSelector(state => state.genresFilter);
@@ -48,7 +48,7 @@ export const Search = ({ games }) => {
                 <input type='submit' value='🔍︎' />
             </form>
             <Filters />
-            <SetFilters games= {games} setInput= {setInput} button={button} />
+            <SetFilters setInput= {setInput} button={button} />
             <hr />
         </div>
     )

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getGames, getGenres, getPlatforms, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, clearStateByName, changeSearchGame, resetPage } from "../redux/actions";
+import { getGames, getGenres, getPlatforms, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, clearStateByName, changeSearchGame, resetPage, changeUseFilter } from "../redux/actions";
 
-export const SetFilters = ({ games, setInput, button }) => {  
+export const SetFilters = ({ setInput, button }) => {  
 
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
@@ -15,6 +15,9 @@ export const SetFilters = ({ games, setInput, button }) => {
     const typeFilter = useSelector(state => state.typeFilter);
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
+    const useFilter = useSelector(state => state.useFilter);
+
+    if(genresFilter.length === 0 && platformsFilter.length === 0 && typeFilter === '' && nameOrder === '' && ratingOrder === '' && useFilter)  dispatch(changeUseFilter(false))
 
     const handleResetAll = () => {
         if(currentPage !== 1) dispatch(resetPage(1))
@@ -28,6 +31,7 @@ export const SetFilters = ({ games, setInput, button }) => {
         if(typeFilter !== '') dispatch(changeTypeFilter(''));
         if(nameOrder !== '') dispatch(changeNameOrder(''));
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
+        if(useFilter) dispatch(changeUseFilter(false))
         setInput('');
     }
 
@@ -60,9 +64,7 @@ export const SetFilters = ({ games, setInput, button }) => {
     return (
         <>
             <br />
-            <button onClick={handleResetAll}>Reset</button>
-            <h5>your research</h5>
-            { games.length > 99 ?  <h5>0 results</h5> : <h5>{games.length} results</h5> }            
+            <button onClick={handleResetAll}>Reset</button>          
             {
                 gameByName.length !== 0
                 ? <button onClick={handleResetSearchGame}>Video Game: "{button}" x</button>

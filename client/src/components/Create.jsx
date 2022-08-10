@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import { Nav } from './Nav'
 import { getGenres } from '../redux/actions'
 import { postGame } from '../helpers/postGame';
@@ -8,9 +9,11 @@ import { getPlatforms } from '../redux/actions'
 
 export const Create = () => {
 
+  const dispatch = useDispatch()
+  const history = useHistory()
   const genres = useSelector(state => state.genres)
   const platforms = useSelector(state => state.platforms);
-  const dispatch = useDispatch()
+  const [errText, seterrText] = useState({});  
   const [input, setInput] = useState({
     name: '',
     image: '',
@@ -20,7 +23,6 @@ export const Create = () => {
     genres: [],
     platforms: [],
   });
-  const [errText, seterrText] = useState({});  
 
   useEffect(() => {
     if(genres.length === 0) dispatch(getGenres());
@@ -38,55 +40,45 @@ export const Create = () => {
     }));
   }
 
-  const handleSelect = e => {
-    const selected = input[e.target.name]
-      if (!selected.includes(e.target.value)) {
-        selected.push(e.target.value)
-        setInput({
-          ...input,
-          [e.target.name]: selected
-        })
-        seterrText(formControl({
-          ...input,
-          [e.target.name]: selected
-        }));
-      }
-  }
-
-  const handleDelete = (category, value) => {
-    const newValues = input[category].filter(e => e !== value)
-    setInput({
-      ...input,
-      [category]: newValues
-    })
-
-    seterrText(formControl({
-      ...input,
-      [category]: newValues
-    }))
-  }
+  const handleCheck = (e) => {
+    const value = e.target.value
+    if (!input[e.target.name].includes(value)) {
+      setInput({
+        ...input,
+        [e.target.name]: [...input[e.target.name], value]
+      });
+      seterrText(formControl({
+        ...input,
+        [e.target.name]: [...input[e.target.name], value]
+      }));
+    } else {
+      setInput({
+        ...input,
+        [e.target.name]: input[e.target.name].filter(n => n !== value)
+      });
+      seterrText(formControl({
+        ...input,
+        [e.target.name]: input[e.target.name].filter(n => n !== value)
+      }));
+    }    
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
     postGame(input)
+    setInput({
+      name: '',
+      image: '',
+      description: '',
+      released: '',
+      rating: '',
+      genres: [],
+      platforms: [],
+    })
+    history.push('/home')
   }
-
-  const disabled = Object.keys(errText).length || !input.name
-
-  const handlecheck = e => {
-    const selected = input[e.target.name]
-      if (!selected.includes(e.target.value)) {
-        selected.push(e.target.value)
-        setInput({
-          ...input,
-          [e.target.name]: selected
-        })
-        seterrText(formControl({
-          ...input,
-          [e.target.name]: selected
-        }));
-      }
-  }
+  
+  const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
 
   return (
     <div >
@@ -111,28 +103,27 @@ export const Create = () => {
         <hr />
 
         <div>
-          <label >Genres: </label>
+          <label>Genres: </label>
               {genres.map( g => (
-              <div key={g.id}>
-                <input name='genres' type="checkbox" value={g.name} onChange={handlecheck} />
-                <label >{g.name}</label>
-              </div>
-              ))}
-
-          <div>
-            {input.genres.map(g => {
-              return (
-                <div >
-                  <span>{g}</span>
-                  <button type='button' onClick={() => handleDelete('genres', g)}>x</button>
+                <div key={g.id}>
+                  <input name='genres' type="checkbox" value={g.name} onChange={handleCheck} />
+                  <label >{g.name}</label>
                 </div>
-              )
-              })}
-          </div>                       
+              ))}                
             {errText.genres && <span>{errText.genres}</span>}
         </div><br/><br/>
         <hr />
-        
+        <div>
+            <label>Platforms: </label>
+              {platforms.map( p => (
+                <div key={p.id}>
+                  <input name='platforms' type="checkbox" value={p.name} onChange={handleCheck} />
+                  <label >{p.name}</label>
+                </div>
+              ))}  
+          {errText.platforms && <span >{errText.platforms}</span>}
+        </div><br></br>
+        <hr />   
         <div>
           <label >Release date: </label>
           <input name='released' placeholder= '2022-08-09' value={input.released} autoComplete='off' onChange={handleChange} />
@@ -148,34 +139,11 @@ export const Create = () => {
 
         <div>
           <label >Image URL: </label>
-          <input name='image' value={ input.image ? input.image : 'no se cargó'}autoComplete='off' onChange={handleChange} />
+          <input name='image' value={ input.image ? input.image : ''} autoComplete='off' onChange={handleChange} />
           {errText.image && <span >{errText.image}</span>}
         </div><br></br>
-        <hr />
-
-        <div>
-          <label >Platforms: </label>
-          <select defaultValue='select' name='platforms' onChange={handleSelect}>
-            <option value='select'>Select...</option>
-              {platforms.map( p => (
-              <option key={p.id} value={p.name}>{p.name}</option>
-              ))}
-          </select>
-          <div>
-            {input.platforms.map( p => {
-              return (
-                <div >
-                  <span >{p}</span>
-                  <button type='button' onClick={() => handleDelete('platforms', p)}>x</button>
-                </div>
-              )
-              })}
-          </div>
-          {errText.platforms && <span >{errText.platforms}</span>}
-        </div><br></br>
-        <hr />
-         
-           <button disabled={disabled} type='submit' >Create</button>        
+        <hr />   
+           <button disabled={disabled} type='submit' >Create</button>     
       </form>
     </div>
   );

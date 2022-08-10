@@ -1,6 +1,6 @@
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
     RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER,
-    GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME } from '../actions/actions_types'
+    GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER } from '../actions/actions_types'
 
 const initialState = {  
     currentPage: 1,
@@ -9,6 +9,7 @@ const initialState = {
     platforms: [],
     gameByName: [],
     searchGame: false,
+    useFilter: false,
     gameDetail: {},
     // filtersAndOrder: {
     //     genres: {fil: false, g: ''},
@@ -57,6 +58,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchGame: action.payload
+            }
+        case USE_FILTER:
+            return {
+                ...state,
+                useFilter: action.payload
             }
         case GET_GAME_DETAIL:
             return {

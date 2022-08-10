@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter } from "../redux/actions";
+import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter } from "../redux/actions";
 
 export const Filters = () => {
 
@@ -11,6 +11,7 @@ export const Filters = () => {
     const typeFilter = useSelector(state => state.typeFilter);
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
+    const useFilter = useSelector(state => state.useFilter);
     
     genres && genres.sort((a,b) => {
         if(a.name > b.name) return 1;
@@ -26,29 +27,34 @@ export const Filters = () => {
 
     const handleGenreFilter = e => {
         dispatch(changeGenresFilter(e.target.value));       
-        dispatch(resetPage(1)) 
+        dispatch(resetPage(1));
+        if(!useFilter) dispatch(changeUseFilter(true));
     };
 
     const handlePaltformsFilter = e => {
         dispatch(changePlatformsFilter(e.target.value));        
-        dispatch(resetPage(1))
+        dispatch(resetPage(1));
+        if(!useFilter) dispatch(changeUseFilter(true));
     }
 
     const handleTypeFilter = e => {
-        dispatch(changeTypeFilter(e.target.value))        
-        dispatch(resetPage(1))
+        dispatch(changeTypeFilter(e.target.value));        
+        dispatch(resetPage(1));
+        if(!useFilter) dispatch(changeUseFilter(true));
     };
 
     const handleNameOrder = e => {
-        dispatch(changeNameOrder(e.target.value))
-        dispatch(changeRatingOrder(''))        
-        dispatch(resetPage(1)) 
+        dispatch(changeNameOrder(e.target.value));
+        dispatch(changeRatingOrder(''));        
+        dispatch(resetPage(1));
+        if(!useFilter) dispatch(changeUseFilter(true));
     };
 
     const handleRatingOrder = e => {
-        dispatch(changeRatingOrder(e.target.value))
-        dispatch(changeNameOrder(''))             
-        dispatch(resetPage(1)) 
+        dispatch(changeRatingOrder(e.target.value));
+        dispatch(changeNameOrder(''));             
+        dispatch(resetPage(1));
+        if(!useFilter) dispatch(changeUseFilter(true)); 
     };
 
     return (

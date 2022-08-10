@@ -11,5 +11,5 @@ export const PLATFORMS_FILTER = 'PLATFORMS_FILTER';
 export const TYPE_FILTER = 'TYPE_FILTER';
 export const NAME_ORDER = 'NAME_ORDER';
 export const RATING_ORDER = 'RATING_ORDER';
-
 export const CLEAR_STATE_BY_NAME = 'CLEAR_STATE_BY_NAME';
+export const USE_FILTER = 'USE_FILTER';

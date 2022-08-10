@@ -21,6 +21,7 @@ export const Home = () => {
     const platforms = useSelector(state => state.platforms);
     const gameByName = useSelector(state => state.gameByName);
     const searchGame = useSelector(state => state.searchGame);
+    const useFilter = useSelector(state => state.useFilter)
     const genresFilter = useSelector(state => state.genresFilter);
     const platformsFilter = useSelector(state => state.platformsFilter);
     const typeFilter = useSelector(state => state.typeFilter);
@@ -29,12 +30,10 @@ export const Home = () => {
     
     let games = []
     // const [games, setGames] = useState([])
-
-       
+      
     searchGame && !gameByName.msg ? games = gameByName : games = allGames
     // searchGame && !gameByName.msg ? setGames(gameByName)  : setGames(allGames)
     
- 
     if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
     if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
@@ -55,32 +54,36 @@ export const Home = () => {
         if(!genres.length) dispatch(getGenres());
     },[dispatch, platforms.length, games.length, genres.length]);
 
+    let loading = false
+    if ( games.length === 0 && !useFilter && !searchGame) loading = true
+    if ( games.length === 0 && searchGame ) loading = true
+    if (useFilter) loading = false
+
+    let notFound = false
+    if(searchGame && gameByName.msg) notFound = true
+    if(games.length === 0 && useFilter) notFound = true
 
     return (
         <div>
             <Nav />
             <Search games= {games} />
-                { games.length === 0 && <Loading />}
-                {/* { ERROR DE LA API --> COMPONENTE 404 } */}
-                { searchGame && gameByName.msg ? <NotFound /> :
-                    (
-                        currentGames?.map(e => { 
-                            return (
-                                <div key={e.id}>
-                                    <Link to={'/game/' + e.id }>
-                                        <Card
-                                        name={e.name}
-                                        img={e.img}
-                                        rating={e.rating}
-                                        genres={e.genres}
-                                        platforms={e.platforms}
-                                        />
-                                    </Link>
-                                </div>                           
-                            )                       
-                        })
-                    )       
-                }
+                { loading && <Loading />}
+                { games.length > 0 && <h5>{games.length} results</h5> }  
+                { notFound ? <NotFound /> : (
+                    currentGames?.map(e => (
+                            <div key={e.id}>
+                                <Link to={'/game/' + e.id }>
+                                    <Card
+                                    name={e.name}
+                                    img={e.img}
+                                    rating={e.rating}
+                                    genres={e.genres}
+                                    platforms={e.platforms}
+                                    />
+                                </Link>
+                            </div>                           
+                    ))
+                )}
         { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
         </div>
     )

@@ -1,23 +1,23 @@
 export const nameASC = (a, b) => {
-    if(a.name > b.name) return 1;
-    if(a.name < b.name) return -1;
+    const nA = a.name.toUpperCase()
+    const nB = b.name.toUpperCase()
+    if(nA > nB) return 1;
+    if(nA < nB) return -1;
     return 0
 }
 
 export const nameDES = (a, b) => {
-    if(a.name > b.name) return -1;
-    if(a.name < b.name) return 1;
+    const nA = a.name.toUpperCase()
+    const nB = b.name.toUpperCase()
+    if(nA > nB) return -1;
+    if(nA < nB) return 1;
     return 0 
 }
 
 export const ratingWORST = (a, b) => {
-    if(a.rating > b.rating) return 1;
-    if(a.rating < b.rating) return -1;
-    return 0
+    return a.rating - b.rating
 }
 
 export const ratingBEST = (a, b) => {
-    if(a.rating > b.rating) return -1;
-    if(a.rating < b.rating) return 1;
-    return 0 
+    return b.rating - a.rating
 }
