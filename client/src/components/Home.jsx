@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getGames, getGenres, getPlatforms } from '../redux/actions';
+import { getGames, getGenres, getPlatforms, changeCreateGames } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { Pagination } from './Pagination';
@@ -27,32 +27,36 @@ export const Home = () => {
     const typeFilter = useSelector(state => state.typeFilter);
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
+    const gameCreated = useSelector(state => state.gameCreated)
     
-    let games = []
-    // const [games, setGames] = useState([])
-      
-    searchGame && !gameByName.msg ? games = gameByName : games = allGames
-    // searchGame && !gameByName.msg ? setGames(gameByName)  : setGames(allGames)
+    let games = []  
+    searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames]
     
+    if(nameOrder === 'asc' ) games.sort(nameASC)
+    if(nameOrder === 'desc') games.sort(nameDES)
+    if(ratingOrder === 'worst rating') games.sort(ratingWORST)          
+    if(ratingOrder === 'best rating') games.sort(ratingBEST)
     if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
     if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
     if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');       
-    if(nameOrder === 'asc' ) games && games.sort(nameASC)
-    if(nameOrder === 'desc') games && games.sort(nameDES)      
-    if(ratingOrder === 'worst rating') games.sort(ratingWORST)          
-    if(ratingOrder === 'best rating') games.sort(ratingBEST)
         
     const gamesPerPage = 15;
     const indexLastGame = currentPage * gamesPerPage;
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
 
-    useEffect(()=> {
-        if(!platforms.length) dispatch(getPlatforms());
-        if(!games.length) dispatch(getGames()); 
-        if(!genres.length) dispatch(getGenres());
-    },[dispatch, platforms.length, games.length, genres.length]);
+    if(!platforms.length && !games.length && !genres.length) {
+        dispatch(getPlatforms());
+        dispatch(getGames()); 
+        dispatch(getGenres());
+    }
+
+    if(gameCreated) {
+        dispatch(getGames());
+        dispatch(changeCreateGames(false))
+    }
+
 
     let loading = false
     if ( games.length === 0 && !useFilter && !searchGame) loading = true

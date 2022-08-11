@@ -5,7 +5,7 @@ import { Nav } from './Nav'
 import { getGenres } from '../redux/actions'
 import { postGame } from '../helpers/postGame';
 import { formControl } from '../helpers/formControl';
-import { getPlatforms } from '../redux/actions'
+import { getPlatforms, changeCreateGames } from '../redux/actions'
 
 export const Create = () => {
 
@@ -16,7 +16,7 @@ export const Create = () => {
   const [errText, seterrText] = useState({});  
   const [input, setInput] = useState({
     name: '',
-    image: '',
+    img: '',
     description: '',
     released: '',
     rating: '',
@@ -68,14 +68,15 @@ export const Create = () => {
     postGame(input)
     setInput({
       name: '',
-      image: '',
+      img: '',
       description: '',
       released: '',
       rating: '',
       genres: [],
       platforms: [],
     })
-    history.push('/home')
+    dispatch(changeCreateGames(true));
+    history.push('/home');
   }
   
   const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
@@ -90,14 +91,14 @@ export const Create = () => {
 
         <div>
           <label >Name: </label>
-          <input  name='name' value={input.name}  autoComplete='off' onChange={handleChange}  />
+          <input  name='name' value={input.name}  autoComplete='off' maxLength= '30' onChange={handleChange}  />
           {errText.name && <span >{errText.name}</span>}
         </div><br/><br/>
         <hr />
 
         <div>
           <label >Description: </label>
-          <textarea name='description' value={input.description} autoComplete='off' onChange={handleChange}  />
+          <textarea name='description' value={input.description} autoComplete='off' maxLength= '500' onChange={handleChange}  />
           {errText.description && <span >{errText.description}</span>}
         </div><br/><br/>
         <hr />
@@ -138,9 +139,9 @@ export const Create = () => {
         <hr />
 
         <div>
-          <label >Image URL: </label>
-          <input name='image' value={ input.image ? input.image : ''} autoComplete='off' onChange={handleChange} />
-          {errText.image && <span >{errText.image}</span>}
+          <label >img URL: </label>
+          <input name='img' value={ input.img ? input.img : input.img = 'https://bit.ly/3Qfwp3B'} autoComplete='off' onChange={handleChange} />
+          {errText.img && <span >{errText.img}</span>}
         </div><br></br>
         <hr />   
            <button disabled={disabled} type='submit' >Create</button>     

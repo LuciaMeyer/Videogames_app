@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
     RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER,
-    GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER } from './actions_types';
+    GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, GAME_CREATED } from './actions_types';
 
 
 export const changeCurrentPage = payload => {
@@ -94,5 +94,10 @@ export const changeNameOrder = payload => {
     }
 };
 
+export const changeCreateGames = payload => {
+    return dispatch => {
+        dispatch({ type: GAME_CREATED, payload })   
+    }
+};
 
 

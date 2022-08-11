@@ -17,14 +17,11 @@ export const SetFilters = ({ setInput, button }) => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
 
-    if(genresFilter.length === 0 && platformsFilter.length === 0 && typeFilter === '' && nameOrder === '' && ratingOrder === '' && useFilter)  dispatch(changeUseFilter(false))
+    if(!genresFilter.length && !platformsFilter.length && !typeFilter.length && !nameOrder.length && !ratingOrder.length && useFilter)  dispatch(changeUseFilter(false))
 
-    const handleResetAll = () => {
+    const resetAll = () => {
         if(currentPage !== 1) dispatch(resetPage(1))
-        if(!allGames.length) dispatch(getGames());
-        if(!genres.length0) dispatch(getGenres());
-        if(!platforms) dispatch(getPlatforms());
-        if(gameByName.length !== 0) dispatch(clearStateByName([]));
+        if(!gameByName.length ) dispatch(clearStateByName([]));
         if(searchGame) dispatch(changeSearchGame(false));
         if(genresFilter !== '') dispatch(changeGenresFilter(''));
         if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
@@ -33,6 +30,18 @@ export const SetFilters = ({ setInput, button }) => {
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
         if(useFilter) dispatch(changeUseFilter(false))
         setInput('');
+    }
+
+
+    const handleRefresh = () => {
+        dispatch(getGames());
+        dispatch(getGenres());
+        dispatch(getPlatforms());
+        resetAll()
+    }
+
+    const handleResetAll = () => {
+        resetAll()
     }
 
     const handleResetGenres = () => {
@@ -64,7 +73,8 @@ export const SetFilters = ({ setInput, button }) => {
     return (
         <>
             <br />
-            <button onClick={handleResetAll}>Reset</button>          
+            <button onClick={handleRefresh}>REFRESH</button>          
+            <button onClick={handleResetAll}>Reset</button>
             {
                 gameByName.length !== 0
                 ? <button onClick={handleResetSearchGame}>Video Game: "{button}" x</button>

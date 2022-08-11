@@ -45,6 +45,7 @@ export const Filters = () => {
 
     const handleNameOrder = e => {
         dispatch(changeNameOrder(e.target.value));
+        console.log(e.target.value)
         dispatch(changeRatingOrder(''));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
@@ -62,7 +63,7 @@ export const Filters = () => {
             <div>
                 <h5>filter by:</h5>
                 <select value= {genresFilter} onChange={handleGenreFilter}>
-                    <option value= ''>Genre</option>
+                    <option value= '' disabled>Genre</option>
                     <option value='all'>All Genres</option>
                     {
                         genres?.map(g => (
@@ -71,7 +72,7 @@ export const Filters = () => {
                     }
                 </select>
                 <select value= {platformsFilter} onChange={handlePaltformsFilter}>
-                    <option value= ''>Platforms</option>
+                    <option value= '' disabled>Platforms</option>
                     <option value='all'>All Platforms</option>
                     {
                         platforms?.map(p => (
@@ -80,19 +81,19 @@ export const Filters = () => {
                     }
                 </select>
                 <select value= {typeFilter} onChange={handleTypeFilter}>
-                    <option value= ''>Type</option>
+                    <option value= '' disabled>Type</option>
                     <option value= 'all'>All Types</option>
                     <option value= 'created'>Created</option>
                     <option value= 'existing'>Existing</option>
                 </select>
                 <h5>order by:</h5>
                 <select value= {nameOrder} onChange={handleNameOrder}>
-                    <option value= ''>Name</option>
+                    <option value= '' disabled>Name</option>
                     <option value= 'asc'>A - Z</option>
                     <option value= 'desc'>Z - A</option>
                 </select>
                 <select value= {ratingOrder} onChange={handleRatingOrder}>
-                    <option value= ''>Rating</option>
+                    <option value= '' disabled>Rating</option>
                     <option value= 'best rating'>Best Rating</option>
                     <option value= 'worst rating'>Worst Rating</option>
                 </select>
