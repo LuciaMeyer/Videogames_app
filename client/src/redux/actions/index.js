@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
-    RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER,
-    GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, GAME_CREATED } from './actions_types';
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, GAME_CREATED, CLEAR_ALL_FILTERS, CLEAN_DETAIL } from './actions_types';
 
 
 export const changeCurrentPage = payload => {
@@ -9,12 +7,6 @@ export const changeCurrentPage = payload => {
         dispatch({ type: CURRENT_PAGE, payload})
     }
 };
-
-export const resetPage = payload => {
-    return dispatch => {
-        dispatch({ type: RESET_PAGE, payload})
-    }
-}
 
 export const getGames = () => {
     return dispatch => axios('http://localhost:3001/games')
@@ -44,7 +36,7 @@ export const changeSearchGame = payload => {
     return dispatch => {
         dispatch({ type: SEARCH_GAME, payload})
     }
-}
+};
 
 export const changeUseFilter = payload => {
     return dispatch => {
@@ -52,9 +44,9 @@ export const changeUseFilter = payload => {
     }
 };
 
-export const clearStateByName = payload => {
+export const changeCreateGames = payload => {
     return dispatch => {
-        dispatch({ type: CLEAR_STATE_BY_NAME, payload })
+        dispatch({ type: GAME_CREATED, payload })   
     }
 };
 
@@ -63,6 +55,7 @@ export const getGameDetail = id => {
     .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))
     .catch(err => console.log(err));
 };
+
 
 export const changeGenresFilter = payload => {
     return dispatch => {
@@ -82,22 +75,38 @@ export const changeTypeFilter = payload => {
     }
 };
 
-export const changeRatingOrder = payload => {
-    return dispatch => {
-        dispatch({ type: RATING_ORDER, payload })
-    }
-};
-
 export const changeNameOrder = payload => {
     return dispatch => {
         dispatch({ type: NAME_ORDER, payload })
     }
 };
 
-export const changeCreateGames = payload => {
+export const changeRatingOrder = payload => {
     return dispatch => {
-        dispatch({ type: GAME_CREATED, payload })   
+        dispatch({ type: RATING_ORDER, payload })
+    }
+};
+//////////////////////////////////////////////////
+export const clearAllFilters = () => {
+    return dispatch => {
+        dispatch({ type: CLEAR_ALL_FILTERS })
     }
 };
 
+export const clearStateByName = payload => {
+    return dispatch => {
+        dispatch({ type: CLEAR_STATE_BY_NAME, payload })
+    }
+};
 
+export const resetPage = payload => {
+    return dispatch => {
+        dispatch({ type: RESET_PAGE, payload})
+    }
+}
+
+export const cleanGameDetail = payload => {
+    return dispatch => {
+        dispatch({ type: CLEAN_DETAIL, payload})
+    }
+};

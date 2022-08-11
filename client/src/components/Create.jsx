@@ -23,11 +23,13 @@ export const Create = () => {
     genres: [],
     platforms: [],
   });
-
+  
   useEffect(() => {
-    if(genres.length === 0) dispatch(getGenres());
-    if(platforms.length === 0) dispatch(getPlatforms());
-  }, [dispatch, genres.length, platforms.length]);
+    if(!genres.length && !platforms.length) {
+      dispatch(getGenres());
+      dispatch(getPlatforms());
+    }
+  },[dispatch, genres.length, platforms.length]);
 
   const handleChange = e => {
     setInput({

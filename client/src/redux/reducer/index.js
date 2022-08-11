@@ -1,6 +1,5 @@
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE,
-    RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER,
-    GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, GAME_CREATED } from '../actions/actions_types'
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, GAME_CREATED, CLEAR_ALL_FILTERS, CLEAN_DETAIL } from '../actions/actions_types'
+import { nameASC } from '../../helpers/sort';
 
 const initialState = {  
     currentPage: 1,
@@ -12,28 +11,27 @@ const initialState = {
     useFilter: false,
     gameCreated: false,
     gameDetail: {},
-    // filtersAndOrder: {
-    //     genres: {fil: false, g: ''},
-    //     platforms: {fil: false, p: ''},
-    //     type: {fil: false, t:''},
-    //     nameOrder: {or:false, n:''},
-    //     raiting: {or:false, r:''}
-    // },
     genresFilter: '',
     platformsFilter: '',
     typeFilter: '',
     nameOrder:'',
     ratingOrder: ''
+    // filters: {
+    //     genres: '',
+    //     platforms: '',
+    //     type: '',
+    //     nameOrder: '',
+    //     raiting: ''
+    // },
 }
-
-
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'FILTER_AND_ORDER':
+
+        case CURRENT_PAGE:
             return {
-                ...state,
-                filtersAndOrder: {...state.filtersAndOrder, genres: {f: true, g: action.payload}}
+            ...state,
+            currentPage: action.payload
             }
         case GET_GAMES:
             return {
@@ -43,12 +41,17 @@ export const reducer = (state = initialState, action) => {
         case GET_GENRES:
             return {
                 ...state,
-                genres: action.payload
+                genres: action.payload.sort(nameASC)
             }
+        // case 'GET_GENRES':
+        //     return {
+        //         ...state,
+        //         filters: {...state.filtersAndOrder, genres: action.payload }
+        //     }
         case GET_PLATFORMS:
             return {
                 ...state,
-                platforms: action.payload
+                platforms: action.payload.sort(nameASC)
             }
         case GET_GAME_BY_NAME:
             return {
@@ -65,6 +68,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 useFilter: action.payload
             }
+        case GAME_CREATED: 
+            return {
+                ...state,
+                gameCreated: action.payload
+            }
         case GET_GAME_DETAIL:
             return {
                 ...state,
@@ -75,11 +83,6 @@ export const reducer = (state = initialState, action) => {
             ...state,
             genresFilter: action.payload
             }
-        // case GENRE_FILTER:
-        //     return {
-        //         ...state,
-        //         filtersAndOrder: {...state.filtersAndOrder, genres: {f: true, g: action.payload}}
-        //     }
         case PLATFORMS_FILTER:
             return {
             ...state,
@@ -100,25 +103,34 @@ export const reducer = (state = initialState, action) => {
             ...state,
             ratingOrder: action.payload
             }
+        ///////////////////////////////    
+        case CLEAR_ALL_FILTERS:
+            return {
+                ...state,
+                currentPage: 1,
+                gameByName: [],
+                searchGame: false,
+                useFilter: false,
+                genresFilter: '',
+                platformsFilter: '',
+                typeFilter: '',
+                nameOrder:'',
+                ratingOrder: ''
+            }
         case CLEAR_STATE_BY_NAME:
             return {
             ...state,
             gameByName: action.payload
-            }
-        case CURRENT_PAGE:
-            return {
-            ...state,
-            currentPage: action.payload
             }
         case RESET_PAGE:
             return {
             ...state,
             currentPage: action.payload
             }
-        case GAME_CREATED: 
+        case CLEAN_DETAIL:
             return {
                 ...state,
-                gameCreated: action.payload
+            gameDetail: action.payload
             }
         default: return state;                 
     }

@@ -37,7 +37,15 @@ const getApiGames = async () => {
 };
 
 const getDbGames = async () => {
-    return await Videogame.findAll({ include: Genre })
+    return await Videogame.findAll({ 
+        include: {
+            model: Genre,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            }
+        }
+    })
 };
 
 const getAllGames = async (req, res, next) => {

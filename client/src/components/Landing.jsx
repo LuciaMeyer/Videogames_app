@@ -15,7 +15,7 @@ export const Landing = () => {
             
             <div style={{ zIndex: 1 }}>
               <header>
-                <h1>Welcome to Henry Video Games</h1>
+                <h1>NO TIENE CSS PRIMO !! </h1>
               </header>
             </div>
 

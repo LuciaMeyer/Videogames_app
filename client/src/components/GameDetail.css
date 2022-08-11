@@ -1,17 +1,22 @@
-.card {
+.det {
     display: flex;
     flex-direction: row;
 
 }
-.card > img {
-    width: 20%;
+
+img {
+    width: 30%;
+    height: 30%;
 }
 
-.card1 {
-    flex-direction: column;    
+.det2 {
+    flex-direction: column;
+    align-items: center;   
     align-items: center;  
     margin: .5rem;
     padding: .5rem;
     font-size: .8rem;
     background-color: rgba(255, 255, 255, 0.249);
+    margin: 5rem;
+    padding: 5rem;
 }

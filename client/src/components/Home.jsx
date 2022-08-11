@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getGames, getGenres, getPlatforms, changeCreateGames } from '../redux/actions';
+import { getGames, getGenres, getPlatforms, changeCreateGames, clearAllFilters } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { Pagination } from './Pagination';
@@ -7,10 +7,8 @@ import { NotFound } from './NotFound';
 import { Search } from "./Search";
 import { Nav } from './Nav';
 import { Loading } from './Loading'
+import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort'; 
 import { useEffect } from 'react';
-import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort';
-// import { useState } from 'react';
- 
 
 export const Home = () => {
 
@@ -29,43 +27,49 @@ export const Home = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const gameCreated = useSelector(state => state.gameCreated)
     
+    // defino qué renderizar seún los filtros
     let games = []  
-    searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames]
+    searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
     
-    if(nameOrder === 'asc' ) games.sort(nameASC)
-    if(nameOrder === 'desc') games.sort(nameDES)
-    if(ratingOrder === 'worst rating') games.sort(ratingWORST)          
-    if(ratingOrder === 'best rating') games.sort(ratingBEST)
+    if(nameOrder === 'asc' ) games.sort(nameASC);
+    if(nameOrder === 'desc') games.sort(nameDES);
+    if(ratingOrder === 'worst rating') games.sort(ratingWORST);          
+    if(ratingOrder === 'best rating') games.sort(ratingBEST);
     if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
     if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
     if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');       
-        
+    
+    // paginado
     const gamesPerPage = 15;
     const indexLastGame = currentPage * gamesPerPage;
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
 
-    if(!platforms.length && !games.length && !genres.length) {
-        dispatch(getPlatforms());
-        dispatch(getGames()); 
-        dispatch(getGenres());
-    }
+    // me traigo info del back
+    useEffect(() => {
+        if(!games.length) dispatch(getGames());
+        if(!genres.length) dispatch(getGenres());
+        if(!platforms.length) dispatch(getPlatforms());
+    }, [dispatch, games.length, genres.length, platforms.length]);
 
+    // si vengo de crear un video game
     if(gameCreated) {
+        dispatch(clearAllFilters());
         dispatch(getGames());
         dispatch(changeCreateGames(false))
-    }
+    };
 
-
+    // defino loading
     let loading = false
-    if ( games.length === 0 && !useFilter && !searchGame) loading = true
-    if ( games.length === 0 && searchGame ) loading = true
-    if (useFilter) loading = false
+    if ( games.length === 0 && !useFilter && !searchGame) loading = true;
+    if ( games.length === 0 && searchGame ) loading = true;
+    if (useFilter) loading = false;
 
-    let notFound = false
-    if(searchGame && gameByName.msg) notFound = true
-    if(games.length === 0 && useFilter) notFound = true
+    // defino notFound
+    let notFound = false;
+    if(searchGame && gameByName.msg) notFound = true;
+    if(games.length === 0 && useFilter) notFound = true;
 
     return (
         <div>

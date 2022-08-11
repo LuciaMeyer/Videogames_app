@@ -10,7 +10,6 @@ export const About = () => {
         <>  
             <Nav />
             <h5>About</h5>
-            <button><Link to='/home'>Back</Link></button>
         </>
     )
 };

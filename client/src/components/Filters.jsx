@@ -12,18 +12,6 @@ export const Filters = () => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
-    
-    genres && genres.sort((a,b) => {
-        if(a.name > b.name) return 1;
-        if(a.name < b.name) return -1;
-        return 0
-    })
-
-    platforms && platforms.sort((a,b) => {
-        if(a.name.toUpperCase() > b.name.toUpperCase()) return 1;
-        if(a.name.toUpperCase() < b.name) return -1;
-        return 0
-    })
 
     const handleGenreFilter = e => {
         dispatch(changeGenresFilter(e.target.value));       

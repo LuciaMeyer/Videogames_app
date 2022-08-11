@@ -14,9 +14,9 @@ const getGameID = async (req, res) => {
             let gameDb = await Videogame.findOne({where: {id}, include: Genre})
             gameDb
             ? res.send(gameDb)
-            : res.send('The Videogame with that id was not found...');            
+            : res.send({ msg: 'The Videogame with that id was not found...' });            
         } catch (err) {
-            res.send('The Videogame with that id was not found...'); 
+            res.send({ msg: 'The Videogame with that id was not found...' }); 
         }
     } else {
         try {
@@ -35,7 +35,7 @@ const getGameID = async (req, res) => {
             }
             res.send(game);
         } catch (err) {
-            res.send('The Videogame with that id was not found');
+            res.send({ msg: 'The Videogame with that id was not found' });
         }
     }
 };
@@ -51,7 +51,7 @@ const postGame = async (req, res, next) => {
     //   console.log(infoGame.toJSON());
       let infoGenre = await Genre.findAll({ where: { name: genres }}); 
     //   console.log(infoGenre.map(i=>i.toJSON()))
-      infoGame.addGenre(infoGenre);    
+      infoGame.addGenre(infoGenre);
       res.status(201).send('Videogame created successfully');   
     } catch (err) {
         next(err);       
