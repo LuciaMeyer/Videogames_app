@@ -21,7 +21,7 @@ export const SetFilters = ({ setInput, button }) => {
 
     const resetAll = () => {
         if(currentPage !== 1) dispatch(resetPage(1))
-        if(!gameByName.length ) dispatch(clearStateByName([]));
+        if(gameByName.length !== 0 ) dispatch(clearStateByName([]));
         if(searchGame) dispatch(changeSearchGame(false));
         if(genresFilter !== '') dispatch(changeGenresFilter(''));
         if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
@@ -32,11 +32,10 @@ export const SetFilters = ({ setInput, button }) => {
         setInput('');
     }
 
-
     const handleRefresh = () => {
         dispatch(getGames());
-        dispatch(getGenres());
-        dispatch(getPlatforms());
+        if(!genres.length) dispatch(getGenres());
+        if(!platforms.length) dispatch(getPlatforms());
         resetAll()
     }
 
