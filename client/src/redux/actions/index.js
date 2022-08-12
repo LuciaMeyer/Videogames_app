@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, GAME_CREATED, CLEAR_ALL_FILTERS, CLEAN_DETAIL } from './actions_types';
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAR_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, CLEAR_ALL_FILTERS, CLEAN_DETAIL, GAME_UPDATE } from './actions_types';
 
 
 export const changeCurrentPage = payload => {
@@ -41,12 +41,6 @@ export const changeSearchGame = payload => {
 export const changeUseFilter = payload => {
     return dispatch => {
         dispatch({ type: USE_FILTER, payload })
-    }
-};
-
-export const changeCreateGames = payload => {
-    return dispatch => {
-        dispatch({ type: GAME_CREATED, payload })   
     }
 };
 
@@ -108,5 +102,11 @@ export const resetPage = payload => {
 export const cleanGameDetail = payload => {
     return dispatch => {
         dispatch({ type: CLEAN_DETAIL, payload})
+    }
+};
+
+export const gameUpdate = payload => {
+    return dispatch => {
+        dispatch({ type: GAME_UPDATE, payload })
     }
 };

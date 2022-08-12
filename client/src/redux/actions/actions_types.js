@@ -13,6 +13,6 @@ export const NAME_ORDER = 'NAME_ORDER';
 export const RATING_ORDER = 'RATING_ORDER';
 export const CLEAR_STATE_BY_NAME = 'CLEAR_STATE_BY_NAME';
 export const USE_FILTER = 'USE_FILTER';
-export const GAME_CREATED = 'GAME_CREATED';
 export const CLEAR_ALL_FILTERS =  'CLEAR_ALL_FILTERS';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const GAME_UPDATE = 'GAME_UPDATE';

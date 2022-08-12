@@ -7,3 +7,6 @@ export const postGame = payload => {
     })
     .catch(err => alert(err.message))
 };
+
+
+

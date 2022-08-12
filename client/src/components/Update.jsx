@@ -2,34 +2,33 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Nav } from './Nav'
-import { getGenres } from '../redux/actions'
-import { postGame } from '../helpers/postGame';
+import { putGame } from '../helpers/putGame';
 import { formControl } from '../helpers/formControl';
-import { getPlatforms, clearAllFilters, getGames } from '../redux/actions'
+import { clearAllFilters, getGames } from '../redux/actions'
+import axios from "axios";
 
-export const Create = () => {
+export const Update = (props) => {
 
   const dispatch = useDispatch();
+  const gameDetail = useSelector(state => state.gameDetail);
   const history = useHistory();
-  const genres = useSelector(state => state.genres);
+  const genres = useSelector(state => state.genres)
   const platforms = useSelector(state => state.platforms);
   const [errText, seterrText] = useState({});  
   const [input, setInput] = useState({
-    name: '',
-    img: '',
-    description: '',
-    released: '',
-    rating: '',
-    genres: [],
-    platforms: [],
+    name: gameDetail.name,
+    img: gameDetail.img,
+    description: gameDetail.description,
+    released: gameDetail.released,
+    rating: gameDetail.rating,
+    genres: gameDetail.genres,
+    platforms: gameDetail.platforms,
   });
+  const id = props.match.params.id
   
   useEffect(() => {
-    if(!genres.length && !platforms.length) {
-      dispatch(getGenres());
-      dispatch(getPlatforms());
-    }
-  },[dispatch, genres.length, platforms.length]);
+    console.log('despachar accion para limpiar el estado global Update en {}')
+  },[]);
 
   const handleChange = e => {
     setInput({
@@ -67,7 +66,7 @@ export const Create = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    postGame(input)
+    // putGame(id, input)
     setInput({ // controlar si hace falta setearlo! 
       name: '',
       img: '',
@@ -80,6 +79,15 @@ export const Create = () => {
     dispatch(clearAllFilters());
     dispatch(getGames());
     history.push('/home');
+    return axios.put('http://localhost:3001/game/' + id + '/update', input)
+    .then(res => {
+        if (res.status === 201) alert('Videogame updated successfully')
+        if (!input) console.log('VACIO')
+    })
+    .catch(err => {
+        alert(err.message)
+        console.log(err.message)
+    })
   };
 
 

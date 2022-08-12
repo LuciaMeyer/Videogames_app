@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, clearStateByName, changeSearchGame, changeUseFilter } from "../redux/actions";
 
-export const SetFilters = ({ setInput, button }) => {  
+export const SetFilters = ({  button }) => {  
 
     const dispatch = useDispatch();
     const gameByName = useSelector(state => state.gameByName);
@@ -17,7 +17,6 @@ export const SetFilters = ({ setInput, button }) => {
 
     const handleResetAll = () => {
         dispatch(clearAllFilters());
-        setInput('');
     }
 
     const handleResetGenres = () => {
@@ -43,7 +42,6 @@ export const SetFilters = ({ setInput, button }) => {
     const handleResetSearchGame = () => {
         if(searchGame) dispatch(changeSearchGame(false));
         dispatch(clearStateByName([]));
-        setInput('');
     };
 
     return (
