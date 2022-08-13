@@ -5,10 +5,8 @@ import { Card } from './Card';
 import { Pagination } from './Pagination';
 import { NotFound } from './NotFound';
 import { Search } from "./Search";
-import { Nav } from './Nav';
 import { Loading } from './Loading'
 import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort'; 
-import { useEffect } from 'react';
 
 export const Home = () => {
 
@@ -45,12 +43,12 @@ export const Home = () => {
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
 
-    // me traigo info del back
-    useEffect(() => {
-        if(!games.length) dispatch(getGames());
-        if(!genres.length) dispatch(getGenres());
-        if(!platforms.length) dispatch(getPlatforms());
-    }, [dispatch, games.length, genres.length, platforms.length]);
+    // me traigo info del back en primer renderizado
+    if(!games.length && !genres.length && !platforms.length) {
+        dispatch(getGames());
+        dispatch(getGenres());
+        dispatch(getPlatforms());
+    }
 
     // defino loading
     let loading = false
@@ -62,18 +60,18 @@ export const Home = () => {
     let notFound = false;
     if(searchGame && gameByName.msg) notFound = true;
     if(games.length === 0 && useFilter) notFound = true;
-
+    
+    if (loading) return <Loading />
     return (
         <div>
-            <Nav />
             <Search games= {games} />
-                { loading && <Loading />}
                 { games.length > 0 && <h5>{games.length} results</h5> }  
                 { notFound ? <NotFound /> : (
                     currentGames?.map(e => (
                             <div key={e.id}>
                                 <Link to={'/game/' + e.id }>
                                     <Card
+                                    key= {e.id}
                                     name={e.name}
                                     img={e.img}
                                     rating={e.rating}

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { Nav } from './Nav'
 import { getGenres } from '../redux/actions'
 import { postGame } from '../helpers/postGame';
 import { formControl } from '../helpers/formControl';
@@ -11,6 +10,7 @@ export const Create = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const allGames = useSelector(state => state.allGames);
   const genres = useSelector(state => state.genres);
   const platforms = useSelector(state => state.platforms);
   const [errText, seterrText] = useState({});  
@@ -24,12 +24,11 @@ export const Create = () => {
     platforms: [],
   });
   
-  useEffect(() => {
-    if(!genres.length && !platforms.length) {
-      dispatch(getGenres());
-      dispatch(getPlatforms());
-    }
-  },[dispatch, genres.length, platforms.length]);
+  if(!allGames.length && !genres.length && !platforms.length) {
+    dispatch(getGames());
+    dispatch(getGenres());
+    dispatch(getPlatforms());
+  }
 
   const handleChange = e => {
     setInput({
@@ -88,7 +87,6 @@ export const Create = () => {
 
   return (
     <div >
-      <Nav />
       <form onSubmit={handleSubmit} >
         <div >
           <h3 >Create your Video Game</h3>
@@ -144,7 +142,7 @@ export const Create = () => {
         <hr />
 
         <div>
-          <label >img URL: </label>
+          <label >URL img:</label>
           <input name='img' value={ input.img ? input.img : input.img = 'https://bit.ly/3Qfwp3B'} autoComplete='off' onChange={handleChange} />
           {errText.img && <span >{errText.img}</span>}
         </div><br></br>

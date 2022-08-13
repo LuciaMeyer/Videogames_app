@@ -6,18 +6,19 @@ const { Op } = require('sequelize');
 
 
 const getApiGames = async () => {
-        
-    try {
-        let allPageGames = [];
-        let numPage = 1;
+    
+    const url = apiGames + apikey
+    try {                         
+        let infoApiGames = [];
+        let res = await axios(url)
 
-        for (let i = 0; i < 5; i++) {    
-            let page = numPage.toString();
-            let url = apiGames + apikey +'&page=' + page;
-            let eachPageGames = (await axios(url))
-                .data.results.map(ob => {
+        for (let i = 0; i < 5; i++) {
+            infoApiGames = infoApiGames.concat(res.data.results)   
+            res = await axios(res.data.next);
+        }
+        infoApiGames = infoApiGames.map(ob => {
                     return {
-                        id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
+                        id: ob.id,
                         name: ob.name,
                         img: ob.background_image,
                         rating: ob.rating,
@@ -25,12 +26,7 @@ const getApiGames = async () => {
                         platforms: ob.platforms.map(p => p.platform.name)
                     }
                 });
-        numPage++;
-        allPageGames.push(eachPageGames);
-        }
-        let infoApiGames = allPageGames.flat();
-        // console.log(infoApiGames); 100 juegos desde 5 páginas de la api
-        return infoApiGames;       
+        return infoApiGames
     } catch (err) {
         console.log(err.message)
     }
@@ -49,7 +45,7 @@ const getDbGames = async () => {
 };
 
 const getAllGames = async (req, res, next) => {
-    
+
     const { name } = req.query;
     const api = await getApiGames();
     const db = await getDbGames();

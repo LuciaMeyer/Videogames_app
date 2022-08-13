@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { Nav } from './Nav'
 import { putGame } from '../helpers/putGame';
 import { formControl } from '../helpers/formControl';
 import { clearAllFilters, getGames } from '../redux/actions'
-import axios from "axios";
 
 export const Update = (props) => {
 
@@ -66,28 +64,10 @@ export const Update = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // putGame(id, input)
-    setInput({ // controlar si hace falta setearlo! 
-      name: '',
-      img: '',
-      description: '',
-      released: '',
-      rating: '',
-      genres: [],
-      platforms: [],
-    })
+    putGame(id,input)
     dispatch(clearAllFilters());
     dispatch(getGames());
     history.push('/home');
-    return axios.put('http://localhost:3001/game/' + id + '/update', input)
-    .then(res => {
-        if (res.status === 201) alert('Videogame updated successfully')
-        if (!input) console.log('VACIO')
-    })
-    .catch(err => {
-        alert(err.message)
-        console.log(err.message)
-    })
   };
 
 
@@ -96,7 +76,6 @@ export const Update = (props) => {
 
   return (
     <div >
-      <Nav />
       <form onSubmit={handleSubmit} >
         <div >
           <h3 >Create your Video Game</h3>
@@ -152,12 +131,12 @@ export const Update = (props) => {
         <hr />
 
         <div>
-          <label >img URL: </label>
-          <input name='img' value={ input.img ? input.img : input.img = 'https://bit.ly/3Qfwp3B'} autoComplete='off' onChange={handleChange} />
+          <label >URL img:</label>
+          <input name='img' value={input.img = 'https://bit.ly/3SLkgVM'} autoComplete='off' onChange={handleChange} />
           {errText.img && <span >{errText.img}</span>}
         </div><br></br>
         <hr />   
-           <button disabled={disabled} type='submit' >Create</button>     
+           <button disabled={disabled} type='submit' >Update</button>     
       </form>
     </div>
   );

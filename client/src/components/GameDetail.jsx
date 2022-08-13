@@ -15,7 +15,7 @@ export const GameDetail = (props) => {
     const gameDetail = useSelector(state => state.gameDetail)
 
     const id = props.match.params.id
-    const idDb = id.length > 5
+    const idDb = id.length === 36
     
     useEffect(()=> {
         dispatch(getGameDetail(id))
@@ -40,60 +40,59 @@ export const GameDetail = (props) => {
         return {__html: gameDetail?.description};
     }
 
-    return (
+    let loading = false
+    if (!Object.keys(gameDetail).length) loading = true;
 
-        <div>
-            <button><Link to='/home'>Back to home</Link></button>        
-            <h5>Game Detail</h5>
-            {gameDetail.msg && <NotFound  />}
+    if (gameDetail.msg) return <NotFound />
+    
+    return (
+        <>
+            { loading ? <Loading /> :          
+                <div>
+                    <h5>Game Detail</h5>
+                    <h3>{gameDetail?.name}</h3><br />      
+                    <img src={gameDetail?.img} alt={gameDetail?.name} />                           
+                    <span>Rating </span>
+                    { gameDetail.rating && <span>{gameDetail.rating}</span> }
+                    <span>Released </span>
+                    { gameDetail.released && <span>{gameDetail.released}</span> }
+                    <span>Genres</span>
+                    { gameDetail.genres?.map((g, i) => {
+                        if (typeof gameDetail.genres[0] === 'string') {
+                            if(i === 0) {
+                                return <span key={i}>{g}</span>
+                            } else {
+                                return <span key={i}><span> | </span><span>{g}</span></span>
+                            }
+                        } else {
+                            if(i === 0) {
+                                return <span key={i}>{g.name}</span>
+                            } else {
+                                return <span key={i}><span> | </span><span>{g.name}</span></span>
+                            }
+                        }
+                    })}
+                    <span>Platforms</span>
+                    { gameDetail.platforms?.map((p, i) => {
+                        if (i === 0) {
+                            return <span key={i}>{p}</span>
+                        }
+                        return (
+                        <span key={i} >{p}</span>
+                        )
+                    })}
+                    <span>Description</span>
+                    <div dangerouslySetInnerHTML={modifyDescription()}/>
+                </div> 
+            }
             {idDb && 
-            <div >
-                <Link to={`/game/${id}/update`}>
-                <button type="button" onClick={handleUpdate}>Update</button>
-                </Link>
-                <button type="button" onClick={handleDelete}>Delete</button>
-            </div>
-            }
-            {!gameDetail.img ? <Loading /> :
-            <div>
-                <h3>{gameDetail?.name}</h3><br />      
-                <img src={gameDetail?.img} alt={gameDetail?.name} />
-                <div className='det'>
-                    <div className='det1'>         
-                            <span>Rating </span>
-                            { gameDetail.rating && <span>{gameDetail.rating}</span> }
-                            <span>Released </span>
-                            { gameDetail.released && <span>{gameDetail.released}</span> }
-                            <span>Genres</span>
-                            { gameDetail.genres?.map((g, i) => {
-                                if (typeof gameDetail.genres[0] === 'string') {
-                                    if(i === 0) {
-                                        return <span key={i}>{g}</span>
-                                    } else {
-                                        return <span key={i}><span> | </span><span>{g}</span></span>
-                                    }
-                                } else {
-                                    if(i === 0) {
-                                        return <span key={i}>{g.name}</span>
-                                    } else {
-                                        return <span key={i}><span> | </span><span>{g.name}</span></span>
-                                    }
-                                }
-                            })}
-                            <span>Platforms</span>
-                            { gameDetail.platforms?.map((p, i) => {
-                                if (i === 0) {
-                                    return <span key={i}>{p}</span>
-                                }
-                                return (
-                                <span key={i} >{p}</span>
-                                )
-                            })}
-                            <span>Description</span>
-                    <div dangerouslySetInnerHTML={modifyDescription()}/></div> 
+                <div >
+                    <Link to={`/game/${id}/update`}>
+                    <button type="button" onClick={handleUpdate}>Update</button>
+                    </Link>
+                    <button type="button" onClick={handleDelete}>Delete</button>
                 </div>
-            </div >
             }
-        </div>
+        </>
     )
 };
