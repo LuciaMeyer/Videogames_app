@@ -9,12 +9,10 @@ const getGameID = async (req, res) => {
     const { id } = req.params;
     const urlId = apiGameID + id + '?key=' + apikey;
 
-    if(id.length > 5 ) { // UUID
+    if(id.length > 5 ) { 
         try {
             let gameDb = await Videogame.findOne({where: {id}, include: Genre})
-            gameDb
-            ? res.send(gameDb)
-            : res.send({ msg: 'The Videogame with that id was not found...' });            
+            res.send(gameDb)
         } catch (err) {
             res.send({ msg: 'The Videogame with that id was not found...' }); 
         }
@@ -42,15 +40,12 @@ const getGameID = async (req, res) => {
 
 const postGame = async (req, res, next) => {
 
-    let { name, description, released, rating, platforms, img } = req.body;
-    let genres = req.body.genres;
-    if(!name || !description || !platforms || !genres) return res.status(404).send('Essential data missing');
-
+    let { name, released, rating, platforms, img, description, genres} = req.body;
+    let str = ''
+    description = str.concat('<p>' + description + '<p>') 
     try {  
-      let infoGame = await Videogame.create(req.body);
-    //   console.log(infoGame.toJSON());
+      let infoGame = await Videogame.create({ name, released, rating, platforms, img, description});
       let infoGenre = await Genre.findAll({ where: { name: genres }}); 
-    //   console.log(infoGenre.map(i=>i.toJSON()))
       infoGame.addGenre(infoGenre);
       res.status(201).send('Videogame created successfully');   
     } catch (err) {
@@ -61,9 +56,7 @@ const postGame = async (req, res, next) => {
 const deleteGame = async (req, res, next) => {
     const { id } = req.params;
     try {
-        console.log(id)
         let gameDelete = await Videogame.findByPk(id)
-        console.log(gameDelete)
         gameDelete.destroy();
         res.status(201).send("Videogame deleted correctly");
     } catch (err) {
@@ -78,20 +71,17 @@ const putGame = async (req, res, next) => {
     // platforms = platforms.join(", ")
 
     try {
-        const videogame = await Videogame.findByPk(id)
-        // console.log(videogame.toJSON())
-
-        await videogame.update({name, img, description, released, rating, platforms })
-        // console.log(videogame.toJSON())
-        
-        const videogameGenres = await videogame.getGenres()
-        // await videogame.removeGenres(videogameGenres)
-        console.log(videogameGenres.toJSON) // undefined
-        let arrPromises = genres.map(e => (
-            Genre.findOne({where: {name: e}})
-            .then(res => videogame.addGenre(res))
-        ))
-        await Promise.all(arrPromises)
+        const game = await Videogame.findByPk(id)
+        // console.log(game.toJSON())
+        const update = await game.update({ name, img, description, released, rating, platforms })
+        // console.log(game.toJSON())
+        // const gameGenres = await game.getGenres()
+        // await game.removeGenres(gameGenres)
+        // let arrPromises = genres.map(e => (
+        //     Genre.findOne({where: {name: e}})
+        //     .then(res => game.addGenre(res))
+        // ))
+        // await Promise.all(arrPromises)
         res.status(201).send("Videogame updated correctly");
     } catch (error) {
         next(error)

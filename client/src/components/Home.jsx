@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { Pagination } from './Pagination';
 import { NotFound } from './NotFound';
-import { Search } from "./Search";
+import { SearchBar } from "./SearchBar";
 import { Loading } from './Loading'
-import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort'; 
+import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort';
 
 export const Home = () => {
 
@@ -27,7 +27,8 @@ export const Home = () => {
     // defino qué renderizar seún los filtros
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
-    
+
+
     if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
     if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');       
     if(nameOrder === 'asc' ) games.sort(nameASC);
@@ -64,7 +65,7 @@ export const Home = () => {
     if (loading) return <Loading />
     return (
         <div>
-            <Search games= {games} />
+            <SearchBar />
                 { games.length > 0 && <h5>{games.length} results</h5> }  
                 { notFound ? <NotFound /> : (
                     currentGames?.map(e => (
@@ -73,7 +74,7 @@ export const Home = () => {
                                     <Card
                                     key= {e.id}
                                     name={e.name}
-                                    img={e.img}
+                                    img={e.img.length ? e.img : e.img = 'https://bit.ly/3Qfwp3B'}
                                     rating={e.rating}
                                     genres={e.genres}
                                     platforms={e.platforms}

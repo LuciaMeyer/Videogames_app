@@ -132,7 +132,7 @@ export const Update = (props) => {
 
         <div>
           <label >URL img:</label>
-          <input name='img' value={input.img = 'https://bit.ly/3SLkgVM'} autoComplete='off' onChange={handleChange} />
+          <input name='img' value={input.img} autoComplete='off' onChange={handleChange} />
           {errText.img && <span >{errText.img}</span>}
         </div><br></br>
         <hr />   

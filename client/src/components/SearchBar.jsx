@@ -5,7 +5,7 @@ import { SetFilters } from "./SetFilters";
 import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame } from "../redux/actions";
 
 
-export const Search = () => {
+export const SearchBar = () => {
 
     const dispatch = useDispatch();
     const genresFilter = useSelector(state => state.genresFilter);

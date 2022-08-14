@@ -82,7 +82,7 @@ export const GameDetail = (props) => {
                         )
                     })}
                     <span>Description</span>
-                    <div dangerouslySetInnerHTML={modifyDescription()}/>
+                    <div dangerouslySetInnerHTML={modifyDescription()} />
                 </div> 
             }
             {idDb && 

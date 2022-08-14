@@ -17,7 +17,7 @@ const initialState = {
     nameOrder:'',
     ratingOrder: ''
     // filters: {
-    //     genres: '',
+    //     genres: {value:'', filter: false },
     //     platforms: '',
     //     type: '',
     //     nameOrder: '',
@@ -46,7 +46,7 @@ export const reducer = (state = initialState, action) => {
         // case 'GET_GENRES':
         //     return {
         //         ...state,
-        //         filters: {...state.filtersAndOrder, genres: action.payload }
+        //         filters: {...state.filters, genres: {nameaction.payload} }
         //     }
         case GET_PLATFORMS:
             return {

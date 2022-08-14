@@ -80,8 +80,6 @@ export const Create = () => {
     dispatch(getGames());
     history.push('/home');
   };
-
-
   
   const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
 
@@ -143,7 +141,8 @@ export const Create = () => {
 
         <div>
           <label >URL img:</label>
-          <input name='img' value={ input.img ? input.img : input.img = 'https://bit.ly/3Qfwp3B'} autoComplete='off' onChange={handleChange} />
+          
+          <input name='img' placeholder= 'url...' value={ input.img ? input.img : input.img = 'https://bit.ly/3Qfwp3B' } autoComplete='off' onChange={handleChange} />
           {errText.img && <span >{errText.img}</span>}
         </div><br></br>
         <hr />   

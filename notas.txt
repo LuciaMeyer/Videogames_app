@@ -30,15 +30,14 @@ AXIOS y FETCH:
 - instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 
 FALTA:
-- agregar un refresh
-- img cuando creo uno nuevo, si no se pone que traiga algo por defecto 
-- boton que toma el valor del input sobre escribe
-- estado local en home para gasmes = []
-- separar componentes de lógica y componentes limpios
-- cuando pongo all no toma la cantidad de resultados
-- detail
-- en back cambiar forma de traer los games con next y cambiar busqueda por nombre en la db
-- revisar cantidad de estados globales, tratar de minimizar
+
+
+- boton busqueda por nombre se borro
+- en back cambiar cambiar busqueda por nombre en la db
+- cuando creo un nuevo juego la descripción no me la trae
+- filtros 
+- update
+- cambiar la imagen por default a un png y una variable
 
 
 EXTENSIÓN vscode-styled-components

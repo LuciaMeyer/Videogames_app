@@ -33,15 +33,28 @@ const getApiGames = async () => {
 };
 
 const getDbGames = async () => {
-    return await Videogame.findAll({ 
+    // return await Videogame.findAll({ 
+    //     include: {
+    //         model: Genre,
+    //         attributes: ['name'],
+    //         through: { attributes: [] }
+    //     }
+    // })
+    let infoDbGames = await Videogame.findAll({ 
         include: {
             model: Genre,
             attributes: ['name'],
-            through: {
-                attributes: []
-            }
+            through: { attributes: [] }
         }
     })
+    return infoDbGames = infoDbGames.map(e => ({
+        id: e.id, 
+        name: e.name, 
+        img: e.img, 
+        rating: e.rating,
+        platforms: e.platforms, 
+        genres: e.genres.map(e => e.name)
+    }))
 };
 
 const getAllGames = async (req, res, next) => {
