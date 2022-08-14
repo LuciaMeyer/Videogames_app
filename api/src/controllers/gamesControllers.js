@@ -67,30 +67,24 @@ const getAllGames = async (req, res, next) => {
 
     try {
         if(name) {
-        let getApiByName = (await axios(urlSearchName))
-            .data.results.slice(0,15).map(ob => {
-                return {
-                    id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
-                    name: ob.name,
-                    img: ob.background_image,
-                    rating: ob.rating,
-                    genres: ob.genres.map(g => g.name),
-                    platforms: ob.platforms.map(p => p.platform.name)
-                }
+            let getApiByName = (await axios(urlSearchName))
+                .data.results.slice(0,15).map(ob => {
+                    return {
+                        id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
+                        name: ob.name,
+                        img: ob.background_image,
+                        rating: ob.rating,
+                        genres: ob.genres.map(g => g.name),
+                        platforms: ob.platforms.map(p => p.platform.name)
+                    }
             });
-        let getDbByName = await Videogame.findAll({
-            where: {
-                name: { [Op.iLike]: `%${name}%`}
-            }, include: Genre })
-        
-        let gameByName = getApiByName.concat(getDbByName);
-        gameByName.length
-        ? res.send(gameByName) 
-        : res.send({ msg: 'not found' })
-        // : res.status(404).send({msg: 'not found'})
+            let getDbByName = db.filter(e => e.name.toUpperCase().includes(name.toUpperCase()))
+            let getGameByName = getDbByName.concat(getApiByName)
+            res.send(getGameByName)
+
         } else {
-            res.send(allInfo);
-        };        
+                res.send(allInfo);
+        }
     } catch (err) {
         res.send({ msg: 'not found' });
     }

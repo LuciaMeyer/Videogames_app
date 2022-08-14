@@ -33,7 +33,6 @@ export const Filters = () => {
 
     const handleNameOrder = e => {
         dispatch(changeNameOrder(e.target.value));
-        console.log(e.target.value)
         dispatch(changeRatingOrder(''));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
@@ -48,6 +47,7 @@ export const Filters = () => {
 
     return (
         <div>
+            se
             <div>
                 <h5>filter by:</h5>
                 <select value= {genresFilter} onChange={handleGenreFilter}>

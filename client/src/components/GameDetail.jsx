@@ -25,7 +25,6 @@ export const GameDetail = (props) => {
     }, [dispatch, id]);
 
     const handleUpdate = () => {
-        console.log('update');
         dispatch(gameUpdate(gameDetail));
     };
 

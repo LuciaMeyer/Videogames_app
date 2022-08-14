@@ -30,11 +30,11 @@ AXIOS y FETCH:
 - instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 
 FALTA:
-- en back cambiar cambiar busqueda por nombre en la db
 - update
 - cambiar la imagen por default a un png y una variable
 - testing
 - css
+- el warning viene del setFlter if tan largo
 
 
 EXTENSIÓN vscode-styled-components
