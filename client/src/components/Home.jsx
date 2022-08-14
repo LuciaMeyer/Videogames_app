@@ -74,7 +74,7 @@ export const Home = () => {
                                     <Card
                                     key= {e.id}
                                     name={e.name}
-                                    img={e.img.length ? e.img : e.img = 'https://bit.ly/3Qfwp3B'}
+                                    img={e.img}
                                     rating={e.rating}
                                     genres={e.genres}
                                     platforms={e.platforms}

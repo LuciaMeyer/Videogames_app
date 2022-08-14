@@ -66,6 +66,7 @@ export const Create = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if(!input.img.length) input.img = 'https://bit.ly/3Qfwp3B'
     postGame(input)
     setInput({ // controlar si hace falta setearlo! 
       name: '',
@@ -142,7 +143,7 @@ export const Create = () => {
         <div>
           <label >URL img:</label>
           
-          <input name='img' placeholder= 'url...' value={ input.img ? input.img : input.img = 'https://bit.ly/3Qfwp3B' } autoComplete='off' onChange={handleChange} />
+          <input name='img' placeholder= 'url...' value={ input.img } autoComplete='off' onChange={handleChange} />
           {errText.img && <span >{errText.img}</span>}
         </div><br></br>
         <hr />   

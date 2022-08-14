@@ -4,8 +4,6 @@ import './Card.css'
 
 export function Card({ name, img, rating, genres, platforms }) {
 
-    // const imgDefault = 'https://bit.ly/3Qfwp3B'
-    // if(!img.length) img = imgDefault
     return (
 
         <div className='card'>
