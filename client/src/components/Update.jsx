@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { putGame } from '../helpers/putGame';
 import { formControl } from '../helpers/formControl';
-import { clearAllFilters, getGames } from '../redux/actions'
+import { cleanAllFilters, getGames } from '../redux/actions'
 
 export const Update = (props) => {
 
@@ -65,7 +65,7 @@ export const Update = (props) => {
   const handleSubmit = e => {
     e.preventDefault();
     putGame(id,input)
-    dispatch(clearAllFilters());
+    dispatch(cleanAllFilters());
     dispatch(getGames());
     history.push('/home');
   };

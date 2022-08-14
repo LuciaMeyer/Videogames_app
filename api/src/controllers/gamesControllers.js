@@ -62,7 +62,7 @@ const getAllGames = async (req, res, next) => {
     const { name } = req.query;
     const api = await getApiGames();
     const db = await getDbGames();
-    const allInfo = api.concat(db);   
+    const allInfo = db.concat(api);   
     const urlSearchName = apiGameByName + name + '&key=' + apikey;
 
     try {
@@ -92,7 +92,7 @@ const getAllGames = async (req, res, next) => {
             res.send(allInfo);
         };        
     } catch (err) {
-        next(err);
+        res.send({ msg: 'not found' });
     }
 };
 

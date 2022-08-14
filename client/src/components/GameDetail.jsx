@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getGameDetail, cleanGameDetail, getGames, clearAllFilters, gameUpdate } from '../redux/actions';
+import { getGameDetail, cleanGameDetail, getGames, cleanAllFilters, gameUpdate } from '../redux/actions';
 import { NotFound } from './NotFound'
 import { Loading } from './Loading'
 import { deleteGame } from '../helpers/deleteGame';
@@ -32,7 +32,7 @@ export const GameDetail = (props) => {
     const handleDelete = () => {
         deleteGame(id);
         dispatch(getGames());
-        dispatch(clearAllFilters());
+        dispatch(cleanAllFilters());
         history.push('/home');
     };
 
@@ -49,7 +49,7 @@ export const GameDetail = (props) => {
         <>
             { loading ? <Loading /> :          
                 <div>
-                    <h5>Game Detail</h5>
+                    <button><Link to='/home'>Back</Link></button>
                     <h3>{gameDetail?.name}</h3><br />      
                     <img src={gameDetail?.img} alt={gameDetail?.name} />                           
                     <span>Rating </span>

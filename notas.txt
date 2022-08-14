@@ -30,14 +30,11 @@ AXIOS y FETCH:
 - instalar axios desde la pc del trabajo npm i axios, si uso fetch no es necesario instalar
 
 FALTA:
-
-
-- boton busqueda por nombre se borro
 - en back cambiar cambiar busqueda por nombre en la db
-- cuando creo un nuevo juego la descripción no me la trae
-- filtros 
 - update
 - cambiar la imagen por default a un png y una variable
+- testing
+- css
 
 
 EXTENSIÓN vscode-styled-components

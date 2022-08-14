@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, clearStateByName, changeSearchGame, changeUseFilter } from "../redux/actions";
+import { cleanAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, cleanStateByName, changeSearchGame, changeUseFilter } from "../redux/actions";
 
 export const SetFilters = ({  button }) => {  
 
@@ -16,7 +16,7 @@ export const SetFilters = ({  button }) => {
     if(!genresFilter.length && !platformsFilter.length && !typeFilter.length && !nameOrder.length && !ratingOrder.length && useFilter)  dispatch(changeUseFilter(false))
 
     const handleResetAll = () => {
-        dispatch(clearAllFilters());
+        dispatch(cleanAllFilters());
     }
 
     const handleResetGenres = () => {
@@ -41,7 +41,7 @@ export const SetFilters = ({  button }) => {
 
     const handleResetSearchGame = () => {
         if(searchGame) dispatch(changeSearchGame(false));
-        dispatch(clearStateByName([]));
+        dispatch(cleanStateByName([]));
     };
 
     return (

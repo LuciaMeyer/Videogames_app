@@ -7,6 +7,8 @@ import { NotFound } from './NotFound';
 import { SearchBar } from "./SearchBar";
 import { Loading } from './Loading'
 import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort';
+import { Filters } from './Filters';
+import { SetFilters } from "./SetFilters";
 
 export const Home = () => {
 
@@ -27,7 +29,6 @@ export const Home = () => {
     // defino qué renderizar seún los filtros
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
-
 
     if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
     if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');       
@@ -53,22 +54,29 @@ export const Home = () => {
 
     // defino loading
     let loading = false
-    if ( games.length === 0 && !useFilter && !searchGame) loading = true;
-    if ( games.length === 0 && searchGame ) loading = true;
-    if (useFilter) loading = false;
+    if ( !games.length && !useFilter && !searchGame) loading = true;
+    if ( !gameByName.msg && !gameByName.length && searchGame ) loading = true;
+
+    
 
     // defino notFound
     let notFound = false;
     if(searchGame && gameByName.msg) notFound = true;
     if(games.length === 0 && useFilter) notFound = true;
     
-    if (loading) return <Loading />
+    
+    // if (loading) return <Loading />
     return (
         <div>
             <SearchBar />
-                { games.length > 0 && <h5>{games.length} results</h5> }  
-                { notFound ? <NotFound /> : (
-                    currentGames?.map(e => (
+            <Filters />
+            <SetFilters />
+            {loading && <Loading />}
+            {notFound && <NotFound />}
+            {!loading && !!currentGames.length && !notFound &&
+                <div>
+                    { games.length && !gameByName.msg > 0 && <h5>{games.length} results</h5> }  
+                    {currentGames?.map(e => (
                             <div key={e.id}>
                                 <Link to={'/game/' + e.id }>
                                     <Card
@@ -81,9 +89,11 @@ export const Home = () => {
                                     />
                                 </Link>
                             </div>                           
-                    ))
-                )}
-        { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
+                    ))}
+                    { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
+                </div>        
+            }
+
         </div>
     )
 };

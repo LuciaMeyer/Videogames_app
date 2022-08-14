@@ -1,9 +1,10 @@
-import React from "react";
 
 export const NotFound = () => {
 
     return (
-        <h3>Not Found</h3>
-    )
+        <div >
+            <h5>Not Found</h5>
+        </div>
+    );
 
 };

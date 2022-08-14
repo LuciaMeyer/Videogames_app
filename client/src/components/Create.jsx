@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { getGenres } from '../redux/actions'
 import { postGame } from '../helpers/postGame';
 import { formControl } from '../helpers/formControl';
-import { getPlatforms, clearAllFilters, getGames } from '../redux/actions'
+import { getPlatforms, cleanAllFilters, getGames } from '../redux/actions'
 
 export const Create = () => {
 
@@ -77,9 +77,9 @@ export const Create = () => {
       genres: [],
       platforms: [],
     })
-    dispatch(clearAllFilters());
+    dispatch(cleanAllFilters());
     dispatch(getGames());
-    history.push('/home');
+    history.push('/newdata');
   };
   
   const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
