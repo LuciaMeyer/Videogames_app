@@ -13,6 +13,23 @@
     position: fixed;
     z-index: 100;
     background: rgb(45, 45, 45);
+    
+}
+
+.imgback {
+    background: url(../img/back_detail.png);
+    content: "";
+    position: fixed;
+    height: 90vh;
+    width: 20vw;
+    top: 4rem;
+    z-index: -10;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    z-index: 200;
+
 }
 
 .pagContainerdet {
@@ -31,48 +48,67 @@
     height: 80px;
 }
 
+/* ////////// */
+
 .cardContaindet {
     grid-area: 1 / 2 / 6 / 6;
-    margin-top: 7rem;
-    margin-left: 7rem;
-    width: 100%;
-}
-
-h1, h2, h3, h5, a, span, label, p, li {
-    color: white;
-    text-decoration: none;
+    margin-top: 6rem;
+    padding: 2rem;
 }
 
 .stardet {
-    position: relative;
+
     font-size: 1.5rem;
     top: 0rem;
     padding-right: 1rem;
-    padding-top: .9rem;
+
 }
 
 .carddet {
+    display: flex;
     position: relative;
     flex-direction: column;
     text-align:left;
-    border-radius: .5rem;
-    margin-top: 20rem;
-    margin: .7rem 2%;
-    padding-left: 32%;
-    padding-bottom: 1.5rem;
+    border-radius: 2em;
+    padding-bottom: 50rem;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.249);
 }
 
-.ratdet {
-    font-size: 1.2rem;
-    padding-top: 1.2rem;
+.deth3 {
+    font-size: 1rem;
+    padding-top: .5rem;
     margin: 0;
 }
 
 .detname {
-    font-size: 1.4rem;
-    padding-top: .7rem;
+    font-size: 2rem;
+    padding-top: 2rem;
     margin: 0;
     color: rgb(218, 118, 118);
+}
+
+.divdet {
+    display: flex;
+    flex-direction: row;
+    line-height: 1.7rem;
+}
+
+
+.imgdet {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    width: 30vw;
+    height: 50vh;
+    box-shadow: rgba(0, 0, 0, 0.979) 0px 0px 50px 0px;
+}
+
+.detflex {
+    display: block;
+    flex-direction: column;
+    padding-left: 38rem;
+    padding-right: 1rem;
 }

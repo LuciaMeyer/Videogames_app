@@ -4,18 +4,27 @@
     text-align:left;
     border-radius: .5rem;
     margin: .7rem 2%;
-    padding-left: 32%;
+    padding-left: 35%;
     padding-bottom: 1.5rem;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.249);
 }
 
-img {
+/* img {
     position: absolute;
     top: -2rem;
     left: 0;
     object-fit: cover;
     width: 30%;
+    box-shadow: rgba(0, 0, 0, 0.979) 0px 0px 50px 0px;
+} */
+
+.imgcard {
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    object-fit: cover;
+    width: 25vw;
     box-shadow: rgba(0, 0, 0, 0.979) 0px 0px 50px 0px;
 }
 
