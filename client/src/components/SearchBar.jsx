@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame, cleanStateByName } from "../redux/actions";
-
+import './SearchBar.css'
 
 export const SearchBar = () => {
 
@@ -50,20 +50,22 @@ export const SearchBar = () => {
     let disabled = false
     if(!!gameByName.length && searchGame) disabled = true
     return (
-        <div>
-            {!!button.length && <span>your search:{button}</span>}
-            <form onSubmit={handleSubmit}>
-                <input
+        <form onSubmit={handleSubmit}>
+            <div className='serchBar' >
+                <input className='inText'
                     type='text'
-                    placeholder='Search'
+                    placeholder='Search Game'
                     onChange={handleInputChange}
                     value={input}
-                    maxLength= '80'
+                    maxLength= '30'
                     disabled = {disabled}
-                />
-                <input type='submit' value='🔍︎' />
-                {disabled && <button onClick={handleClick}>new search</button>}
-            </form>
-        </div>
+                    />
+                <input className='inSub' type='submit' value='🔍︎' />
+                <div className="div">
+                    {disabled && <button className="but" onClick={handleClick}>new search</button>}
+                    {!!button.length && !!gameByName.length && <span className="span">✓ your search: {button}</span>}
+                </div>
+            </div>
+        </form>
     )
 };

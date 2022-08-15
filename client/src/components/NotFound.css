@@ -1,0 +1,20 @@
+.img {
+    content: "";
+    position: fixed;
+    height:80vh;
+    width: 40vw;
+    top: 4rem;
+    left: 47rem;
+    z-index: -10;
+    background: url('../img/notfound.png');
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+
+
+.h3notF {
+    color: rgb(176, 78, 78);;
+}

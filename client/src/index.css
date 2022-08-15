@@ -14,36 +14,12 @@ body:before {
   content: "";
   position: fixed;
   height: 100vh;
-  width: 100%;
+  width:100%;
   z-index: -10;
-  background: url('./img/background2.png');
+  background: url('./img/background3.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
 }
-
-* {
-  box-sizing: border-box;
-  
-}
-h1, h2, h3, h5, a, span, label, p, li {
-  color: white
-}
-
-button {
-  font-size: .8rem;
-  color: rgb(255, 251, 251);
-  padding: 0.3rem 0.4rem;
-  
-  border-radius: 0.3rem;
-  border-color: rgba(255, 251, 251, 0.453);
-  background-color: transparent
-}
-
-button:hover {
-background-color: #ffffff4b;
-transition: transform .4s;
-}
-
 

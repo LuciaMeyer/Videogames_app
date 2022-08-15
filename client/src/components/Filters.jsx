@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter } from "../redux/actions";
+import './Filter.css'
 
 export const Filters = () => {
 
@@ -51,9 +52,9 @@ export const Filters = () => {
     };
 
     return (
-        <div>
+        <div className="filcontainer">
             <div>
-                <h5>filter by:</h5>
+                <h5 className="h5">❱❱❱ filter by:</h5>
                 <select value= {genresFilter} onChange={handleGenreFilter}>
                     <option value= '' disabled>Genre</option>
                     <option value='all'>All Genres</option>
@@ -78,7 +79,7 @@ export const Filters = () => {
                     <option value= 'created'>Created</option>
                     <option value= 'existing'>Existing</option>
                 </select>
-                <h5>order by:</h5>
+                <h5 className="h5">❱❱❱ order by:</h5>
                 <select value= {nameOrder} onChange={handleNameOrder}>
                     <option value= '' disabled>Name</option>
                     <option value= 'asc'>A - Z</option>

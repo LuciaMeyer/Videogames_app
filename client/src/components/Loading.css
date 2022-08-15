@@ -1,0 +1,12 @@
+.load {
+    position: relative;
+    display: flex;
+    left: 70rem;
+    top: 20rem;
+    letter-spacing: 4px;
+    font-size: 1.5rem;
+}
+
+.h3load {
+    color: rgb(176, 78, 78);;
+}

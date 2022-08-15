@@ -1,0 +1,14 @@
+.filcontainer {
+    display: flex;
+    position: relative;
+    top: 7rem;
+    left: 1rem;
+}
+
+.h5 {
+    color: rgb(176, 78, 78);
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px
+}

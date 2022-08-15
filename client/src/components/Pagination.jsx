@@ -21,11 +21,11 @@ export const Pagination = ({ games, gamesPerPage }) => {
     return (
             <ul className="pagul">
                 {
-                    pageNumber?.map(num => (
-                        <li className="pagli" key={num} onClick={() =>handlePage(num)}>
-                            <button className="pagbut">{num}</button>
+                    pageNumber?.map(num => 
+                        <li className={'pagli' + (currentPage === num ? ' active' : '')} key={num} onClick={() =>handlePage(num)}>
+                            <span className="pagspan">{num}</span>
                         </li>
-                    ))
+                    )
                 }
             </ul>
     )

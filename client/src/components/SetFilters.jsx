@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { cleanAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeUseFilter } from "../redux/actions";
+import './SetFilters.css'
 
 export const SetFilters = () => {  
 
@@ -13,58 +14,52 @@ export const SetFilters = () => {
 
     if(!genresFilter.length && !platformsFilter.length && !typeFilter.length && !nameOrder.length && !ratingOrder.length && useFilter)  dispatch(changeUseFilter(false))
     
-    const handleResetAll = e => {
-        e.preventDefault()
+    const handleResetAll = () => {
         dispatch(cleanAllFilters());
     }
 
-    const handleResetGenres = e => {
-        e.preventDefault()
+    const handleResetGenres = () => {
         if(genresFilter !== '') dispatch(changeGenresFilter(''));
     };
 
-    const handleResetPlatforms = e => {
-        e.preventDefault()
+    const handleResetPlatforms = () => {
         if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
     };
 
-    const handleResetType = e => {
-        e.preventDefault()
+    const handleResetType = () => {
         if(typeFilter !== '') dispatch(changeTypeFilter(''));
     };
 
-    const handleResetName = e => {
-        e.preventDefault()
+    const handleResetName = () => {
         if(nameOrder !== '') dispatch(changeNameOrder(''));
     };
 
     const handleResetRaiting = () => {
-        // e.prevenDefault()
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
     };
 
     return (
         <>
             <br />          
-            <button onClick={handleResetAll}>Reset</button>   
+            <button className="butR" onClick={handleResetAll}>Reset</button>   
             {
-                genresFilter.length !== 0 && <button onClick= {handleResetGenres}>Genre: {genresFilter} x</button>
+                genresFilter.length !== 0 && <button className="butF" onClick= {handleResetGenres}>Genre: {genresFilter}</button>
                 
             }
             {
-                platformsFilter.length !== 0 && <button onClick= {handleResetPlatforms}>Platforms: {platformsFilter} x</button>
+                platformsFilter.length !== 0 && <button className="butF" onClick= {handleResetPlatforms}>Platforms: {platformsFilter}</button>
                 
             }
             {           
-                typeFilter.length !== 0  && <button onClick={handleResetType}>Type: {typeFilter} x</button>
+                typeFilter.length !== 0  && <button className="butF" onClick={handleResetType}>Type: {typeFilter}</button>
                 
             }
             {           
-                nameOrder.length !== 0 && <button onClick={handleResetName}>Name: {nameOrder} x</button>
+                nameOrder.length !== 0 && <button className="butF" onClick={handleResetName}>Name: {nameOrder}</button>
                 
             }
             {           
-                ratingOrder.length !== 0 && <button onClick={handleResetRaiting}>Rating: {ratingOrder} x</button>
+                ratingOrder.length !== 0 && <button className="butF" onClick={handleResetRaiting}>Rating: {ratingOrder}</button>
             }
         </>
     )

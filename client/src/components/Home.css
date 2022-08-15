@@ -1,7 +1,5 @@
-.parent {
+.maincontainer {
     position: relative;
-    width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -10,81 +8,43 @@
 }
     
 .navConteiner {
-    grid-area: 1 / 1 / 6 / 2;
-    width: 25%;
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
     position: fixed;
-    display: flex;
     z-index: 100;
     background: rgb(45, 45, 45);
 }
 
-.filConteiner {
-    grid-area: 1 / 1 / 2 / 3;
-    padding-top:2rem;
-    padding-left: 7rem;
-    width: 25%;
-    position: fixed;
-}
+
 
 .pagContainer {
-    grid-area: 5 / 2 / 6 / 6;
-    display: flex;
     align-items: center;
-    flex-direction: row;
     position: fixed;
     bottom: 0px;
-    margin-left: 25%;
     width: 100%;
-    background: rgb(82, 82, 82);
+    background: rgb(53, 48, 48);
     height: 80px;
-    align-items: center;
-    flex-direction: row;
-    z-index: 90;
+
 }
 
 .slides {
-    grid-area: 1 / 2 / 2 / 6;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
     position: fixed;
-    /* top: 0px; */
-    margin-left: 25%;
     width: 100%;
-    background: rgb(82, 82, 82);
+    background: rgb(53, 48, 48);
     height: 80px;
-}
-
-.slides > span {
-    margin-left: 3rem;
-    font-size: .8rem;
 }
 
 .cardsContain {
     grid-area: 1 / 2 / 6 / 6;
-    margin-left: 7rem;
     margin-top: 7rem;
-    margin-bottom: 7rem;
+    margin-left: 7rem;
     width: 100%;
-
 }
 
 
 h1, h2, h3, h5, a, span, label, p, li {
     color: white;
     text-decoration: none;
-}
-  
-button, input {
-    font-size: .8rem;
-    color: rgb(255, 251, 251);
-    padding: 0.3rem 0.4rem;
-
-    border-radius: 0.3rem;
-    border-color: rgba(255, 251, 251, 0.453);
-    background-color: transparent
 }
 
 select {
@@ -93,10 +53,10 @@ select {
     border-color: rgba(255, 251, 251, 0.453);
     padding: 0.3rem 0.4rem;
     background: transparent;
-    font-size: 14px;
-    height: 30px;
+    font-size: .9rem;
+    height: 2rem;
     padding: 5px;
-    width: 250px;
+    width: 90%;
     margin-top: 1rem;
 }
 
@@ -108,9 +68,10 @@ select:hover {
     background-color: rgb(140, 46, 46);
 }
 
-button:hover {
-    background-color: #ffffff4b;
-    transition: transform .4s;
+span {
+    position: relative;
+    top: 5rem;
+    color: white;
+    font-size: .9rem;
+    margin-left: 1rem;
 }
-  
-    

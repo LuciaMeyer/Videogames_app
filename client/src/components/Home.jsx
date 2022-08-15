@@ -67,18 +67,13 @@ export const Home = () => {
     
     // if (loading) return <Loading />
     return (
-        <div className='parent'>
-
-            <div className='navConteiner'>
-                <div className='slides'> 
-                    { loading ? '' : games.length && !gameByName.msg && <span >{games.length} results</span> }
-                </div>
-                <div className='filConteiner'>
+        <div className='maincontainer'>
+            <div className='navConteiner'>    
                     <Nav />
                     <SearchBar />
+                    { loading ? '' : games.length && !gameByName.msg && <span >✓ {games.length} results</span> }
                     <Filters />
-                    <SetFilters />
-                </div>
+                    <SetFilters />   
             </div>
                 {loading && <Loading />}
                 {notFound && <NotFound />}
@@ -101,6 +96,7 @@ export const Home = () => {
                 ))}
             </div>        
             }
+            <div className='slides'></div>
             <div className='pagContainer'>
                     { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
             </div>

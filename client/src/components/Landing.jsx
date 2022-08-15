@@ -59,8 +59,6 @@ export const Landing = () => {
       );
 };
 
-
-
 const fadeIn = keyframes`
     0%{
         opacity: 10;
