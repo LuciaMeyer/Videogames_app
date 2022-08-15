@@ -8,7 +8,9 @@ import { SearchBar } from "./SearchBar";
 import { Loading } from './Loading'
 import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort';
 import { Filters } from './Filters';
+import { Nav } from './Nav';
 import { SetFilters } from "./SetFilters";
+import './Home.css'
 
 export const Home = () => {
 
@@ -57,8 +59,6 @@ export const Home = () => {
     if ( !games.length && !useFilter && !searchGame) loading = true;
     if ( !gameByName.msg && !gameByName.length && searchGame ) loading = true;
 
-    
-
     // defino notFound
     let notFound = false;
     if(searchGame && gameByName.msg) notFound = true;
@@ -67,33 +67,43 @@ export const Home = () => {
     
     // if (loading) return <Loading />
     return (
-        <div>
-            <SearchBar />
-            <Filters />
-            <SetFilters />
-            {loading && <Loading />}
-            {notFound && <NotFound />}
-            {!loading && !!currentGames.length && !notFound &&
-                <div>
-                    { games.length && !gameByName.msg > 0 && <h5>{games.length} results</h5> }  
-                    {currentGames?.map(e => (
-                            <div key={e.id}>
-                                <Link to={'/game/' + e.id }>
-                                    <Card
-                                    key= {e.id}
-                                    name={e.name}
-                                    img={e.img}
-                                    rating={e.rating}
-                                    genres={e.genres}
-                                    platforms={e.platforms}
-                                    />
-                                </Link>
-                            </div>                           
-                    ))}
-                    { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
-                </div>        
-            }
+        <div className='parent'>
 
+            <div className='navConteiner'>
+                <div className='slides'> 
+                    { loading ? '' : games.length && !gameByName.msg && <span >{games.length} results</span> }
+                </div>
+                <div className='filConteiner'>
+                    <Nav />
+                    <SearchBar />
+                    <Filters />
+                    <SetFilters />
+                </div>
+            </div>
+                {loading && <Loading />}
+                {notFound && <NotFound />}
+                {!loading && !!currentGames.length && !notFound &&
+            <div className='cardsContain'>      
+                  
+                {currentGames?.map(e => (
+                        <div key={e.id} className='card'>
+                            <Link to={'/game/' + e.id }>
+                                <Card
+                                key= {e.id}
+                                name={e.name}
+                                img={e.img}
+                                rating={e.rating}
+                                genres={e.genres}
+                                platforms={e.platforms}
+                                />
+                            </Link>
+                        </div>                           
+                ))}
+            </div>        
+            }
+            <div className='pagContainer'>
+                    { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
+            </div>
         </div>
     )
 };

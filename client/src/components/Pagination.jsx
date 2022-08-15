@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentPage } from "../redux/actions";
+import './Pagination.css'
 
 export const Pagination = ({ games, gamesPerPage }) => {
 
@@ -18,16 +19,14 @@ export const Pagination = ({ games, gamesPerPage }) => {
     }
 
     return (
-        <nav>
-            <ul>
+            <ul className="pagul">
                 {
                     pageNumber?.map(num => (
-                        <li key={num}>
-                            <button onClick={() =>handlePage(num)}>{num}</button>
+                        <li className="pagli" key={num} onClick={() =>handlePage(num)}>
+                            <button className="pagbut">{num}</button>
                         </li>
                     ))
                 }
             </ul>
-        </nav>
     )
 };

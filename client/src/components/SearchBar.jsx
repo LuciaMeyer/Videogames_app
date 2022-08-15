@@ -64,7 +64,6 @@ export const SearchBar = () => {
                 <input type='submit' value='🔍︎' />
                 {disabled && <button onClick={handleClick}>new search</button>}
             </form>
-            <hr />
         </div>
     )
 };

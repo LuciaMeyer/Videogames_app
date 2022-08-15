@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { putGame } from '../helpers/putGame';
 import { formControl } from '../helpers/formControl';
 import { cleanAllFilters, getGames } from '../redux/actions'
+import { Link } from "react-router-dom";
+import { Nav } from './Nav';
 
 export const Update = (props) => {
 
@@ -76,6 +78,8 @@ export const Update = (props) => {
 
   return (
     <div >
+      <Nav />
+      <button><Link to='/home'>Back</Link></button>
       <form onSubmit={handleSubmit} >
         <div >
           <h3 >Create your Video Game</h3>

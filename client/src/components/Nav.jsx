@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getGames, getGenres, getPlatforms, cleanAllFilters } from "../redux/actions";
+import './Nav.css'
 
 
 
@@ -18,17 +17,15 @@ export const Nav = () => {
     //     dispatch(cleanAllFilters());
     // }
 
-    return(
-        <div>
+    return(        
             <div>
-                <br/>
-                <button><Link to='/home'>Home</Link></button>
-                <button><Link to='/'>Exit</Link></button>
-                <button><Link to ='/create'>Create</Link></button>
-                <button><Link to ='/about'>About</Link></button>
-                {/* <button onClick={handleRefresh}><Link to='/home'>REFRESH</Link></button> */}
+                <div>
+                    <button><Link to='/home'>Home</Link></button>
+                    <button><Link to='/'>Exit</Link></button>
+                    <button><Link to ='/create'>Create</Link></button>
+                    <button><Link to ='/about'>About</Link></button>
+                    {/* <button onClick={handleRefresh}><Link to='/home'>REFRESH</Link></button> */}
+                </div>
             </div>
-            <hr />
-        </div>
     )
 };

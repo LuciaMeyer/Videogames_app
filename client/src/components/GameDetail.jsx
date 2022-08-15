@@ -6,6 +6,7 @@ import { getGameDetail, cleanGameDetail, getGames, cleanAllFilters, gameUpdate }
 import { NotFound } from './NotFound'
 import { Loading } from './Loading'
 import { deleteGame } from '../helpers/deleteGame';
+import { Nav } from './Nav';
 import './GameDetail.css'
 
 export const GameDetail = (props) => {
@@ -42,10 +43,11 @@ export const GameDetail = (props) => {
     let loading = false
     if (!Object.keys(gameDetail).length) loading = true;
 
-    if (gameDetail.msg) return <NotFound />
+    if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>)
     
     return (
         <>
+            <Nav />
             { loading ? <Loading /> :          
                 <div>
                     <button><Link to='/home'>Back</Link></button>

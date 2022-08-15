@@ -5,6 +5,8 @@ import { getGenres } from '../redux/actions'
 import { postGame } from '../helpers/postGame';
 import { formControl } from '../helpers/formControl';
 import { getPlatforms, cleanAllFilters, getGames } from '../redux/actions'
+import { Link } from "react-router-dom";
+import { Nav } from './Nav';
 
 export const Create = () => {
 
@@ -86,6 +88,8 @@ export const Create = () => {
 
   return (
     <div >
+      <Nav />
+      <button><Link to='/home'>Back</Link></button>
       <form onSubmit={handleSubmit} >
         <div >
           <h3 >Create your Video Game</h3>

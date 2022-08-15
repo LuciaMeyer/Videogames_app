@@ -7,8 +7,9 @@ import { About } from './components/About';
 import { GameDetail } from './components/GameDetail';
 import { Error } from './components/Error'
 import { Update } from "./components/Update";
-import { Nav } from './components/Nav'
+// import { Nav } from './components/Nav'
 import { NewData } from "./components/NewData";
+import './App.css'
 
 
 
@@ -16,7 +17,7 @@ export const App = () => {
   return (
     <>
       <Route exact path= '/' component= { Landing } />
-      <Nav />
+      {/* <Nav /> */}
       <Switch>
         <Route exact path= '/home' component= { Home } />
         <Route exact path= '/game/:id' component= {GameDetail }/>

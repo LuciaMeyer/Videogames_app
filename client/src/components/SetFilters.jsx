@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeUseFilter } from "../redux/actions";
 
@@ -14,27 +13,33 @@ export const SetFilters = () => {
 
     if(!genresFilter.length && !platformsFilter.length && !typeFilter.length && !nameOrder.length && !ratingOrder.length && useFilter)  dispatch(changeUseFilter(false))
     
-    const handleResetAll = () => {
+    const handleResetAll = e => {
+        e.preventDefault()
         dispatch(cleanAllFilters());
     }
 
-    const handleResetGenres = () => {
+    const handleResetGenres = e => {
+        e.preventDefault()
         if(genresFilter !== '') dispatch(changeGenresFilter(''));
     };
 
-    const handleResetPlatforms = () => {
+    const handleResetPlatforms = e => {
+        e.preventDefault()
         if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
     };
 
-    const handleResetType = () => {
+    const handleResetType = e => {
+        e.preventDefault()
         if(typeFilter !== '') dispatch(changeTypeFilter(''));
     };
 
-    const handleResetName = () => {
+    const handleResetName = e => {
+        e.preventDefault()
         if(nameOrder !== '') dispatch(changeNameOrder(''));
     };
 
     const handleResetRaiting = () => {
+        // e.prevenDefault()
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
     };
 

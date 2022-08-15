@@ -14,24 +14,28 @@ export const Filters = () => {
     const useFilter = useSelector(state => state.useFilter);
 
     const handleGenreFilter = e => {
+        e.preventDefault()
         dispatch(changeGenresFilter(e.target.value));       
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
     };
 
     const handlePaltformsFilter = e => {
+        e.preventDefault()
         dispatch(changePlatformsFilter(e.target.value));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
     }
 
     const handleTypeFilter = e => {
+        e.preventDefault()
         dispatch(changeTypeFilter(e.target.value));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
     };
 
     const handleNameOrder = e => {
+        e.preventDefault()
         dispatch(changeNameOrder(e.target.value));
         dispatch(changeRatingOrder(''));        
         dispatch(resetPage(1));
@@ -39,6 +43,7 @@ export const Filters = () => {
     };
 
     const handleRatingOrder = e => {
+        e.preventDefault()
         dispatch(changeRatingOrder(e.target.value));
         dispatch(changeNameOrder(''));             
         dispatch(resetPage(1));
@@ -47,7 +52,6 @@ export const Filters = () => {
 
     return (
         <div>
-            se
             <div>
                 <h5>filter by:</h5>
                 <select value= {genresFilter} onChange={handleGenreFilter}>
