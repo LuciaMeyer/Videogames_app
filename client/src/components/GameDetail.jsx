@@ -46,54 +46,59 @@ export const GameDetail = (props) => {
     if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>)
     
     return (
-        <>
-            <Nav />
-            { loading ? <Loading /> :          
-                <div>
-                    <button><Link to='/home'>Back</Link></button>
-                    <h3>{gameDetail?.name}</h3><br />      
-                    <img src={gameDetail?.img} alt={gameDetail?.name} />                           
-                    <span>Rating </span>
-                    { gameDetail.rating && <span>{gameDetail.rating}</span> }
-                    <span>Released </span>
-                    { gameDetail.released && <span>{gameDetail.released}</span> }
-                    <span>Genres</span>
-                    { gameDetail.genres?.map((g, i) => {
-                        if (typeof gameDetail.genres[0] === 'string') {
-                            if(i === 0) {
-                                return <span key={i}>{g}</span>
-                            } else {
-                                return <span key={i}><span> | </span><span>{g}</span></span>
+        <div className='mainContainerdet'>   
+            <div className='navConteinerdet '><Nav /></div>            
+                { loading ? <Loading /> :          
+                <div className='cardContaindet'>
+                    <div className='carddet'>
+                        <button><Link to='/home'>Back</Link></button>
+                        <h2 className='detname'>{gameDetail?.name}</h2>     
+                        <img src={gameDetail?.img} alt={gameDetail?.name} />                           
+                        <div>
+                            <span className="stardet">&#9733;</span>
+                            { gameDetail.rating && <h3 className='ratdet'>Rating: {gameDetail.rating}</h3> }
+                        </div>
+                        { gameDetail.released && <h3 className='ratdet'>Released: {gameDetail.released}</h3> }
+                        <span>Genres</span>
+                            { gameDetail.genres?.map((g, i) => {
+                                if (typeof gameDetail.genres[0] === 'string') {
+                                    if(i === 0) {
+                                        return <span key={i}>{g}</span>
+                                    } else {
+                                        return <span key={i}><span> | </span><span>{g}</span></span>
+                                    }
+                                } else {
+                                    if(i === 0) {
+                                        return <span key={i}>{g.name}</span>
+                                    } else {
+                                        return <span key={i}><span> | </span><span>{g.name}</span></span>
+                                    }
+                                }
+                            })}
+                        <span>Platforms</span>
+                        { gameDetail.platforms?.map((p, i) => {
+                            if (i === 0) {
+                                return <span key={i}>{p}</span>
                             }
-                        } else {
-                            if(i === 0) {
-                                return <span key={i}>{g.name}</span>
-                            } else {
-                                return <span key={i}><span> | </span><span>{g.name}</span></span>
-                            }
-                        }
-                    })}
-                    <span>Platforms</span>
-                    { gameDetail.platforms?.map((p, i) => {
-                        if (i === 0) {
-                            return <span key={i}>{p}</span>
-                        }
-                        return (
-                        <span key={i} >{p}</span>
-                        )
-                    })}
-                    <span>Description</span>
-                    <div dangerouslySetInnerHTML={modifyDescription()} />
-                </div> 
-            }
-            {idDb && 
-                <div >
-                    <Link to={`/game/${id}/update`}>
-                    <button type="button" onClick={handleUpdate}>Update</button>
-                    </Link>
-                    <button type="button" onClick={handleDelete}>Delete</button>
+                            return (
+                            <span key={i} >{p}</span>
+                            )
+                        })}
+                        <span>Description</span>
+                        <div dangerouslySetInnerHTML={modifyDescription()} />
+                    </div>
                 </div>
-            }
-        </>
+                }
+                {idDb && 
+                    <div >
+                        <Link to={`/game/${id}/update`}>
+                        <button type="button" onClick={handleUpdate}>Update</button>
+                        </Link>
+                        <button type="button" onClick={handleDelete}>Delete</button>
+                    </div>
+                }
+            <div className='slidesdet'></div>
+            <div className='pagContainerdet'></div>
+        </div>                  
     )
 };

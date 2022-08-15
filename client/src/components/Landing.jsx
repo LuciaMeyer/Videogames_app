@@ -13,12 +13,7 @@ export const Landing = () => {
         <>
           <Section id="1" style={{ backgroundImage: `url(${img2})` }}>
             
-            <div style={{ zIndex: 1 }}>
-              <header>
-                <h1>NO TIENE CSS PRIMO !! </h1>
-              </header>
-            </div>
-
+            <div style={{ zIndex: 1 }}></div>
             <a href="#2" className="btnMove">
               <input type="image" src={arrowDown} alt="arrow down" />
             </a>
@@ -26,12 +21,6 @@ export const Landing = () => {
     
           <Section id="2" style={{ backgroundImage: `url(${img4})` }}>
             <IntroConteiner>
-              <h2>Find your favorite Video Games</h2>
-              <p>
-                You can search all available Video Games from our page. 
-                Your search can be filtered by genre, platform, and sorted
-                alphabetically or by rating.
-              </p>
               <Link to="/home" onClick={() => window.scroll(0, 0)}>
                 <button>Search</button>
               </Link>
@@ -43,10 +32,6 @@ export const Landing = () => {
     
           <Section id="3" style={{ backgroundImage: `url(${img3})` }}>
             <IntroConteiner>
-              <h2>Create your Video Game</h2>
-              <p>
-              Enjoy creating your own Video Game
-              </p>
               <Link to="/create" onClick={() => window.scroll(0, 0)}>
                 <button>Create</button>
               </Link>
@@ -94,12 +79,6 @@ const Section = styled.section`
     z-index: 0;
     animation: ${fadeIn} 5s ease-out;
   }
-  h1 {
-    font: bold 300% cursive;
-    text-align: center;
-    margin-bottom: 90px;
-    color: white
-  }
   .btnMove {
     position: absolute;
     top: 90%;
@@ -108,8 +87,8 @@ const Section = styled.section`
     }
     input[type="image"] {
       padding: 10px;
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
       font-size: 20px;
       background-color: transparent;
       border: 1px solid white;
@@ -127,15 +106,17 @@ const IntroConteiner = styled.article`
   z-index: 2;
   text-align: center;
   width: 70%;
-  background-color: rgba(255, 255, 255, 0.3);
   padding: 15px 50px 30px 50px;
   button {
     background-color: transparent;
     border: 1px solid white;
+    margin-top: 10rem;
+    border-radius: 6px;
+    color: #ffffff;
     padding: 5px 20px 5px 20px;
     cursor: pointer;
     &:hover {
-      background-color: black;
+      background-color: #ffffff;
     }
   }
   @media screen and (max-width: 700px) {

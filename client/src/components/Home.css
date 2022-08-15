@@ -68,9 +68,9 @@ select:hover {
     background-color: rgb(140, 46, 46);
 }
 
-span {
+.homespan {
     position: relative;
-    top: 5rem;
+    top: rem;
     color: white;
     font-size: .9rem;
     margin-left: 1rem;

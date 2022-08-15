@@ -71,15 +71,15 @@ export const Home = () => {
             <div className='navConteiner'>    
                     <Nav />
                     <SearchBar />
-                    { loading ? '' : games.length && !gameByName.msg && <span >✓ {games.length} results</span> }
+                    { loading ? '' : games.length && !gameByName.msg &&
+                    <span className='homespan'>✓ {games.length} results</span> }
                     <Filters />
                     <SetFilters />   
             </div>
                 {loading && <Loading />}
                 {notFound && <NotFound />}
                 {!loading && !!currentGames.length && !notFound &&
-            <div className='cardsContain'>      
-                  
+            <div className='cardsContain'>              
                 {currentGames?.map(e => (
                         <div key={e.id} className='card'>
                             <Link to={'/game/' + e.id }>
