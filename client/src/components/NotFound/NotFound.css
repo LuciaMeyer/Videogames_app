@@ -6,7 +6,7 @@
     top: 4rem;
     left: 47rem;
     z-index: -10;
-    background: url('../img/notfound.png');
+    background: url('../../img/notfound.png');
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

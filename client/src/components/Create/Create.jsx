@@ -1,11 +1,11 @@
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { getGenres } from '../redux/actions'
-import { postGame } from '../helpers/postGame';
-import { formControl } from '../helpers/formControl';
-import { getPlatforms, cleanAllFilters, getGames } from '../redux/actions'
-import { Nav } from './Nav';
+import { getGenres } from '../../redux/actions'
+import { postGame } from '../../helpers/postGame';
+import { formControl } from '../../helpers/formControl';
+import { getPlatforms, cleanAllFilters, getGames } from '../../redux/actions'
+import { Nav } from '../Nav/Nav';
 import './Create.css'
 import styled from "styled-components";
 
@@ -82,7 +82,7 @@ const handleSubmit = e => {
     })
     dispatch(cleanAllFilters());
     dispatch(getGames());
-    history.push('/gamecreated');
+    history.push('/setgame');
 };
 
 const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false

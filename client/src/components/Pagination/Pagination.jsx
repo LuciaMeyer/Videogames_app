@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeCurrentPage } from "../redux/actions";
+import { changeCurrentPage } from "../../redux/actions";
 import './Pagination.css'
 
 export const Pagination = ({ games, gamesPerPage }) => {

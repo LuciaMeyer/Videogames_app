@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getGames, getGenres, getPlatforms } from '../redux/actions';
+import { getGames, getGenres, getPlatforms } from '../../redux/actions';
 import { Link } from 'react-router-dom';
-import { Card } from './Card';
-import { Pagination } from './Pagination';
-import { NotFound } from './NotFound';
-import { SearchBar } from "./SearchBar";
-import { Loading } from './Loading'
-import { nameASC, nameDES, ratingWORST, ratingBEST } from '../helpers/sort';
-import { Filters } from './Filters';
-import { Nav } from './Nav';
-import { SetFilters } from "./SetFilters";
+import { Card } from '../Card/Card';
+import { Pagination } from '../Pagination/Pagination';
+import { NotFound } from '../NotFound/NotFound'
+import { SearchBar } from "../SearchBar/SearchBar";
+import { Loading } from '../Loading'
+import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
+import { Filters } from '../Filters/Filters';
+import { Nav } from '../Nav/Nav';
+import { SetFilters } from "../SetFilters/SetFilters";
 import './Home.css'
 
 export const Home = () => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import arrowDown from "../img/arrow-down.png";
-import arrowTop from "../img/arrow-top.png";
+import arrowDown from "../../img/arrow-down.png";
+import arrowTop from "../../img/arrow-top.png";
 import styled, { keyframes } from "styled-components";
-import img2 from "../img/img2.jpg";
-import img3 from "../img/img3.jpg";
-import img4 from "../img/img4.jpg";
+import img2 from "../../img/img2.jpg";
+import img3 from "../../img/img3.jpg";
+import img4 from "../../img/img4.jpg";
 
 
 export const Landing = () => {

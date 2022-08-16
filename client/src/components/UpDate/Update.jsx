@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { putGame } from '../helpers/putGame';
-import { formControl } from '../helpers/formControl';
-import { cleanAllFilters, getGames } from '../redux/actions'
+import { putGame } from '../../helpers/putGame';
+import { formControl } from '../../helpers/formControl';
+import { cleanAllFilters, getGames } from '../../redux/actions'
 import { Link } from "react-router-dom";
-import { Nav } from './Nav';
+import { Nav } from '../Nav/Nav';
 
-export const Update = (props) => {
+export const UpDate = (props) => {
 
   const dispatch = useDispatch();
   const gameDetail = useSelector(state => state.gameDetail);

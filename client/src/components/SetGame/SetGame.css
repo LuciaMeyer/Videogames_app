@@ -7,7 +7,7 @@
     grid-row-gap: 7px; 
 }
 .imgbackgc {
-    background: url(../img/changes.png);
+    background: url(../../img/changes.png);
     content: "";
     position: fixed;
     height: 80vh;
@@ -21,7 +21,7 @@
 }
 
 .imgbackgc1 {
-    background: url(../img/back_detail.png);
+    background: url(../../img/back_detail.png);
     content: "";
     position: fixed;
     height: 90vh;

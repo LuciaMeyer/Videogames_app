@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter } from "../redux/actions";
+import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter } from "../../redux/actions";
 import './Filter.css'
 
 export const Filters = () => {

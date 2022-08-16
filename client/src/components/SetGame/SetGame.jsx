@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Nav } from './Nav';
-import './About.css'
-import './Gamecreated.css'
-import { useSelector } from "react-redux";
+import { Nav } from '../Nav/Nav';
+// import './About.css'
+import './SetGame.css'
 
 
-export const Gamecreated = () => {
+export const SetGame = () => {
    
 
     return (
