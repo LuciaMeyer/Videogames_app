@@ -16,13 +16,6 @@ const initialState = {
     typeFilter: '',
     nameOrder:'',
     ratingOrder: ''
-    // filters: {
-    //     genres: {value:'', filter: false },
-    //     platforms: '',
-    //     type: '',
-    //     nameOrder: '',
-    //     raiting: ''
-    // },
 }
 
 export const reducer = (state = initialState, action) => {
@@ -43,11 +36,6 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 genres: action.payload.sort(nameASC)
             }
-        // case 'GET_GENRES':
-        //     return {
-        //         ...state,
-        //         filters: {...state.filters, genres: {nameaction.payload} }
-        //     }
         case GET_PLATFORMS:
             return {
                 ...state,

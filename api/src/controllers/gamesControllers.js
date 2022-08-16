@@ -33,13 +33,7 @@ const getApiGames = async () => {
 };
 
 const getDbGames = async () => {
-    // return await Videogame.findAll({ 
-    //     include: {
-    //         model: Genre,
-    //         attributes: ['name'],
-    //         through: { attributes: [] }
-    //     }
-    // })
+
     let infoDbGames = await Videogame.findAll({ 
         include: {
             model: Genre,
@@ -60,6 +54,7 @@ const getDbGames = async () => {
 const getAllGames = async (req, res, next) => {
 
     const { name } = req.query;
+    
     const api = await getApiGames();
     const db = await getDbGames();
     const allInfo = db.concat(api);   

@@ -1,13 +1,11 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { getGenres } from '../../redux/actions'
 import { postGame } from '../../helpers/postGame';
 import { formControl } from '../../helpers/formControl';
-import { getPlatforms, cleanAllFilters, getGames } from '../../redux/actions'
+import { getPlatforms, cleanAllFilters, getGenres, getGames } from '../../redux/actions'
 import { Nav } from '../Nav/Nav';
 import './Create.css'
-import styled from "styled-components";
 
 export const Create = () => {
 
@@ -67,176 +65,132 @@ export const Create = () => {
     }    
   };
 
-const handleSubmit = e => {
-    e.preventDefault();
-    if(!input.img.length) input.img = 'https://bit.ly/3Qfwp3B'
-    postGame(input)
-    setInput({ // controlar si hace falta setearlo! 
-        name: '',
-        img: '',
-        description: '',
-        released: '',
-        rating: '',
-        genres: [],
-        platforms: [],
-    })
-    dispatch(cleanAllFilters());
-    dispatch(getGames());
-    history.push('/setgame');
-};
+  const handleSubmit = e => {
+      e.preventDefault();
+      if(!input.img.length) input.img = 'https://bit.ly/3Qfwp3B'
+      postGame(input);
+      dispatch(cleanAllFilters());
+      dispatch(getGames());
+      history.push('/setgame');
+  };
 
 const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
 
-return (
-<div className='condcr1'>
-    <div className='imgbackcr'><img  alt=''/></div>
-    <div className='contcr2 '><Nav /></div>
-    <div className='contcr3'>
-        <div className='contcr4'>
+  return (
+    <div className='condcr1'>
+        <div className='imgbackcr'><img  alt=''/></div>
+        <div className='contcr2 '><Nav /></div>
+        <div className='contcr3'>
+          <div className='contcr4'>
 
-            <Form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
 
-                <div className='contizq'>
-                    <div className={errText.name ? "itemForm invalid" : "itemForm"}>
-                        <label className='labelform'>
-                        Name {errText.name && <span className='redspan'>》》 {errText.name}</span>}
-                        </label>
-                        <div>
-                            <div >
-                                <input className='inputform' name='name' value={input.name}  autoComplete='off' maxLength= '30' onChange={handleChange} />
-                            </div>
+              <div className='contizq'>
+                <label className='labelform'>
+                  Name {errText.name && <span className='redspan'>》》 {errText.name}</span>}
+                </label>
+                <input className='inputform'
+                  name='name' value={input.name}
+                  maxLength= '30'
+                  onChange={handleChange}
+                /> 
+
+                <label className='labelform' >
+                  Rating {errText.rating && <span className='redspan'>》》 {errText.rating}</span>}
+                </label>
+                <input className='inputform'
+                  name='rating'
+                  type='number'
+                  step='0.1'
+                  min='0'
+                  max='5'
+                  value={input.rating} 
+                  onChange={handleChange}
+                />
+
+                <label className='labelform'>
+                  Release date {errText.released && <span  className='redspan'>》》 {errText.released}</span>}
+                </label>
+                <input className='inputform'
+                  name='released'
+                  placeholder= '2022-08-09'
+                  value={input.released}
+                  onChange={handleChange}
+                />                 
+                <label className='labelform'>
+                  Description {errText.description && <span  className='redspan'>》》 {errText.description}</span>}
+                </label>
+                <textarea className='inputform'
+                  name='description'
+                  value={input.description} 
+                  maxLength= '500'
+                  onChange={handleChange}
+                />
+
+                <label className='labelform'>
+                  URL Image {errText.img && <span  className='redspan'>》》 {errText.img}</span>}
+                </label>
+                <input className='inputform'
+                  name='img'
+                  placeholder= 'url...'
+                  value={ input.img }
+                  onChange={handleChange}
+                />
+              </div>
+          
+
+              <div className='contder'>
+                <div className='contchecks'>
+                  <div>
+                    <label className='labelform'>
+                      Genres
+                    </label> {errText.genres && <span  className='redspan'>》》 {errText.genres}</span>}                        
+                      { genres.map(g => (
+                        <div className="contcheck1" key={g.id}>
+                          <input className='inputcheck'
+                            name='genres'
+                            type="checkbox"
+                            value={g.name}
+                            onChange={handleCheck}
+                          /> <label htmlFor={g.id}>{g.name}</label>
                         </div>
-                    </div>
-
-                    <div className={errText.rating ? "invalid" : ""}>
-                        <label className='labelform' >
-                        Rating:{errText.rating && <span className='redspan'>》》 {errText.rating}</span>}
-                        </label>
-                        <div >
-                            <div >
-                                <input className='inputform' name='rating' type='number' step='0.1' min='0' max='5' value={input.rating} autoComplete='off' onChange={handleChange} />            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="itemForm">
-                        <label className='labelform'>
-                        Release date: 
-                        {errText.released && <span  className='redspan'>》》 {errText.released}</span>}
-                        </label>
-                        <div >
-                            <div className={errText.released ? "invalid" : ""}>
-                                <input className='inputform' name='released' placeholder= '2022-08-09' value={input.released} autoComplete='off' onChange={handleChange} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={ errText.description ? "itemForm invalid" : "itemForm" } >
-                        <label className='labelform'>
-                        Description:
-                        {errText.description && <span  className='redspan'>》》 {errText.description}</span>}
-                        </label>
-                        <div >
-                            <div>
-                                <textarea className='inputform' name='description' value={input.description} autoComplete='off' maxLength= '500' onChange={handleChange}  />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={errText.img ? "itemForm invalid" : "itemForm"}>
-                        <label className='labelform'>
-                        URL Image
-                        {errText.img && <span  className='redspan'>》》 {errText.img}</span>}
-                        </label>
-                        <div>
-                            <div >
-                                <input className='inputform' name='img' placeholder= 'url...' value={ input.img } autoComplete='off' onChange={handleChange} />
-                            </div>
-                        </div>
-                    </div>
+                      )) }
+                  </div>
                 </div>
 
-
-                <div className='contder'>
-                    <div className='contchecks'>
-                        <div className={ errText.genres ? "itemForm invalid" : "itemForm" }>
-                            <label className='labelform' >Genres: </label>
-                            {errText.genres && <span  className='redspan'>》》 {errText.genres}</span>}
-                            <div className="contcheck1">
-                                {genres.map(g => (
-                                <Fragment key={g.id}>
-                                    <input className='inputcheck'name='genres' type="checkbox" value={g.name} onChange={handleCheck} />
-                                    <label htmlFor={g.id}>{g.name}</label>
-                                    <br />
-                                </Fragment>
-                                ))}
-                            </div>
+                <div className='contchecks'>
+                  <div>
+                    <label className='labelform'>
+                      Platforms
+                    </label> {errText.platforms && <span  className='redspan'>》》 {errText.platforms}</span>}                   
+                      {platforms.map(p => (
+                        <div className="contcheck1" key={p.id}>
+                          <input className='inputcheck'
+                            name='platforms'
+                            type="checkbox"
+                            value={p.name}
+                            onChange={handleCheck}
+                          /> <label htmlFor={p.id}>{p.name}</label>               
                         </div>
-                    </div>
-
-                    <div className='contchecks'>
-                        <div className={ errText.platforms ? "itemForm invalid" : "itemForm" }>
-                            <label className='labelform' >Platforms: </label>
-                            {errText.platforms && <span  className='redspan'>》》 {errText.platforms}</span>}
-                            <div className="contcheck1">
-                                {platforms.map(p => (
-                                <Fragment key={p.id}>
-                                    <input className='inputcheck' name='platforms' type="checkbox" value={p.name} onChange={handleCheck} />
-                                    <label htmlFor={p.id}>{p.name}</label>
-                                    <br />
-                                </Fragment>
-                                ))}
-                            </div>
-                        </div> 
-                    </div>
+                      )) }                    
+                  </div> 
                 </div>
+              </div>
 
-                <div>
-                    <input
-                    className='crbut'
-                    disabled={disabled}
-                    type="submit"
-                    value='Create'
-                    />
-                </div>
-            </Form>
-
+              <div>
+                <input
+                className='crbut'
+                disabled={disabled}
+                type="submit"
+                value='Create'
+                />
+              </div>
+            </form>
+          </div>
         </div>
+        <div className='slidescr'></div>
+        <div className='pagcr'></div>
     </div>
-    <div className='slidescr'></div>
-    <div className='pagcr'></div>
-</div>
 
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const Form = styled.form`
-  .invalid {
-    hr {
-      border-color: red;
-    }
-  }
-
-`

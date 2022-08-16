@@ -5,7 +5,7 @@ import { Card } from '../Card/Card';
 import { Pagination } from '../Pagination/Pagination';
 import { NotFound } from '../NotFound/NotFound'
 import { SearchBar } from "../SearchBar/SearchBar";
-import { Loading } from '../Loading'
+import { Loading } from '../Loading/Loading'
 import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
@@ -57,15 +57,14 @@ export const Home = () => {
     // defino loading
     let loading = false
     if ( !games.length && !useFilter && !searchGame) loading = true;
-    if ( !gameByName.msg && !gameByName.length && searchGame ) loading = true;
+    if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
 
     // defino notFound
     let notFound = false;
     if(searchGame && gameByName.msg) notFound = true;
-    if(games.length === 0 && useFilter) notFound = true;
+    if(!games.length && useFilter) notFound = true;
     
-    
-    // if (loading) return <Loading />
+
     return (
         <div className='maincontainer'>
             <div className='navConteiner'>    

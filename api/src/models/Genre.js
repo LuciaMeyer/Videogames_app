@@ -10,4 +10,4 @@ module.exports = (sequelize) => {
     },{
         timestamps: false
     });
-}; // el id lo pone por defecto la bd
+}; 

@@ -27,6 +27,7 @@ export const GameDetail = (props) => {
 
     const handleUpdate = () => {
         dispatch(gameUpdate(gameDetail));
+        
     };
 
     const handleDelete = () => {

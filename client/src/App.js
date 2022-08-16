@@ -7,17 +7,13 @@ import { About } from './components/About/About';
 import { GameDetail } from './components/GameDetail/GameDetail';
 import { Error } from './components/Error'
 import { UpDate } from "./components/UpDate/Update";
-
 import { SetGame } from "./components/SetGame/SetGame";
-import './App.css'
-
-
 
 export const App = () => {
   return (
     <>
-      <Route exact path= '/' component= { Landing } />
       <Switch>
+        <Route exact path= '/' component= { Landing } />
         <Route exact path= '/home' component= { Home } />
         <Route exact path= '/game/:id' component= {GameDetail }/>
         <Route exact path= '/create' component={ Create } />

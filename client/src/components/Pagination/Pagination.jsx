@@ -8,9 +8,9 @@ export const Pagination = ({ games, gamesPerPage }) => {
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage)
 
-    
     const pageNumber = [];
-    for(let i = 1; i <= Math.ceil(games / gamesPerPage); i++) { // itera hasta llegar a la cant. de pag q necesito
+
+    for(let i = 1; i <= Math.ceil(games / gamesPerPage); i++) { 
         pageNumber.push(i)
     }
 

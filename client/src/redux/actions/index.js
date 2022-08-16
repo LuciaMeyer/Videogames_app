@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAN_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, CLEAN_ALL_FILTERS, CLEAN_DETAIL, GAME_UPDATE } from './actions_types';
 
-
 export const changeCurrentPage = payload => {
     return dispatch => {
         dispatch({ type: CURRENT_PAGE, payload})
@@ -32,6 +31,12 @@ export const getGameByName = name => {
     .catch(err => console.log(err));
 };
 
+export const getGameDetail = id => {
+    return dispatch => axios(`http://localhost:3001/game/${id}`)
+    .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))
+    .catch(err => console.log(err));
+};
+
 export const changeSearchGame = payload => {
     return dispatch => {
         dispatch({ type: SEARCH_GAME, payload})
@@ -44,11 +49,6 @@ export const changeUseFilter = payload => {
     }
 };
 
-export const getGameDetail = id => {
-    return dispatch => axios(`http://localhost:3001/game/${id}`)
-    .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))
-    .catch(err => console.log(err));
-};
 
 
 export const changeGenresFilter = payload => {

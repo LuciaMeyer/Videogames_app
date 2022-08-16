@@ -11,7 +11,14 @@ const getGameID = async (req, res) => {
 
     if(id.length > 5 ) { 
         try {
-            let gameDb = await Videogame.findOne({where: {id}, include: Genre})
+            let gameDb = await Videogame.findOne({
+                where: {id},
+                include: {
+                    model: Genre,
+                    attributes: ['name'],
+                    through: { attributes: [] }
+                }
+            })
             res.send(gameDb)
         } catch (err) {
             res.send({ msg: 'The Videogame with that id was not found...' }); 
@@ -65,19 +72,22 @@ const deleteGame = async (req, res, next) => {
 };
 
 const putGame = async (req, res, next) => {
+
     const {id} = req.params
     let {name, img, description, released, rating, genres, platforms} = req.body
-    // console.log(req.body)
-    // platforms = platforms.join(", ")
+    let str = ''
+    description = str.concat('<p>' + description + '<p>')
 
     try {
         const game = await Videogame.findByPk(id)
-        // console.log(game.toJSON())
-        const update = await game.update({ name, img, description, released, rating, platforms })
-        // console.log(game.toJSON())
-        // const gameGenres = await game.getGenres()
-        // await game.removeGenres(gameGenres)
-        
+        await game.update({name, img, description, released, rating, platforms})
+        const gameGenre = await game.getGenres()
+        await game.removeGenres(gameGenre)
+        let arrPromises = genres.map(e => (
+            Genre.findOne({where: {name: e}})
+            .then(res => game.addGenre(res))
+        ))
+        await Promise.all(arrPromises)
         res.status(201).send("Videogame updated correctly");
     } catch (error) {
         next(error)
