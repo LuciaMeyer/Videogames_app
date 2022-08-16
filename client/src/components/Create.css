@@ -1,0 +1,156 @@
+.condcr1 { 
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 7px;
+    grid-row-gap: 7px; 
+}
+.imgbackcr {
+    background: url(../img/back_detail.png);
+    content: "";
+    position: fixed;
+    height: 90vh;
+    width: 20vw;
+    top: 4rem;
+    z-index: -10;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    z-index: 200;
+}
+.contcr2 { 
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
+    position: fixed;
+    z-index: 100;
+    background: rgb(45, 45, 45);
+    
+}
+.contcr3 {
+    grid-area: 1 / 2 / 6 / 6;
+    margin-top: 6rem;
+    padding: 2rem;
+}
+.pagcr {
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: rgb(53, 48, 48);
+    height: 80px;
+}
+.slidescr {
+    position: fixed;
+    width: 100%;
+    background: rgb(53, 48, 48);
+    height: 80px;
+}
+
+.contcr4 {
+    border-radius: 2em;
+    padding-bottom: 6rem;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.13);
+    display: flex;
+    flex-direction: column;
+}
+
+/* //////// */
+.redspan {
+    color: red;
+    font-size: .8rem;
+}
+
+.itemForm {
+    align-self: center;
+    width: 100%;
+    text-align: start;
+}
+
+.inputform {
+    position: relative;
+    display: flex;
+    width: 30rem;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid var(--border);
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: .6rem;
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
+}
+
+.labelform {
+    position: relative;
+    display: flex;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    letter-spacing: 2px
+}
+
+.contchecks {
+    display: flex;
+    position: relative;
+    font-size: .9rem;
+    letter-spacing: 1.4px;
+    line-height: 1.1rem;
+    padding-left: 1rem;
+    
+}
+
+.inputcheck {
+    padding: 1rem;
+
+}
+
+.inputcheck:checked {
+    margin-left: 10px;
+    color: #fff;
+
+}
+
+
+
+.contizq {
+    position: relative;
+    width: 40%;
+    left: 15rem;
+    top: 2rem;
+}
+
+.contder {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 10rem;
+    left: 78rem;
+}
+
+.crbut {
+    position: absolute;
+    top:40rem;
+    left: 79rem;
+    font-size: .9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 3rem;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    border-color: rgb(176, 78, 78);
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 30px 0px;
+    cursor: pointer;
+    list-style: none;
+    color: rgb(243, 156, 156);
+    border-radius: 6px 6px 6px 6px; 
+}
+.crbut:hover {
+    color:white;
+    background-color: rgba(255, 255, 255, 0.183)
+}

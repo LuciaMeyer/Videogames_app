@@ -33,7 +33,7 @@ export const GameDetail = (props) => {
         deleteGame(id);
         dispatch(getGames());
         dispatch(cleanAllFilters());
-        history.push('/home');
+        history.push('/gamecreated');
     };
 
     const modifyDescription = () => {
@@ -46,13 +46,13 @@ export const GameDetail = (props) => {
     if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>)
     
     return (
-        <div className='mainContainerdet'>
+        <div className='condet1'>
             <div className='imgback'><img  alt='' /></div>
-            <div className='navConteinerdet '><Nav /></div>
+            <div className='contdet2 '><Nav /></div>
             { loading ? <Loading /> :
-            <div className='cardContaindet'>
-                <div className='carddet'>
-                    <div className='detflex'>
+            <div className='contdet3'>
+                <div className='contdet4'>
+
                         <h2 className='detname'>{gameDetail?.name}</h2> 
 
                         <img className='imgdet' src={gameDetail?.img} alt={gameDetail?.name} />
@@ -77,26 +77,24 @@ export const GameDetail = (props) => {
                             { gameDetail.platforms?.map((p, i) => 
                                 <h3 className='deth3' key={i}>{p}<span> | </span></h3>
                             )}
-                        </div>
-                        <div>
-                            <h3 className='deth3'>Description</h3>
-                            <div className='divdet' dangerouslySetInnerHTML={modifyDescription()} />
-                        </div>
-                    </div>                      
+                        </div>                      
+                </div>
+                <div>
+                    <h3 className='deth3'>Description</h3>
+                    <div className='divdet2' dangerouslySetInnerHTML={modifyDescription()} />
                 </div>
             </div>
             }
             {idDb && 
-                <div >
+                <div className='detbutcont'>
                     <Link to={`/game/${id}/update`}>
-                    <button type="button" onClick={handleUpdate}>Update</button>
+                    <button className='detbut' type="button" onClick={handleUpdate}>Update</button>
                     </Link>
-                    <button type="button" onClick={handleDelete}>Delete</button>
+                    <button className='detbut1' type="button" onClick={handleDelete}>Delete</button>
                 </div>
             }
-            <div className='slidesdet'>
-            </div>
-            <div className='pagContainerdet'></div>
+            <div className='slidesdet'></div>
+            <div className='pagdet'></div>
         </div>                  
     )
 };

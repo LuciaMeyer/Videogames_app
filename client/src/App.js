@@ -8,7 +8,7 @@ import { GameDetail } from './components/GameDetail';
 import { Error } from './components/Error'
 import { Update } from "./components/Update";
 // import { Nav } from './components/Nav'
-import { NewData } from "./components/NewData";
+import { Gamecreated } from "./components/Gamecreated";
 import './App.css'
 
 
@@ -24,7 +24,7 @@ export const App = () => {
         <Route exact path= '/create' component={ Create } />
         <Route exact path="/game/:id/update" component={ Update } />
         <Route exact path= '/about' component={ About } />
-        <Route exact path='/newdata' component= { NewData } />
+        <Route exact path='/gamecreated' component= { Gamecreated } />
         <Route path="*" component={ Error } />
       </Switch>
     </>

@@ -2,6 +2,11 @@ html{
   scroll-behavior: smooth;
 }
 
+h1, h2, h3, h5, a, span, label, p, li {
+  color: white;
+  text-decoration: none;
+}
+
 body {
   height: auto;
   margin: 0;

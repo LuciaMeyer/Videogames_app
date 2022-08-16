@@ -1,0 +1,88 @@
+.condab1 { 
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 7px;
+    grid-row-gap: 7px; 
+}
+.imgbackab {
+    background: url(../img/back_detail.png);
+    content: "";
+    position: fixed;
+    height: 90vh;
+    width: 20vw;
+    top: 4rem;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    z-index: 200;
+}   
+.contab2 { 
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
+    position: fixed;
+    z-index: 100;
+    background: rgb(45, 45, 45);
+    
+}
+.contab3 {
+    grid-area: 1 / 2 / 6 / 6;
+    margin-top: 6rem;
+    padding: 2rem;
+}
+.contab4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 42rem;
+    padding-right: 1rem;
+    text-align:left;
+    border-radius: 2em;
+    padding-bottom: .7rem;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.162);
+}
+.pagab {
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: rgb(53, 48, 48);
+    height: 80px;
+}
+.slidesab {
+    position: fixed;
+    width: 100%;
+    background: rgb(53, 48, 48);
+    height: 80px;
+}
+
+/* ////// */
+
+.abname {
+    font-size: 2rem;
+    padding-top: 3.7rem;
+    margin: 0;
+    color: rgb(255, 255, 19);
+}
+
+.imgab {
+    position: absolute;
+    top: 7rem;
+    left: 4rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    width: 30vw;
+    height: 50vh;
+    box-shadow: rgba(0, 0, 0, 0.979) 0px 0px 50px 0px; 
+}
+
+.spanab {
+    font-size: 1rem;
+    padding-top: .5rem;
+    padding-bottom: 1.1rem;
+    margin: 0;
+    line-height: 1.6rem;
+}

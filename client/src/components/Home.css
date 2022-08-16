@@ -41,12 +41,6 @@
     width: 100%;
 }
 
-
-h1, h2, h3, h5, a, span, label, p, li {
-    color: white;
-    text-decoration: none;
-}
-
 select {
     color: rgb(255, 251, 251);
     border-radius: 0.3rem;

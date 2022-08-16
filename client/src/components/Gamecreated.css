@@ -1,0 +1,89 @@
+.congc1 { 
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 7px;
+    grid-row-gap: 7px; 
+}
+.imgbackgc {
+    background: url(../img/changes.png);
+    content: "";
+    position: fixed;
+    height: 80vh;
+    width: 80vw;
+    top: 1rem;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    z-index: 200;
+}
+
+.imgbackgc1 {
+    background: url(../img/back_detail.png);
+    content: "";
+    position: fixed;
+    height: 90vh;
+    width: 20vw;
+    top: 4rem;
+    left: .03rem;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    z-index: 200;
+}   
+.contgc2 { 
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
+    position: fixed;
+    z-index: 100;
+    background: rgb(45, 45, 45);
+    
+}
+.contgc3 {
+    grid-area: 1 / 2 / 6 / 6;
+    margin-top: 6rem;
+    padding: 2rem;
+}
+
+.paggc {
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: rgb(53, 48, 48);
+    height: 80px;
+}
+.slidesgc {
+    position: fixed;
+    width: 100%;
+    background: rgb(53, 48, 48);
+    height: 80px;
+}
+
+.gcrbut {
+    position: absolute;
+    top:40rem;
+    left: 70rem;
+    font-size: .9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 3rem;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    border-color: rgb(176, 78, 78);
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 30px 0px;
+    cursor: pointer;
+    list-style: none;
+    color: rgb(243, 156, 156);
+    border-radius: 6px 6px 6px 6px;
+    z-index: 250;
+}
+.gcrbut:hover {
+    color:white;
+    background-color: rgba(250, 107, 107, 0.178)
+}

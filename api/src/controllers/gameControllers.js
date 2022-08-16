@@ -77,11 +77,7 @@ const putGame = async (req, res, next) => {
         // console.log(game.toJSON())
         // const gameGenres = await game.getGenres()
         // await game.removeGenres(gameGenres)
-        // let arrPromises = genres.map(e => (
-        //     Genre.findOne({where: {name: e}})
-        //     .then(res => game.addGenre(res))
-        // ))
-        // await Promise.all(arrPromises)
+        
         res.status(201).send("Videogame updated correctly");
     } catch (error) {
         next(error)
@@ -93,4 +89,5 @@ module.exports = {
     postGame, 
     deleteGame,
     putGame
+
 };

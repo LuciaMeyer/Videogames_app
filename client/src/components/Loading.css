@@ -2,11 +2,11 @@
     position: relative;
     display: flex;
     left: 70rem;
-    top: 20rem;
+    top: 25rem;
     letter-spacing: 4px;
     font-size: 1.5rem;
 }
 
 .h3load {
-    color: rgb(176, 78, 78);;
+    color: rgba(254, 252, 252, 0.347);;
 }

@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { getGenres } from '../redux/actions'
 import { postGame } from '../helpers/postGame';
 import { formControl } from '../helpers/formControl';
 import { getPlatforms, cleanAllFilters, getGames } from '../redux/actions'
-import { Link } from "react-router-dom";
 import { Nav } from './Nav';
+import './Create.css'
+import styled from "styled-components";
 
 export const Create = () => {
 
@@ -66,93 +67,176 @@ export const Create = () => {
     }    
   };
 
-  const handleSubmit = e => {
+const handleSubmit = e => {
     e.preventDefault();
     if(!input.img.length) input.img = 'https://bit.ly/3Qfwp3B'
     postGame(input)
     setInput({ // controlar si hace falta setearlo! 
-      name: '',
-      img: '',
-      description: '',
-      released: '',
-      rating: '',
-      genres: [],
-      platforms: [],
+        name: '',
+        img: '',
+        description: '',
+        released: '',
+        rating: '',
+        genres: [],
+        platforms: [],
     })
     dispatch(cleanAllFilters());
     dispatch(getGames());
-    history.push('/newdata');
-  };
-  
-  const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
+    history.push('/gamecreated');
+};
 
-  return (
-    <div >
-      <Nav />
-      <button><Link to='/home'>Back</Link></button>
-      <form onSubmit={handleSubmit} >
-        <div >
-          <h3 >Create your Video Game</h3>
+const disabled = Object.keys(errText).length || !input.name // para que se pueda mandar tiene que ser false
+
+return (
+<div className='condcr1'>
+    <div className='imgbackcr'><img  alt=''/></div>
+    <div className='contcr2 '><Nav /></div>
+    <div className='contcr3'>
+        <div className='contcr4'>
+
+            <Form onSubmit={handleSubmit}>
+
+                <div className='contizq'>
+                    <div className={errText.name ? "itemForm invalid" : "itemForm"}>
+                        <label className='labelform'>
+                        Name {errText.name && <span className='redspan'>》》 {errText.name}</span>}
+                        </label>
+                        <div>
+                            <div >
+                                <input className='inputform' name='name' value={input.name}  autoComplete='off' maxLength= '30' onChange={handleChange} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={errText.rating ? "invalid" : ""}>
+                        <label className='labelform' >
+                        Rating:{errText.rating && <span className='redspan'>》》 {errText.rating}</span>}
+                        </label>
+                        <div >
+                            <div >
+                                <input className='inputform' name='rating' type='number' step='0.1' min='0' max='5' value={input.rating} autoComplete='off' onChange={handleChange} />            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="itemForm">
+                        <label className='labelform'>
+                        Release date: 
+                        {errText.released && <span  className='redspan'>》》 {errText.released}</span>}
+                        </label>
+                        <div >
+                            <div className={errText.released ? "invalid" : ""}>
+                                <input className='inputform' name='released' placeholder= '2022-08-09' value={input.released} autoComplete='off' onChange={handleChange} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={ errText.description ? "itemForm invalid" : "itemForm" } >
+                        <label className='labelform'>
+                        Description:
+                        {errText.description && <span  className='redspan'>》》 {errText.description}</span>}
+                        </label>
+                        <div >
+                            <div>
+                                <textarea className='inputform' name='description' value={input.description} autoComplete='off' maxLength= '500' onChange={handleChange}  />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={errText.img ? "itemForm invalid" : "itemForm"}>
+                        <label className='labelform'>
+                        URL Image
+                        {errText.img && <span  className='redspan'>》》 {errText.img}</span>}
+                        </label>
+                        <div>
+                            <div >
+                                <input className='inputform' name='img' placeholder= 'url...' value={ input.img } autoComplete='off' onChange={handleChange} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className='contder'>
+                    <div className='contchecks'>
+                        <div className={ errText.genres ? "itemForm invalid" : "itemForm" }>
+                            <label className='labelform' >Genres: </label>
+                            {errText.genres && <span  className='redspan'>》》 {errText.genres}</span>}
+                            <div className="contcheck1">
+                                {genres.map(g => (
+                                <Fragment key={g.id}>
+                                    <input className='inputcheck'name='genres' type="checkbox" value={g.name} onChange={handleCheck} />
+                                    <label htmlFor={g.id}>{g.name}</label>
+                                    <br />
+                                </Fragment>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='contchecks'>
+                        <div className={ errText.platforms ? "itemForm invalid" : "itemForm" }>
+                            <label className='labelform' >Platforms: </label>
+                            {errText.platforms && <span  className='redspan'>》》 {errText.platforms}</span>}
+                            <div className="contcheck1">
+                                {platforms.map(p => (
+                                <Fragment key={p.id}>
+                                    <input className='inputcheck' name='platforms' type="checkbox" value={p.name} onChange={handleCheck} />
+                                    <label htmlFor={p.id}>{p.name}</label>
+                                    <br />
+                                </Fragment>
+                                ))}
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+                <div>
+                    <input
+                    className='crbut'
+                    disabled={disabled}
+                    type="submit"
+                    value='Create'
+                    />
+                </div>
+            </Form>
+
         </div>
-
-        <div>
-          <label >Name: </label>
-          <input  name='name' value={input.name}  autoComplete='off' maxLength= '30' onChange={handleChange}  />
-          {errText.name && <span >{errText.name}</span>}
-        </div><br/><br/>
-        <hr />
-
-        <div>
-          <label >Description: </label>
-          <textarea name='description' value={input.description} autoComplete='off' maxLength= '500' onChange={handleChange}  />
-          {errText.description && <span >{errText.description}</span>}
-        </div><br/><br/>
-        <hr />
-
-        <div>
-          <label>Genres: </label>
-              {genres.map( g => (
-                <div key={g.id}>
-                  <input name='genres' type="checkbox" value={g.name} onChange={handleCheck} />
-                  <label >{g.name}</label>
-                </div>
-              ))}                
-            {errText.genres && <span>{errText.genres}</span>}
-        </div><br/><br/>
-        <hr />
-        <div>
-            <label>Platforms: </label>
-              {platforms.map( p => (
-                <div key={p.id}>
-                  <input name='platforms' type="checkbox" value={p.name} onChange={handleCheck} />
-                  <label >{p.name}</label>
-                </div>
-              ))}  
-          {errText.platforms && <span >{errText.platforms}</span>}
-        </div><br></br>
-        <hr />   
-        <div>
-          <label >Release date: </label>
-          <input name='released' placeholder= '2022-08-09' value={input.released} autoComplete='off' onChange={handleChange} />
-          {errText.released && <span >{errText.released}</span>}
-        </div><br></br>
-        
-        <div> 
-          <label >Rating: </label>
-          <input name='rating' type='number' step='0.1' min='0' max='5' value={input.rating} autoComplete='off' onChange={handleChange} />
-          {errText.rating && <span >{errText.rating}</span>}
-        </div><br></br>
-        <hr />
-
-        <div>
-          <label >URL img:</label>
-          
-          <input name='img' placeholder= 'url...' value={ input.img } autoComplete='off' onChange={handleChange} />
-          {errText.img && <span >{errText.img}</span>}
-        </div><br></br>
-        <hr />   
-           <button disabled={disabled} type='submit' >Create</button>     
-      </form>
     </div>
+    <div className='slidescr'></div>
+    <div className='pagcr'></div>
+</div>
+
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const Form = styled.form`
+  .invalid {
+    hr {
+      border-color: red;
+    }
+  }
+
+`
