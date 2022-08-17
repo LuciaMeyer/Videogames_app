@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter } from "../../redux/actions";
+import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter, getReleased } from "../../redux/actions";
 import './Filter.css'
 
 export const Filters = () => {
@@ -13,6 +13,7 @@ export const Filters = () => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
+    const released = useSelector(state => state.released);
 
     const handleGenreFilter = e => {
         e.preventDefault()
@@ -46,16 +47,22 @@ export const Filters = () => {
     const handleRatingOrder = e => {
         e.preventDefault()
         dispatch(changeRatingOrder(e.target.value));
-        dispatch(changeNameOrder(''));             
+        dispatch(changeNameOrder(''));            
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true)); 
     };
+
+    const handleReleasedOrder = e => {
+        e.preventDefault()
+        dispatch(getReleased(e.target.value))
+        // dispatch(resetPage(1));
+    }
 
     return (
         <div className="filcontainer">
             <div>
                 <h5 className="h5">❱❱❱ filter by:</h5>
-                <select value= {genresFilter} onChange={handleGenreFilter}>
+                <select value= {genresFilter} onChange={handleGenreFilter}>S
                     <option value= '' disabled>Genre</option>
                     <option value='all'>All Genres</option>
                     {
@@ -90,6 +97,14 @@ export const Filters = () => {
                     <option value= 'best rating'>Best Rating</option>
                     <option value= 'worst rating'>Worst Rating</option>
                 </select>
+                
+                <select value= {released} onChange={handleReleasedOrder}>
+                    <option value= '' disabled>Released</option>
+                    <option value= 'best released'>Best Released</option>
+                    <option value= 'worst released'>Worst Released</option>
+                </select>
+
+
             </div>
         </div>
     )

@@ -27,6 +27,7 @@ export const Home = () => {
     const typeFilter = useSelector(state => state.typeFilter);
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
+    const released = useSelector(state => state.released)
     
     // defino qué renderizar seún los filtros
     let games = []  
@@ -38,6 +39,10 @@ export const Home = () => {
     if(nameOrder === 'desc') games.sort(nameDES);
     if(ratingOrder === 'worst rating') games.sort(ratingWORST);          
     if(ratingOrder === 'best rating') games.sort(ratingBEST);
+    
+    if(released === 'worst released"') games.sort(ratingWORST);
+    if(released === 'best released') games.sort(ratingBEST);
+    
     if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
     
@@ -89,6 +94,7 @@ export const Home = () => {
                                 rating={e.rating}
                                 genres={e.genres}
                                 platforms={e.platforms}
+                                released= {e.released}
                                 />
                             </Link>
                         </div>                           

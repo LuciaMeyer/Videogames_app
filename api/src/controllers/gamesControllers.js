@@ -23,7 +23,8 @@ const getApiGames = async () => {
                         img: ob.background_image,
                         rating: ob.rating,
                         genres: ob.genres.map(g => g.name),
-                        platforms: ob.platforms.map(p => p.platform.name)
+                        platforms: ob.platforms.map(p => p.platform.name),
+                        released: ob.released
                     }
                 });
         return infoApiGames
@@ -47,7 +48,8 @@ const getDbGames = async () => {
         img: e.img, 
         rating: e.rating,
         platforms: e.platforms, 
-        genres: e.genres.map(e => e.name)
+        genres: e.genres.map(e => e.name),
+        released: e.released
     }))
 };
 

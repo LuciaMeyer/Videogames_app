@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAN_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, CLEAN_ALL_FILTERS, CLEAN_DETAIL, GAME_UPDATE } from './actions_types';
+import { GET_GAMES, PI, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL,GET_GAME_BY_NAME, CLEAN_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, CLEAN_ALL_FILTERS, CLEAN_DETAIL, GAME_UPDATE } from './actions_types';
 
 export const changeCurrentPage = payload => {
     return dispatch => {
@@ -110,3 +110,9 @@ export const gameUpdate = payload => {
         dispatch({ type: GAME_UPDATE, payload })
     }
 };
+
+export const getReleased = payload => {
+    return dispatch => {
+        dispatch({ type: PI, payload })
+    }
+}

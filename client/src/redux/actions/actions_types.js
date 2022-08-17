@@ -16,3 +16,4 @@ export const USE_FILTER = 'USE_FILTER';
 export const CLEAN_ALL_FILTERS =  'CLEAN_ALL_FILTERS';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 export const GAME_UPDATE = 'GAME_UPDATE';
+export const PI = 'PI';

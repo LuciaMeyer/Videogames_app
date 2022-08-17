@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     released: {
-      type: DataTypes.DATEONLY, // Ejemplo: "2013-09-17" o es DATEONLY???
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     rating: {
@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
     img: {
       type: DataTypes.TEXT,
     },
+    released: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
   {
     timestamps: false
