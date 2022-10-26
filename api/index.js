@@ -24,7 +24,7 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => { // cambiar 
-  server.listen(3001, async () => { 
+  server.listen(process.env.PORT, async () => { 
     console.log('%s listening at 3001'); 
     // await getApiGenres();
     // await insertPlatform();
