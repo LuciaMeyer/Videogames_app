@@ -8,31 +8,31 @@ export const changeCurrentPage = payload => {
 };
 
 export const getGames = () => {
-    return dispatch => axios('http://localhost:3001/games')
+    return dispatch => axios('/games')
     .then(res => dispatch({ type: GET_GAMES, payload: res.data }))
     .catch(err => console.log(err));
 };
 
 export const getGenres = () => {
-    return dispatch => axios('http://localhost:3001/genres')
+    return dispatch => axios('/genres')
     .then(res => dispatch({ type: GET_GENRES, payload: res.data}))
     .catch(err => console.log(err));  
 };
 
 export const getPlatforms = () => {
-    return dispatch => axios('http://localhost:3001/platforms')
+    return dispatch => axios('/platforms')
     .then(res => dispatch({ type: GET_PLATFORMS, payload: res.data}))
     .catch(err => console.log(err));  
 };
 
 export const getGameByName = name => {
-    return dispatch => axios(`http://localhost:3001/games?name=${name}`)
+    return dispatch => axios(`/games?name=${name}`)
     .then(res => dispatch({ type: GET_GAME_BY_NAME, payload: res.data}))
     .catch(err => console.log(err));
 };
 
 export const getGameDetail = id => {
-    return dispatch => axios(`http://localhost:3001/game/${id}`)
+    return dispatch => axios(`/game/${id}`)
     .then(res => dispatch({ type: GET_GAME_DETAIL, payload: res.data}))
     .catch(err => console.log(err));
 };
@@ -48,8 +48,6 @@ export const changeUseFilter = payload => {
         dispatch({ type: USE_FILTER, payload })
     }
 };
-
-
 
 export const changeGenresFilter = payload => {
     return dispatch => {
