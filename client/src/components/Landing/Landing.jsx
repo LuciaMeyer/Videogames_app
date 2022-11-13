@@ -32,7 +32,7 @@ export const Landing = () => {
     
           <Section id="2" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel2})` }}>
             <IntroConteiner>
-              <div className='text' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAMES</div>
+              <div className='title' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAME</div>
               <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
               <Link to="/home" onClick={() => window.scroll(0, 0)}>
                 <button>Search</button>
@@ -45,7 +45,7 @@ export const Landing = () => {
     
           <Section id="3" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img3})` : `url(${cel3})` }}>
             <IntroConteiner>
-                <div className='text' style={{ zIndex: 1 }}>ENJOY CREATING YOUR VIDEO GAME</div>
+                <div className='title' style={{ zIndex: 1 }}>ENJOY CREATING YOUR VIDEO GAME</div>
                 <Link to="/create" onClick={() => window.scroll(0, 0)}>
                   <button>Create</button>
                 </Link>
@@ -94,20 +94,21 @@ const Section = styled.section`
     animation: ${fadeIn} 5s ease-out;
   }
   .wlcm {
-    color: #746227a4;
-    font-family: fantasy;
+    color: #f1ee9e7d;
+    font-family: 'Rubik Glitch';
     font-size: 3rem;
     letter-spacing: 3px;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.869));
     position: absolute;
     top: 10rem;
     @media screen and (max-width: 700px) {
-      font-size: 1.3rem;
+      align-self: center;
+      font-size: 1rem;
       letter-spacing: 1px;
       top: 16.5rem;
+      /* width: 60vw; */
+    }
   }
-}
-
   .btnMove {
     position: absolute;
     top: 90%;
@@ -152,36 +153,38 @@ const IntroConteiner = styled.article`
       color: #3d3c3c;
     }
   }
-  @media screen and (max-width: 700px) {
-    margin-bottom: 120px;
-    width: 85%;
-    padding: 15px 20px 30px 20px;
-  }
-  .text {
-    color: #ffffff96;
-    font-family: fantasy;
+  .title {
+    color: #ffffffad;
+    font-family: 'Rubik Glitch';
     font-size: 2.5rem;
     letter-spacing: 3px;
     position: relative;
     top: 5rem;
     filter: drop-shadow(5px 5px 3px rgb(0, 0, 0));
-    @media screen and (max-width: 700px) {
-      font-size: 1.3rem;
+  }
+  .descr {
+    font-size: 1rem;
+    position: relative;
+    letter-spacing: 2px;
+    top: 5.5rem;
+    color: #ffffff;
+  }
+  @media screen and (max-width: 700px) {
+    margin-bottom: 120px;
+    width: 60vw;
+    padding: 15px 20px 30px 20px;
+    .title {
+      font-size: 1rem;
       letter-spacing: 1px;
       position: absolute;
-      top: 12rem;
-  }
-}
-.descr {
-  font-size: 1.1rem;
-  position: relative;
-  letter-spacing: 3px;
-  top: 5rem;
-  color: #ffffff;
-  @media screen and (max-width: 700px) {
+      top: 10rem;
+      width: 60vw;
+    }
+    .descr {
       font-size: .6rem;
       letter-spacing: 1px;
-      top: 1rem;
+      top: 0rem;
+      width: 80vw;
+    }
   }
-}
 `;
