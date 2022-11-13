@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import arrowDown from "../../img/arrow-down.png";
 import arrowTop from "../../img/arrow-top.png";
 import styled, { keyframes } from "styled-components";
 import img2 from "../../img/img2.jpg";
+import cel1 from '../../img/cel1.png'
 import img3 from "../../img/img3.jpg";
 import img4 from "../../img/img4.jpg";
+import { useDispatch } from "react-redux";
+import { getGames } from '../../redux/actions';
 
 
 export const Landing = () => {
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getGames());
+  },[])  
+
     return (
         <>
-          <Section id="1" style={{ backgroundImage: `url(${img2})` }}>
+          <Section id="1" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel1})` }}>
             
             <div style={{ zIndex: 1 }}></div>
             <a href="#2" className="btnMove">
