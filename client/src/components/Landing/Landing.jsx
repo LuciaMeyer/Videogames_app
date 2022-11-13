@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import arrowDown from "../../img/arrow-down.png";
 import arrowTop from "../../img/arrow-top.png";
 import styled, { keyframes } from "styled-components";
+import img1 from "../../img/img1.png";
 import img2 from "../../img/img2.jpg";
-import cel1 from '../../img/cel1.png'
 import img3 from "../../img/img3.jpg";
-import img4 from "../../img/img4.jpg";
+import cel1 from '../../img/cel1.png'
+import cel2 from '../../img/cel2.png'
+import cel3 from '../../img/cel3.png'
 import { useDispatch } from "react-redux";
 import { getGames } from '../../redux/actions';
 
@@ -16,20 +18,22 @@ export const Landing = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getGames());
-  },[])  
+  },[dispatch])  
 
     return (
         <>
-          <Section id="1" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel1})` }}>
+          <Section id="1" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img1})` : `url(${cel1})` }}>
             
-            <div style={{ zIndex: 1 }}></div>
+            <div className='wlcm' style={{ zIndex: 1 }}>WELCOME TO VIDEO GAMES APP</div>
             <a href="#2" className="btnMove">
               <input type="image" src={arrowDown} alt="arrow down" />
             </a>
           </Section>
     
-          <Section id="2" style={{ backgroundImage: `url(${img4})` }}>
+          <Section id="2" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel2})` }}>
             <IntroConteiner>
+              <div className='text' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAMES</div>
+              <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
               <Link to="/home" onClick={() => window.scroll(0, 0)}>
                 <button>Search</button>
               </Link>
@@ -39,11 +43,12 @@ export const Landing = () => {
             </a>
           </Section>
     
-          <Section id="3" style={{ backgroundImage: `url(${img3})` }}>
+          <Section id="3" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img3})` : `url(${cel3})` }}>
             <IntroConteiner>
-              <Link to="/create" onClick={() => window.scroll(0, 0)}>
-                <button>Create</button>
-              </Link>
+                <div className='text' style={{ zIndex: 1 }}>ENJOY CREATING YOUR VIDEO GAME</div>
+                <Link to="/create" onClick={() => window.scroll(0, 0)}>
+                  <button>Create</button>
+                </Link>
             </IntroConteiner>
             <a href="#1" className="btnMove">
               <input type="image" src={arrowTop} alt="arrow top" />
@@ -88,6 +93,21 @@ const Section = styled.section`
     z-index: 0;
     animation: ${fadeIn} 5s ease-out;
   }
+  .wlcm {
+    color: #746227a4;
+    font-family: fantasy;
+    font-size: 3rem;
+    letter-spacing: 3px;
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.869));
+    position: absolute;
+    top: 10rem;
+    @media screen and (max-width: 700px) {
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      top: 16.5rem;
+  }
+}
+
   .btnMove {
     position: absolute;
     top: 90%;
@@ -113,19 +133,23 @@ const Section = styled.section`
 
 const IntroConteiner = styled.article`
   z-index: 2;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  width: 70%;
+  width: 60%;
   padding: 15px 50px 30px 50px;
   button {
     background-color: transparent;
     border: 1px solid white;
-    margin-top: 10rem;
+    margin-top: 8rem;
     border-radius: 6px;
     color: #ffffff;
     padding: 5px 20px 5px 20px;
     cursor: pointer;
     &:hover {
       background-color: #ffffff;
+      color: #3d3c3c;
     }
   }
   @media screen and (max-width: 700px) {
@@ -133,4 +157,31 @@ const IntroConteiner = styled.article`
     width: 85%;
     padding: 15px 20px 30px 20px;
   }
+  .text {
+    color: #ffffff96;
+    font-family: fantasy;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    position: relative;
+    top: 5rem;
+    filter: drop-shadow(5px 5px 3px rgb(0, 0, 0));
+    @media screen and (max-width: 700px) {
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      position: absolute;
+      top: 12rem;
+  }
+}
+.descr {
+  font-size: 1.1rem;
+  position: relative;
+  letter-spacing: 3px;
+  top: 5rem;
+  color: #ffffff;
+  @media screen and (max-width: 700px) {
+      font-size: .6rem;
+      letter-spacing: 1px;
+      top: 1rem;
+  }
+}
 `;
