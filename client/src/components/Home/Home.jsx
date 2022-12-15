@@ -88,19 +88,18 @@ export const Home = () => {
                         <div key={e.id} className='card'>
                             <Link to={'/game/' + e.id }>
                                 <Card
-                                key= {e.id}
-                                name={e.name}
-                                img={e.img}
-                                rating={e.rating}
-                                genres={e.genres}
-                                platforms={e.platforms}
-                                released= {e.released}
+                                    key= {e.id}
+                                    name={e.name}
+                                    img={e.img}
+                                    rating={e.rating}
+                                    genres={e.genres}
+                                    platforms={e.platforms}
+                                    released= {e.released}
                                 />
                             </Link>
                         </div>                           
                 ))}
-            </div>        
-            }
+            </div>}
             <div className='slides'></div>
             <div className='pagContainer'>
                     { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
