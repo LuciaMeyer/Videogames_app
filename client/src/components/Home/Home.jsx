@@ -29,7 +29,7 @@ export const Home = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const released = useSelector(state => state.released)
     
-    // defino qué renderizar seún los filtros
+    // defino qué renderizar según los filtros
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
 
@@ -75,29 +75,32 @@ export const Home = () => {
             <div className='navConteiner'>    
                     <Nav />
                     <SearchBar />
-                    { loading ? '' : games.length && !gameByName.msg &&
-                    <span className='homespan'>✓ {games.length} results</span> }
-                    <Filters />
+                    { loading ?
+                        <span className='homespan'>✓ waiting for results, please wait...</span>                   
+                        : games.length && !gameByName.msg &&
+                        <span className='homespan'>✓ {games.length} results</span>
+                    }
                     <SetFilters />   
+                    <Filters />
             </div>
                 {loading && <Loading />}
                 {notFound && <NotFound />}
                 {!loading && !!currentGames.length && !notFound &&
             <div className='cardsContain'>              
                 {currentGames?.map(e => (
-                        <div key={e.id} className='card'>
-                            <Link to={'/game/' + e.id }>
-                                <Card
-                                    key= {e.id}
-                                    name={e.name}
-                                    img={e.img}
-                                    rating={e.rating}
-                                    genres={e.genres}
-                                    platforms={e.platforms}
-                                    released= {e.released}
-                                />
-                            </Link>
-                        </div>                           
+                    <div key={e.id} className='card'>
+                        <Link to={'/game/' + e.id }>
+                            <Card
+                                key= {e.id}
+                                name={e.name}
+                                img={e.img}
+                                rating={e.rating}
+                                genres={e.genres}
+                                platforms={e.platforms}
+                                released= {e.released}
+                            />
+                        </Link>
+                    </div>                           
                 ))}
             </div>}
             <div className='slides'></div>

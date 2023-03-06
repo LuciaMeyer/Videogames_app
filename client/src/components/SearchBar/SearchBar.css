@@ -3,7 +3,7 @@
     text-align: left;
     width: 230px;
     height: 50px;
-    display: inline-block;
+    /* display: inline-block; */
     margin-bottom: 40px;
 }
 
@@ -47,11 +47,12 @@
   }
 
 .span {
-    position: relative;
-    top: 4rem;
+    display: block;
     color: white;
     font-size: .9rem;
-    margin-left: 1rem;
+    margin-left: 7rem;
+    width: 100%;
+    margin-top: .7rem;
 }
 .but {
     padding: 0;
@@ -61,7 +62,7 @@
     align-items: center;
     width: 7rem;
     height: 2rem;
-    margin-top: .5rem;
+    margin-top: .8rem;
     margin-left: 1rem;
     background-color: transparent;
     border-radius: 0.5rem;
@@ -74,7 +75,3 @@
     box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
     border-radius: 6px 6px 6px 6px;
 }
-
-/* .divserch {
-    justify-content:space-between;
-} */

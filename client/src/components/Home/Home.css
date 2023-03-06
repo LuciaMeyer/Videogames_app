@@ -64,7 +64,7 @@ select:hover {
 
 .homespan {
     position: relative;
-    top: rem;
+    top: .8rem;
     color: white;
     font-size: .9rem;
     margin-left: 1rem;

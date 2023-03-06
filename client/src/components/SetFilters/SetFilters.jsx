@@ -40,27 +40,28 @@ export const SetFilters = () => {
 
     return (
         <>
-            <br />          
-            <button className="butR" onClick={handleResetAll}>Reset</button>   
-            {
-                genresFilter.length !== 0 && <button className="butF" onClick= {handleResetGenres}>Genre: {genresFilter}</button>
-                
-            }
-            {
-                platformsFilter.length !== 0 && <button className="butF" onClick= {handleResetPlatforms}>Platforms: {platformsFilter}</button>
-                
-            }
-            {           
-                typeFilter.length !== 0  && <button className="butF" onClick={handleResetType}>Type: {typeFilter}</button>
-                
-            }
-            {           
-                nameOrder.length !== 0 && <button className="butF" onClick={handleResetName}>Name: {nameOrder}</button>
-                
-            }
-            {           
-                ratingOrder.length !== 0 && <button className="butF" onClick={handleResetRaiting}>Rating: {ratingOrder}</button>
-            }
+        <button className="butR" onClick={handleResetAll}>Reset</button>   
+            <div className="setDiv">
+                {
+                    genresFilter.length !== 0 && <button className="butF" onClick= {handleResetGenres}>Genre: {genresFilter} </button>
+                    
+                }
+                {
+                    platformsFilter.length !== 0 && <button className="butF" onClick= {handleResetPlatforms}>Platforms: {platformsFilter}</button>
+                    
+                }
+                {           
+                    typeFilter.length !== 0  && <button className="butF" onClick={handleResetType}>Type: {typeFilter}</button>
+                    
+                }
+                {           
+                    nameOrder.length !== 0 && <button className="butF" onClick={handleResetName}>Name: {nameOrder}</button>
+                    
+                }
+                {           
+                    ratingOrder.length !== 0 && <button className="butF" onClick={handleResetRaiting}>Rating: {ratingOrder}</button>
+                }
+            </div>
         </>
     )
 

@@ -61,10 +61,8 @@ export const SearchBar = () => {
                     disabled = {disabled}
                     />
                 <input className='inSub' type='submit' value='🔍︎' />
-                <div className="divserch">
                     {disabled && <button className="but" onClick={handleClick}>new search</button>}
                     {!!button.length && !!gameByName.length && <span className="span">✓ your search: {button}</span>}
-                </div>
             </div>
         </form>
     )
