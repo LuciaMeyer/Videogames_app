@@ -33,16 +33,16 @@ export const Home = () => {
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
 
+
+    // filtrados
     if(typeFilter === 'Created') games = games.filter(g => typeof g.id === 'string');
     if(typeFilter === 'Existing') games = games.filter(g => typeof g.id === 'number');       
     if(nameOrder === 'A - Zasc' ) games.sort(nameASC);
     if(nameOrder === 'Z - A') games.sort(nameDES);
     if(ratingOrder === 'Worst Rating rating') games.sort(ratingWORST);          
     if(ratingOrder === 'Best Rating') games.sort(ratingBEST);
-    
     if(released === 'Worst Released"') games.sort(ratingWORST);
     if(released === 'Best Released') games.sort(ratingBEST);
-    
     if(genresFilter.length !== 0 && genresFilter !== 'All Genres') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'All Platforms') games = games.filter(g => g.platforms.includes(platformsFilter));
     
@@ -71,37 +71,54 @@ export const Home = () => {
     
     
     return (
-        <div className='maincontainer'>
-            <div className='navConteiner'>    
-                    <Nav />
-                    <SearchBar games={games} loading={loading}/>
-                    <SetFilters />   
-                    <Filters />
+        <>
+            <div className='sidebar'>    
+                <Nav />
+                <SearchBar games={games} loading={loading}/>
+                <SetFilters />   
+                <Filters />
             </div>
-            <div className='slides'></div>
+
+            <div className='topbarContain'>
+                <div className='topbar'>
+                    <span>FIND YOUR FAVORITE VIDEO GAME</span>
+                    <span >You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
+                </div>
+                {!gameByName.msg &&
+                <div className='pag'>
+                    <Pagination games = {games.length} gamesPerPage = {gamesPerPage}/>
+                </div>}
+            </div>
+
+            <div>
                 {loading && <Loading />}
                 {notFound && <NotFound />}
-                {!loading && !!currentGames.length && !notFound &&
-            <div className='cardsContain'>              
-                {currentGames?.map(e => (
-                    <div key={e.id} className='card'>
-                        <Link to={'/game/' + e.id }>
-                            <Card
-                                key= {e.id}
-                                name={e.name}
-                                img={e.img}
-                                rating={e.rating}
-                                genres={e.genres}
-                                platforms={e.platforms}
-                                released= {e.released}
-                            />
-                        </Link>
-                    </div>                           
-                ))}
-            </div>}
-            <div className='pagContainer'>
-                { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
             </div>
-        </div>
+
+            {!loading && !!currentGames.length && !notFound &&
+            <div className='maincontainer'>
+                <div className='cardsContain'>                           
+                    {currentGames?.map(e => (
+                        <div key={e.id} className='card'>
+                            <Link to={'/game/' + e.id }>
+                                <Card
+                                    key= {e.id}
+                                    name={e.name}
+                                    img={e.img}
+                                    rating={e.rating}
+                                    genres={e.genres}
+                                    platforms={e.platforms}
+                                    released= {e.released}
+                                />
+                            </Link>
+                        </div>                           
+                    ))}
+                </div>
+            </div>}
+
+            <div className='footer'>
+               FOOTER
+            </div>
+        </>
     )
 };

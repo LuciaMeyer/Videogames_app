@@ -6,7 +6,7 @@
 }
 
 .inText {
-    width: 70%;
+    width: 100%;
     margin-left: 1rem;
     padding: 1rem 0rem 1rem 1rem;
     color: #fff;
@@ -26,7 +26,8 @@
   }
 
 .inSub {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.3rem;
+    margin-right: 1.5rem;
     color: #fff;
     left: 20rem;
     top: 0;
@@ -41,6 +42,17 @@
     background-color: #fdfdfd61;
     color: rgb(255, 255, 255)
   }
+
+  .inSubDes {
+    padding: 1rem 1.3rem;
+    margin-right: 1.5rem;
+    left: 20rem;
+    top: 0;
+    background-color: #fdfdfd61;
+    color: rgb(255, 255, 255);
+    border-radius: 0 6px 6px 0;
+    border: none;
+}
 
 .but {
     padding: .2rem;

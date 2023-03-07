@@ -8,11 +8,11 @@ export const Nav = () => {
 
 
     return(        
-            <ul className="nav"> 
-                    <li><NavLink to='/home'className="navbut"> Home </NavLink></li>
-                    <li><NavLink to ='/create' className="navbut">Create</NavLink></li>
-                    <li><NavLink to ='/about' className="navbut">About </NavLink></li>
-                    <li><Link to='/'className="navbut"> Exit </Link></li>
-            </ul>
+            <div className="nav"> 
+                    <span><NavLink to='/home'className="navbut"> Home </NavLink></span>
+                    <span><NavLink to ='/create' className="navbut">Create</NavLink></span>
+                    <span><NavLink to ='/about' className="navbut">About </NavLink></span>
+                    <span><Link to='/'className="navbut"> Exit </Link></span>
+            </div>
     )
 };

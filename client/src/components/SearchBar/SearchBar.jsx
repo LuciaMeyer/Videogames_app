@@ -53,7 +53,7 @@ export const SearchBar = ({ games, loading }) => {
                     maxLength= '30'
                     disabled = {disabled}
                     />
-                <input className='inSub' type='submit' value='🔍︎' />
+                <input className={!!button.length && !!gameByName.length ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' />
             </div>
                 { loading
                     ? <span className='searchSpan'>✓ waiting for results, please wait...</span>                   

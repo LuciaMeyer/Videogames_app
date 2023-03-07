@@ -1,36 +1,55 @@
 .maincontainer {
     display: flex;
+    justify-content: flex-end;   
+}
+
+.cardsContain {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 13%;
+    height: 100%;
+    margin-bottom: 5%;
 }
     
-.navConteiner {
+
+.sidebar {
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
     position: fixed;
     width: 20%;
-    z-index: 100; /*ver esto*/
-    background: rgb(45, 45, 45);
-}
-
-.pagContainer {
-    align-items: center;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
     background: rgb(53, 48, 48);
-    height: 80px;
+    z-index: 2;
 }
 
-.slides {
+
+.footer {
+    background: rgb(53, 48, 48);
+    height: 15rem;
+    margin-left: 20%;
+}
+
+.topbarContain {
     position: fixed;
     width: 100%;
-    background: rgb(53, 48, 48);
-    height: 80px;
+    z-index: 1;
 }
 
-.cardsContain {
-    grid-area: 1 / 2 / 6 / 6;
-    margin-top: 7rem;
-    margin-left: 7rem;
+.topbar {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    height: 10rem;
     width: 100%;
+    background: rgb(53, 48, 48);
+    box-shadow: rgba(0, 0, 0, 0.7) 10px 5px 10px 
 }
 
+.pag {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-left: 20%;
+    background-color:rgba(53, 48, 48, 0.281); ;
+    backdrop-filter: blur(10px);
+}
