@@ -1,9 +1,8 @@
 .setDiv {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-template-rows: repeat(2, 1fr);
-   padding: 0;
-
+   display: block;
+}
+.setDiv1 {
+    margin-left: .5rem ;
 }
 
 .butR {
@@ -14,7 +13,7 @@
     align-items: center;
     width: 5rem;
     height: 2rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     margin-left: 1rem;
     border-radius: 0.5rem;
     border-color: rgba(255, 251, 251, 0.453);
@@ -25,15 +24,23 @@
     box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
     border-radius: 6px 6px 6px 6px;
 }
+
 .butF {
-    padding: .4rem;
+    padding: .5rem;
     font-size: .8rem;
     margin-top: .5rem;
-    margin-left: 1rem;
+    margin-left: .5rem;
     border-radius: 0.5rem;
     border-color: rgba(107, 107, 107, 0.453);
     cursor: pointer;
     list-style: none;
     color: rgb(124, 124, 124);
     background: transparent;
+}
+
+
+.butF:hover {
+    background:  rgb(70, 70, 70); 
+    color: rgb(169, 167, 167);
+
 }

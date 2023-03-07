@@ -33,18 +33,18 @@ export const Home = () => {
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
 
-    if(typeFilter === 'created') games = games.filter(g => typeof g.id === 'string');
-    if(typeFilter === 'existing') games = games.filter(g => typeof g.id === 'number');       
-    if(nameOrder === 'asc' ) games.sort(nameASC);
-    if(nameOrder === 'desc') games.sort(nameDES);
-    if(ratingOrder === 'worst rating') games.sort(ratingWORST);          
-    if(ratingOrder === 'best rating') games.sort(ratingBEST);
+    if(typeFilter === 'Created') games = games.filter(g => typeof g.id === 'string');
+    if(typeFilter === 'Existing') games = games.filter(g => typeof g.id === 'number');       
+    if(nameOrder === 'A - Zasc' ) games.sort(nameASC);
+    if(nameOrder === 'Z - A') games.sort(nameDES);
+    if(ratingOrder === 'Worst Rating rating') games.sort(ratingWORST);          
+    if(ratingOrder === 'Best Rating') games.sort(ratingBEST);
     
-    if(released === 'worst released"') games.sort(ratingWORST);
-    if(released === 'best released') games.sort(ratingBEST);
+    if(released === 'Worst Released"') games.sort(ratingWORST);
+    if(released === 'Best Released') games.sort(ratingBEST);
     
-    if(genresFilter.length !== 0 && genresFilter !== 'all') games = games.filter(g => g.genres.includes(genresFilter));
-    if(platformsFilter.length !== 0 && platformsFilter !== 'all') games = games.filter(g => g.platforms.includes(platformsFilter));
+    if(genresFilter.length !== 0 && genresFilter !== 'All Genres') games = games.filter(g => g.genres.includes(genresFilter));
+    if(platformsFilter.length !== 0 && platformsFilter !== 'All Platforms') games = games.filter(g => g.platforms.includes(platformsFilter));
     
     // paginado
     const gamesPerPage = 15;
@@ -69,20 +69,16 @@ export const Home = () => {
     if(searchGame && gameByName.msg) notFound = true;
     if(!games.length && useFilter) notFound = true;
     
-
+    
     return (
         <div className='maincontainer'>
             <div className='navConteiner'>    
                     <Nav />
-                    <SearchBar />
-                    { loading ?
-                        <span className='homespan'>✓ waiting for results, please wait...</span>                   
-                        : games.length && !gameByName.msg &&
-                        <span className='homespan'>✓ {games.length} results</span>
-                    }
+                    <SearchBar games={games} loading={loading}/>
                     <SetFilters />   
                     <Filters />
             </div>
+            <div className='slides'></div>
                 {loading && <Loading />}
                 {notFound && <NotFound />}
                 {!loading && !!currentGames.length && !notFound &&
@@ -103,9 +99,8 @@ export const Home = () => {
                     </div>                           
                 ))}
             </div>}
-            <div className='slides'></div>
             <div className='pagContainer'>
-                    { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
+                { !gameByName.msg && <Pagination games = {games.length} gamesPerPage = {gamesPerPage} />}
             </div>
         </div>
     )

@@ -1,14 +1,35 @@
 .filcontainer {
     display: flex;
-    position: relative;
-    top: 3rem;
-    left: 1rem;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1.5rem;
+    margin-top: 1rem;
 }
 
 .h5 {
     color: rgb(176, 78, 78);
+    margin: .5rem;
     font-size: 1rem;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 2px
+}
+
+.select {
+    color: rgb(255, 251, 251);
+    border-radius: 0.3rem;
+    border-color: rgba(255, 251, 251, 0.453);
+    padding: 0.3rem 0.4rem;
+    background: transparent;
+    font-size: .9rem;
+    height: 2rem;
+    margin-top: .5rem;
+}
+
+.select > option {
+    background-color: rgb(76, 26, 26);
+}
+
+.select:hover {
+    background-color: rgb(140, 46, 46);
 }

@@ -1,21 +1,15 @@
 .maincontainer {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 7px;
-    grid-row-gap: 7px; 
+    display: flex;
 }
     
 .navConteiner {
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
     position: fixed;
-    z-index: 100;
+    width: 20%;
+    z-index: 100; /*ver esto*/
     background: rgb(45, 45, 45);
 }
-
-
 
 .pagContainer {
     align-items: center;
@@ -24,7 +18,6 @@
     width: 100%;
     background: rgb(53, 48, 48);
     height: 80px;
-
 }
 
 .slides {
@@ -41,31 +34,3 @@
     width: 100%;
 }
 
-select {
-    color: rgb(255, 251, 251);
-    border-radius: 0.3rem;
-    border-color: rgba(255, 251, 251, 0.453);
-    padding: 0.3rem 0.4rem;
-    background: transparent;
-    font-size: .9rem;
-    height: 2rem;
-    padding: 5px;
-    width: 90%;
-    margin-top: 1rem;
-}
-
-select > option {
-    background-color: rgb(76, 26, 26);
-}
-
-select:hover {
-    background-color: rgb(140, 46, 46);
-}
-
-.homespan {
-    position: relative;
-    top: .8rem;
-    color: white;
-    font-size: .9rem;
-    margin-left: 1rem;
-}

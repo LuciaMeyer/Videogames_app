@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter, getReleased } from "../../redux/actions";
+import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter, changeReleased } from "../../redux/actions";
 import './Filter.css'
 
 export const Filters = () => {
@@ -54,58 +54,52 @@ export const Filters = () => {
 
     const handleReleasedOrder = e => {
         e.preventDefault()
-        dispatch(getReleased(e.target.value))
-        // dispatch(resetPage(1));
+        dispatch(changeReleased(e.target.value))
     }
 
     return (
         <div className="filcontainer">
-            <div>
                 <h5 className="h5">❱❱❱ filter by:</h5>
-                <select value= {genresFilter} onChange={handleGenreFilter}>S
+                <select className="select" value= {genresFilter} onChange={handleGenreFilter}>S
                     <option value= '' disabled>Genre</option>
-                    <option value='all'>All Genres</option>
+                    <option value='All Genres'>All Genres</option>
                     {
                         genres?.map(g => (
                             <option key= {g.id} value={g.name}>{g.name}</option>
                         ))
                     }
                 </select>
-                <select value= {platformsFilter} onChange={handlePaltformsFilter}>
+                <select className="select" value= {platformsFilter} onChange={handlePaltformsFilter}>
                     <option value= '' disabled>Platforms</option>
-                    <option value='all'>All Platforms</option>
+                    <option value='All Platforms'>All Platforms</option>
                     {
                         platforms?.map(p => (
                             <option key= {p.id} value={p.name}>{p.name}</option>
                         ))
                     }
                 </select>
-                <select value= {typeFilter} onChange={handleTypeFilter}>
+                <select className="select" value= {typeFilter} onChange={handleTypeFilter}>
                     <option value= '' disabled>Type</option>
-                    <option value= 'all'>All Types</option>
-                    <option value= 'created'>Created</option>
-                    <option value= 'existing'>Existing</option>
+                    <option value= 'All Types'>All Types</option>
+                    <option value= 'Created'>Created</option>
+                    <option value= 'Existing'>Existing</option>
                 </select>
                 <h5 className="h5">❱❱❱ order by:</h5>
-                <select value= {nameOrder} onChange={handleNameOrder}>
+                <select className="select" value= {nameOrder} onChange={handleNameOrder}>
                     <option value= '' disabled>Name</option>
-                    <option value= 'asc'>A - Z</option>
-                    <option value= 'desc'>Z - A</option>
+                    <option value= 'A - Z'>A - Z</option>
+                    <option value= 'Z - A'>Z - A</option>
                 </select>
-                <select value= {ratingOrder} onChange={handleRatingOrder}>
+                <select className="select" value= {ratingOrder} onChange={handleRatingOrder}>
                     <option value= '' disabled>Rating</option>
-                    <option value= 'best rating'>Best Rating</option>
-                    <option value= 'worst rating'>Worst Rating</option>
-                </select>
-                
-                <select value= {released} onChange={handleReleasedOrder}>
+                    <option value= 'Best Rating'>Best Rating</option>
+                    <option value= 'Worst Rating'>Worst Rating</option>
+                </select>          
+                <select className="select" value= {released} onChange={handleReleasedOrder}>
                     <option value= '' disabled>Released</option>
-                    <option value= 'best released'>Best Released</option>
-                    <option value= 'worst released'>Worst Released</option>
+                    <option value= 'Best Released'>Best Released</option>
+                    <option value= 'Worst Released'>Worst Released</option>
                 </select>
-
-
-            </div>
         </div>
     )
 };

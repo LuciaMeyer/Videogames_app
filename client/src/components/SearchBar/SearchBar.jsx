@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame, cleanStateByName } from "../../redux/actions";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame } from '../../redux/actions';
 import './SearchBar.css'
 
-export const SearchBar = () => {
+export const SearchBar = ({ games, loading }) => {
 
     const dispatch = useDispatch();
     const genresFilter = useSelector(state => state.genresFilter);
@@ -40,13 +40,6 @@ export const SearchBar = () => {
         }
     };
 
-    const handleClick = () => {
-        setButton('')
-        dispatch(cleanStateByName([]))
-        dispatch(changeSearchGame(false));
-        cleanFilters()
-    }
-
     let disabled = false
     if(!!gameByName.length && searchGame) disabled = true
     return (
@@ -54,16 +47,20 @@ export const SearchBar = () => {
             <div className='serchBar' >
                 <input className='inText'
                     type='text'
-                    placeholder='Search Game'
+                    placeholder={!!button.length && !!gameByName.length ? 'Reset for a New Search' :  "Search Game"}
                     onChange={handleInputChange}
                     value={input}
                     maxLength= '30'
                     disabled = {disabled}
                     />
                 <input className='inSub' type='submit' value='🔍︎' />
-                    {disabled && <button className="but" onClick={handleClick}>new search</button>}
-                    {!!button.length && !!gameByName.length && <span className="span">✓ your search: {button}</span>}
             </div>
+                { loading
+                    ? <span className='searchSpan'>✓ waiting for results, please wait...</span>                   
+                    : games.length && !gameByName.msg &&
+                    <span className='searchSpan'>✓ {games.length} results</span>
+                }
+                {!!button.length && !!gameByName.length && <span className='searchSpan'>✓ your search: {button}</span>}
         </form>
     )
 };

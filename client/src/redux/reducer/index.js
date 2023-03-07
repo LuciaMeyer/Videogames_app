@@ -1,4 +1,4 @@
-import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL, GET_GAME_BY_NAME, CLEAN_STATE_BY_NAME, SEARCH_GAME, USE_FILTER, CLEAN_ALL_FILTERS, CLEAN_DETAIL, GAME_UPDATE, PI } from '../actions/actions_types'
+import { GET_GAMES, GET_GENRES, GENRE_FILTER, TYPE_FILTER, CURRENT_PAGE, RESET_PAGE, NAME_ORDER, RATING_ORDER, GET_PLATFORMS, PLATFORMS_FILTER, GET_GAME_DETAIL, GET_GAME_BY_NAME, SEARCH_GAME, USE_FILTER, CLEAN_ALL_FILTERS, CLEAN_DETAIL, GAME_UPDATE, RELEASED } from '../actions/actions_types'
 import { nameASC } from '../../helpers/sort';
 
 const initialState = {  
@@ -101,11 +101,6 @@ export const reducer = (state = initialState, action) => {
                 nameOrder:'',
                 ratingOrder: ''
             }
-        case CLEAN_STATE_BY_NAME:
-            return {
-            ...state,
-            gameByName: action.payload
-            }
         case RESET_PAGE:
             return {
             ...state,
@@ -121,7 +116,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 gameUpdate: action.payload
             }
-        case PI:
+        case RELEASED:
             return {
                 ...state,
                 released: action.payload
