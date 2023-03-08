@@ -1,12 +1,31 @@
-.load {
-    position: relative;
+.loader {
     display: flex;
-    left: 70rem;
-    top: 25rem;
-    letter-spacing: 4px;
-    font-size: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.h3load {
-    color: rgba(253, 215, 215, 0.535);;
-} 
+.h3loader{
+    color:rgba(176, 78, 78);
+}
+
+.spinner{
+    border:4px solid rgba(156, 156, 156, 0.212);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-left-color: rgb(176, 78, 78);
+
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

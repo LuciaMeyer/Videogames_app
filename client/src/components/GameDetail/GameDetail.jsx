@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getGameDetail, cleanGameDetail, getGames, cleanAllFilters, gameUpdate } from '../../redux/actions';
 import { NotFound } from '../NotFound/NotFound'
-import { Loading } from '../Loading'
+import { Loading } from '../Loading/Loading'
 import { deleteGame } from '../../helpers/deleteGame';
 import { Nav } from '../Nav/Nav';
 import './GameDetail.css'

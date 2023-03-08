@@ -90,11 +90,9 @@ export const Home = () => {
                 </div>}
             </div>
 
-            <div>
-                {loading && <Loading />}
-                {notFound && <NotFound />}
-            </div>
-
+            {loading && <div className='load-notF'><Loading/></div>}
+            {notFound && <div className='load-notF'><NotFound/></div>}
+            
             {!loading && !!currentGames.length && !notFound &&
             <div className='maincontainer'>
                 <div className='cardsContain'>                           
@@ -114,8 +112,9 @@ export const Home = () => {
                         </div>                           
                     ))}
                 </div>
-            </div>}
-
+            </div>
+            }
+            
             <div className='footer'>
                FOOTER
             </div>

@@ -1,8 +1,10 @@
 .setDiv {
    display: block;
+   height: 6rem;
 }
+
 .setDiv1 {
-    margin-left: .5rem ;
+    margin-left: .5rem ;  
 }
 
 .butR {
@@ -28,7 +30,7 @@
 .butF {
     padding: .5rem;
     font-size: .8rem;
-    margin-top: .5rem;
+    margin-top: 1rem;
     margin-left: .5rem;
     border-radius: 0.5rem;
     border-color: rgba(107, 107, 107, 0.453);
@@ -44,3 +46,6 @@
     color: rgb(169, 167, 167);
 
 }
+
+
+
