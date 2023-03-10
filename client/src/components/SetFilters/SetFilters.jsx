@@ -17,30 +17,37 @@ export const SetFilters = () => {
     
     const handleResetAll = () => {
         dispatch(cleanAllFilters());
+        window.scrollTo(0, 0);
     }
 
     const handleResetGenres = () => {
         if(genresFilter !== '') dispatch(changeGenresFilter(''));
+        window.scrollTo(0, 0);
     };
 
     const handleResetPlatforms = () => {
         if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
+        window.scrollTo(0, 0);
     };
 
     const handleResetType = () => {
         if(typeFilter !== '') dispatch(changeTypeFilter(''));
+        window.scrollTo(0, 0);
     };
 
     const handleResetName = () => {
         if(nameOrder !== '') dispatch(changeNameOrder(''));
+        window.scrollTo(0, 0);
     };
 
     const handleResetRaiting = () => {
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
+        window.scrollTo(0, 0);
     };
 
     const handleResetReleased = () => {
         if(released !== '') dispatch(changeReleased(''));
+        window.scrollTo(0, 0);
     };
 
     return (

@@ -20,6 +20,7 @@ export const Filters = () => {
         dispatch(changeGenresFilter(e.target.value));       
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
+        window.scrollTo(0, 0);
     };
 
     const handlePaltformsFilter = e => {
@@ -27,13 +28,15 @@ export const Filters = () => {
         dispatch(changePlatformsFilter(e.target.value));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
-    }
+        window.scrollTo(0, 0);
+    };
 
     const handleTypeFilter = e => {
         e.preventDefault()
         dispatch(changeTypeFilter(e.target.value));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
+        window.scrollTo(0, 0);
     };
 
     const handleNameOrder = e => {
@@ -42,6 +45,7 @@ export const Filters = () => {
         dispatch(changeRatingOrder(''));        
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true));
+        window.scrollTo(0, 0);
     };
 
     const handleRatingOrder = e => {
@@ -50,12 +54,14 @@ export const Filters = () => {
         dispatch(changeNameOrder(''));            
         dispatch(resetPage(1));
         if(!useFilter) dispatch(changeUseFilter(true)); 
+        window.scrollTo(0, 0);
     };
 
     const handleReleasedOrder = e => {
         e.preventDefault()
-        dispatch(changeReleased(e.target.value))
-    }
+        dispatch(changeReleased(e.target.value));
+        window.scrollTo(0, 0);
+    };
 
     return (
         <div className="filcontainer">

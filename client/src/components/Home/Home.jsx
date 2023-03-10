@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames, getGenres, getPlatforms } from '../../redux/actions';
 import { Link } from 'react-router-dom';
@@ -52,12 +53,15 @@ export const Home = () => {
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
 
-    // me traigo info del back en primer renderizado
-    if(!games.length && !genres.length && !platforms.length) {
-        dispatch(getGames());
-        dispatch(getGenres());
-        dispatch(getPlatforms());
-    }
+    // me traigo info del back en primer renderizado   
+    useEffect(() => {
+        if(!games.length && !genres.length && !platforms.length) {
+            dispatch(getGames());
+            dispatch(getGenres());
+            dispatch(getPlatforms());
+            window.scrollTo(0, 0);
+        }
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // defino loading
     let loading = false

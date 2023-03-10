@@ -15,7 +15,8 @@ export const Pagination = ({ games, gamesPerPage }) => {
     }
 
     const handlePage = num => {
-        if (currentPage !== num) dispatch(changeCurrentPage(num))
+        if (currentPage !== num) dispatch(changeCurrentPage(num));
+        window.scrollTo(0, 0);
     }
 
     return (

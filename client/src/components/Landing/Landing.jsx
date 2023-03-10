@@ -16,6 +16,7 @@ import { getGames } from '../../redux/actions';
 export const Landing = () => {
 
   const dispatch = useDispatch();
+  
   useEffect(()=>{
     dispatch(getGames());
   },[dispatch])  
@@ -35,7 +36,7 @@ export const Landing = () => {
               <div className='title' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAME</div>
               <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
               <Link to="/home" onClick={() => window.scroll(0, 0)}>
-                <button>Search</button>
+                <button>SEARCH</button>
               </Link>
             </IntroConteiner>
             <a href="#3" className="btnMove">
@@ -47,7 +48,7 @@ export const Landing = () => {
             <IntroConteiner>
                 <div className='title' style={{ zIndex: 1 }}>ENJOY CREATING YOUR VIDEO GAME</div>
                 <Link to="/create" onClick={() => window.scroll(0, 0)}>
-                  <button>Create</button>
+                  <button>CREATE</button>
                 </Link>
             </IntroConteiner>
             <a href="#1" className="btnMove">
@@ -94,7 +95,7 @@ const Section = styled.section`
     animation: ${fadeIn} 5s ease-out;
   }
   .wlcm {
-    color: #f1ee9e7d;
+    color: #f1ee9ea6;
     font-family: 'Rubik Glitch';
     font-size: 3rem;
     letter-spacing: 3px;
@@ -146,7 +147,8 @@ const IntroConteiner = styled.article`
     margin-top: 8rem;
     border-radius: 6px;
     color: #ffffff;
-    padding: 5px 20px 5px 20px;
+    padding: 12px 40px 12px 40px;
+    font-size: 1rem;
     cursor: pointer;
     &:hover {
       background-color: #ffffff;
@@ -154,7 +156,7 @@ const IntroConteiner = styled.article`
     }
   }
   .title {
-    color: #ffffffad;
+    color: #ffffff;
     font-family: 'Rubik Glitch';
     font-size: 2.5rem;
     letter-spacing: 3px;
@@ -166,6 +168,7 @@ const IntroConteiner = styled.article`
     font-size: 1rem;
     position: relative;
     letter-spacing: 2px;
+    width: 50vw;
     top: 5.5rem;
     color: #ffffff;
   }
