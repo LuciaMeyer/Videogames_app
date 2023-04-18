@@ -52,7 +52,7 @@ export const SetFilters = () => {
 
     return (
         <>
-            <button className="butR" onClick={handleResetAll}>Reset</button>   
+            <button className="butR" onClick={handleResetAll}>RESET</button>   
             <div className="setDiv">
                 <div className="setDiv1">
                     {genresFilter.length !== 0 &&

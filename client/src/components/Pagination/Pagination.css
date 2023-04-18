@@ -6,12 +6,13 @@
 }
 
 .pagli {
-    font-size: .8rem;
+    font-size: .3rem;
     display: flex;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    margin: .7rem;
+    align-items: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin: .5rem;
     background-color: transparent;
     border-radius: 0.5rem;
     border-color: rgba(255, 251, 251, 0.453);
@@ -28,8 +29,7 @@
 
 .pagspan {
     position: absolute;
-    padding-top: .4rem;
     color: white;
-    font-size: .9rem;
+    font-size: .7rem;
     font-weight: 700;
 }

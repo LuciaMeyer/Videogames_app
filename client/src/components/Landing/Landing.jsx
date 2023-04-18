@@ -128,6 +128,12 @@ const Section = styled.section`
       &:hover {
         background-color: rgba(255, 255, 255, 0.1);
         border: none;
+        box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px; ;
+      }
+      &:active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px; ;  
       }
     }
   }
@@ -153,6 +159,14 @@ const IntroConteiner = styled.article`
     &:hover {
       background-color: #ffffff;
       color: #3d3c3c;
+      box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px;
+    }
+    @media screen and (max-width: 700px) {
+      &:active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px; ;  
+      }
     }
   }
   .title {

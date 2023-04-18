@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames, getGenres, getPlatforms } from '../../redux/actions';
 import { Link } from 'react-router-dom';
@@ -29,6 +29,8 @@ export const Home = () => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const released = useSelector(state => state.released)
+
+    const [menuOpen, setMenuOpen] = useState(false);
     
     // defino qué renderizar según los filtros
     let games = []  
@@ -63,6 +65,11 @@ export const Home = () => {
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // menú desplegable 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
     // defino loading
     let loading = false
     if ( !games.length && !useFilter && !searchGame) loading = true;
@@ -76,28 +83,33 @@ export const Home = () => {
     
     return (
         <>
-            <div className='sidebar'>    
+            <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
                 <Nav />
                 <SearchBar games={games} loading={loading}/>
                 <SetFilters />   
                 <Filters />
             </div>
-
+ 
             <div className='topbarContain'>
-                <div className='topbar'>
+                <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
+                {!menuOpen
+                    ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
+                    : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
+                }
                     <span>FIND YOUR FAVORITE VIDEO GAME</span>
                     <span >You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
                 </div>
                 {!gameByName.msg &&
-                <div className='pag'>
+                <div className={`pag ${!menuOpen ? '' : 'closed'}`}>
                     <Pagination games = {games.length} gamesPerPage = {gamesPerPage}/>
                 </div>}
             </div>
 
+
             {loading && <div className='load-notF'><Loading/></div>}
             {notFound && <div className='load-notF'><NotFound/></div>}
-            
             {!loading && !!currentGames.length && !notFound &&
+
             <div className='maincontainer'>
                 <div className='cardsContain'>                           
                     {currentGames?.map(e => (
@@ -118,9 +130,9 @@ export const Home = () => {
                 </div>
             </div>
             }
-            
+                
             <div className='footer'>
-               FOOTER
+                FOOTER
             </div>
         </>
     )
