@@ -9,28 +9,27 @@
 
 .butR {
     padding: 0;
-    font-size: .8rem;
+    font-size: .7rem;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 5rem;
     height: 2rem;
+    letter-spacing: .1rem;
     margin-top: 2rem;
     margin-left: 1rem;
     border-radius: 0.5rem;
-    border-color: rgba(255, 251, 251, 0.453);
+    border-color: rgba(255, 251, 251, 0.199);
     cursor: pointer;
-    list-style: none;
-    color: rgb(255, 255, 255);
+    color: rgb(233, 232, 232);
     background: rgb(176, 78, 78);
     box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
-    border-radius: 6px 6px 6px 6px;
 }
 
 .butF {
-    padding: .5rem;
-    font-size: .8rem;
-    margin-top: 1rem;
+    padding: .3rem;
+    font-size: .7rem;
+    margin-top: .6rem;
     margin-left: .5rem;
     border-radius: 0.5rem;
     border-color: rgba(107, 107, 107, 0.453);
@@ -40,11 +39,14 @@
     background: transparent;
 }
 
+.butR:hover {
+    background-color: #fdfdfd61;
+    color: rgb(255, 255, 255)
+}
 
 .butF:hover {
     background:  rgb(70, 70, 70); 
     color: rgb(169, 167, 167);
-
 }
 
 

@@ -1,5 +1,6 @@
 html{
   scroll-behavior: smooth;
+  background-color: rgba(53, 48, 48, 0.911)
 }
 
 h1, h2, h3, h5, a, span, label, p, li {

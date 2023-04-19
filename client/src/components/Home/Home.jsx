@@ -86,8 +86,10 @@ export const Home = () => {
             <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
                 <Nav />
                 <SearchBar games={games} loading={loading}/>
-                <SetFilters />   
-                <Filters />
+                <SetFilters />  
+
+                    <Filters />
+   
             </div>
  
             <div className='topbarContain'>
@@ -104,7 +106,6 @@ export const Home = () => {
                     <Pagination games = {games.length} gamesPerPage = {gamesPerPage}/>
                 </div>}
             </div>
-
 
             {loading && <div className='load-notF'><Loading/></div>}
             {notFound && <div className='load-notF'><NotFound/></div>}

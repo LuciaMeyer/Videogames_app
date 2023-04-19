@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { cleanAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeUseFilter, changeReleased } from "../../redux/actions";
+import { changeCurrentPage, cleanAllFilters, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeUseFilter, changeReleased } from "../../redux/actions";
 import './SetFilters.css'
 
 export const SetFilters = () => {  
@@ -12,6 +12,7 @@ export const SetFilters = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
     const released = useSelector(state => state.released);
+    const currentPage = useSelector(state => state.currentPage)
 
     if(!genresFilter.length && !platformsFilter.length && !typeFilter.length && !nameOrder.length && !ratingOrder.length && useFilter)  dispatch(changeUseFilter(false))
     
@@ -22,31 +23,38 @@ export const SetFilters = () => {
 
     const handleResetGenres = () => {
         if(genresFilter !== '') dispatch(changeGenresFilter(''));
+        dispatch(changeCurrentPage(1));
         window.scrollTo(0, 0);
     };
 
     const handleResetPlatforms = () => {
         if(platformsFilter !== '') dispatch(changePlatformsFilter(''));
+        dispatch(changeCurrentPage(1));
+
         window.scrollTo(0, 0);
     };
 
     const handleResetType = () => {
         if(typeFilter !== '') dispatch(changeTypeFilter(''));
+        dispatch(changeCurrentPage(1));
         window.scrollTo(0, 0);
     };
 
     const handleResetName = () => {
         if(nameOrder !== '') dispatch(changeNameOrder(''));
+        dispatch(changeCurrentPage(1));
         window.scrollTo(0, 0);
     };
 
     const handleResetRaiting = () => {
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
+        dispatch(changeCurrentPage(1));
         window.scrollTo(0, 0);
     };
 
     const handleResetReleased = () => {
         if(released !== '') dispatch(changeReleased(''));
+        dispatch(changeCurrentPage(1));
         window.scrollTo(0, 0);
     };
 

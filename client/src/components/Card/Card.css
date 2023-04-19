@@ -3,48 +3,16 @@
     flex-direction: row;
     height: 20vh;
     background-color: rgba(255, 255, 255, 0.249);
-    border: 0.3rem solid transparent;
+    border: 0.2rem solid transparent;
     border-radius: 0.5rem;
+    transition: all 0.3s ease-out;
+
 }
 
 .card0:hover{
     background-color: rgba(255, 255, 255, 0.103);
-    border: 0.3rem solid rgba(255, 255, 255, 0.603);
+    border: 0.2rem solid rgba(255, 255, 255, 0.603);
     border-radius: 0.5rem;
-}
-
-.imgcard {  
-    object-fit: cover;
-    width: 22vw;
-    box-shadow: rgba(66, 13, 13, 0.979) 0px 0px 50px 0px;
-}
-
-
-
-.card1 {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.cardh4 {
-    font-size: .8rem;
-    padding-top: .3rem;
-    margin: 0;
-}
-
-.detail {
-    margin-left: 2rem;
-    /* color: rgb(209, 78, 78); */
-    color: white;
-}
-
-.name {
-    font-size: 1.6rem;
-    padding-top: .7rem;
-    margin-left: 2rem;
-    color: white;
-    text-shadow: 2px 2px 4px rgb(209, 78, 78);
 }
 
 .rating {
@@ -69,3 +37,80 @@
     -o-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
+
+.imgCont{
+    display: flex;
+    justify-content: flex-start;
+}
+  
+.imgcard {  
+    object-fit: initial;
+    width: 18vw;
+    box-shadow: rgba(66, 13, 13, 0.979) 0px 0px 50px 0px;
+}
+
+.card1 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    width: 100%;
+}
+
+.C1open {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.spanopen {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.2rem;
+    margin-top: 0.5rem;
+    width: 3rem;
+    height: 1.5rem;
+    color: #cac9c9;
+    font-size: .8rem;
+    background-color: #838383;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease-out;
+    border: none;
+}
+
+.spanopen:hover{
+    color: #464545;
+    background-color: rgba(255, 255, 255, 0.603);  
+    box-shadow: rgba(201, 38, 38, 0.993) 0px 0px 35px 0px;
+}
+
+.name {
+    font-size: 1.3rem;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.1rem;
+    color: rgb(230, 228, 228);
+    text-shadow: 2px 2px 4px rgb(209, 78, 78);
+}
+
+.detail {
+    margin-left: 2rem;
+    color: white;
+}
+
+.card2 {
+    font-size: .8rem;
+    margin: 0;
+    color: rgb(192, 191, 191);
+}
+
+
+
+
+
+
+
+
+  
+
