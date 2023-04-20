@@ -16,12 +16,12 @@ export function Card({ name, img, rating, genres, platforms, released }) {
                 <div className='card1'>
                     <div className='C1open'>
                         <h2 className='name'>{name}</h2>
-                        <span className='spanopen'>open</span>
+                        <span className='spanopen'>🔍︎</span>
                     </div>
                     <div className='detail'>
-                        <h4 className='card2'>GENRE ›› {genres.join(' ・ ')} </h4>
-                        <h4 className='card2'>PLATFORMS ›› {platforms.join(' ・ ')}</h4>
-                        <h4 className='card2'>RELEASED ›› {released}</h4>
+                        <h4 className='card2'>›› GENRE: <span className='card3'>{genres.join(' ・ ')}</span></h4>
+                        <h4 className='card2'>›› PLATFORMS: <span className='card3'>{platforms.join(' ・ ')}</span></h4>
+                        <h4 className='card2'>›› RELEASED: <span className='card3'>{released}</span></h4>
                     </div>
                 </div>
             </div>

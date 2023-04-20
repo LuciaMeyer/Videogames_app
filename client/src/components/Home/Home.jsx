@@ -11,6 +11,11 @@ import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
+import  slider1  from '../../img/img1.png'
+import  slider2  from '../../img/img2.jpg'
+import  slider3  from '../../img/img3.jpg'
+
+
 import './Home.css'
 
 export const Home = () => {
@@ -50,7 +55,7 @@ export const Home = () => {
     if(platformsFilter.length !== 0 && platformsFilter !== 'All Platforms') games = games.filter(g => g.platforms.includes(platformsFilter));
     
     // paginado
-    const gamesPerPage = 15;
+    const gamesPerPage = 16;
     const indexLastGame = currentPage * gamesPerPage;
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
@@ -87,19 +92,22 @@ export const Home = () => {
                 <Nav />
                 <SearchBar games={games} loading={loading}/>
                 <SetFilters />  
-
-                    <Filters />
-   
+                <Filters />
             </div>
  
             <div className='topbarContain'>
                 <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
-                {!menuOpen
-                    ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
-                    : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
-                }
-                    <span>FIND YOUR FAVORITE VIDEO GAME</span>
-                    <span >You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
+                    {!menuOpen
+                        ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
+                        : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
+                    }
+                    {/* <div className='containSlider'>
+                        <img className='imgSlider' src={slider1} alt="img not found"/>
+                        <img className='imgSlider' src={slider2} alt="img not found"/>
+                        <img className='imgSlider' src={slider3} alt="img not found"/>
+                    </div> */}
+                    {/* <span>FIND YOUR FAVORITE VIDEO GAME</span> */}
+                    {/* <span >You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span> */}
                 </div>
                 {!gameByName.msg &&
                 <div className={`pag ${!menuOpen ? '' : 'closed'}`}>
@@ -112,9 +120,9 @@ export const Home = () => {
             {!loading && !!currentGames.length && !notFound &&
 
             <div className='maincontainer'>
-                <div className='cardsContain'>                           
+                <div className={`cardsContain ${!menuOpen ? 'open' : 'closed'}`}>                           
                     {currentGames?.map(e => (
-                        <div key={e.id} className='card'>
+                        <div key={e.id} className={`card ${!menuOpen ? 'open' : 'closed'}`}>
                             <Link to={'/game/' + e.id }>
                                 <Card
                                     key= {e.id}

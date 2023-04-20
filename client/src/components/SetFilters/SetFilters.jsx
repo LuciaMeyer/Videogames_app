@@ -12,7 +12,6 @@ export const SetFilters = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
     const released = useSelector(state => state.released);
-    const currentPage = useSelector(state => state.currentPage)
 
     if(!genresFilter.length && !platformsFilter.length && !typeFilter.length && !nameOrder.length && !ratingOrder.length && useFilter)  dispatch(changeUseFilter(false))
     

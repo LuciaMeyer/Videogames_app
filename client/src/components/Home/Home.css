@@ -103,7 +103,17 @@
     width: 80%;
     margin-top: 30vh;
     margin-bottom: 5%;
+    transition: all 0.5s ease-out;
 }
+
+.cardsContain.closed {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+    margin: 30vh auto 5%;
+  }
 
 .card {
     border-radius: .5rem;
@@ -111,10 +121,73 @@
     overflow: hidden;
 }
 
-.footer {
+.card.closed {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin: 0 2rem 1rem 2rem;
+}
+
+.card.closed:nth-child(odd) {
+    margin-left: 4rem;
+    margin-right: .3rem;
+}
+  
+.card.closed:nth-child(even) {
+    margin-left: .3rem;
+    margin-right: 4rem;
+}
+
+  .footer {
     display: flex;
     align-items: flex-end;
     background: rgb(53, 48, 48);
     height: 15rem;
     margin-left: 20%;
 }
+
+
+.containSlider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 50vh;
+  }
+  
+  .imgSlider {
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    animation: slide 6s infinite;
+  }
+  
+  .imgSlider:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .imgSlider:nth-child(2) {
+    animation-delay: 2s;
+  }
+  
+  .imgSlider:nth-child(3) {
+    animation-delay: 4s;
+  }
+  
+  @keyframes slide {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    33% {
+      opacity: 1;
+    }
+    53% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
