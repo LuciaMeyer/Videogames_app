@@ -11,9 +11,9 @@ import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
-import  slider1  from '../../img/img1.png'
-import  slider2  from '../../img/img2.jpg'
-import  slider3  from '../../img/img3.jpg'
+import  slider1  from '../../img/TIRA.png'
+import  slider2  from '../../img/TIRA.png'
+import  slider3  from '../../img/TIRA.png'
 
 
 import './Home.css'
@@ -85,6 +85,7 @@ export const Home = () => {
     if(searchGame && gameByName.msg) notFound = true;
     if(!games.length && useFilter) notFound = true;
     
+
     
     return (
         <>
@@ -92,7 +93,7 @@ export const Home = () => {
                 <Nav />
                 <SearchBar games={games} loading={loading}/>
                 <SetFilters />  
-                <Filters />
+                {!loading && <Filters />}
             </div>
  
             <div className='topbarContain'>
@@ -101,13 +102,12 @@ export const Home = () => {
                         ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
                         : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
                     }
-                    {/* <div className='containSlider'>
+                    <div className='containSlider'>
+                        {/* <div className='find' >FIND YOUR FAVORITE VIDEO GAME</div> */}
                         <img className='imgSlider' src={slider1} alt="img not found"/>
                         <img className='imgSlider' src={slider2} alt="img not found"/>
                         <img className='imgSlider' src={slider3} alt="img not found"/>
-                    </div> */}
-                    {/* <span>FIND YOUR FAVORITE VIDEO GAME</span> */}
-                    {/* <span >You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span> */}
+                    </div>
                 </div>
                 {!gameByName.msg &&
                 <div className={`pag ${!menuOpen ? '' : 'closed'}`}>
