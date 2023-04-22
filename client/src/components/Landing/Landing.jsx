@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import arrowDown from "../../img/arrow-down.png";
-import arrowTop from "../../img/arrow-top.png";
-import styled, { keyframes } from "styled-components";
-import img1 from "../../img/img1.png";
-import img2 from "../../img/img2.jpg";
-import img3 from "../../img/img3.jpg";
+import arrowDown from '../../img/arrow-down.png';
+import arrowTop from '../../img/arrow-top.png';
+import styled, { keyframes } from 'styled-components';
+import img1 from '../../img/img1.png';
+import img2 from '../../img/img2.jpg';
+import img3 from '../../img/img3.jpg';
 import cel1 from '../../img/cel1.png'
 import cel2 from '../../img/cel2.png'
 import cel3 from '../../img/cel3.png'
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { getGames } from '../../redux/actions';
 
 
@@ -23,36 +23,36 @@ export const Landing = () => {
 
     return (
         <>
-          <Section id="1" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img1})` : `url(${cel1})` }}>
+          <Section id='1' style={{ backgroundImage: window.innerWidth > 700 ? `url(${img1})` : `url(${cel1})` }}>
             
             <div className='wlcm' style={{ zIndex: 1 }}>WELCOME TO VIDEO GAMES APP</div>
-            <a href="#2" className="btnMove">
-              <input type="image" src={arrowDown} alt="arrow down" />
+            <a href='#2' className='btnMove'>
+              <input type='image' src={arrowDown} alt='arrow down' />
             </a>
           </Section>
     
-          <Section id="2" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel2})` }}>
+          <Section id='2' style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel2})` }}>
             <IntroConteiner>
               <div className='title' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAME</div>
               <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
-              <Link to="/home" onClick={() => window.scroll(0, 0)}>
+              <Link to='/home' onClick={() => window.scroll(0, 0)}>
                 <button>SEARCH</button>
               </Link>
             </IntroConteiner>
-            <a href="#3" className="btnMove">
-              <input type="image" src={arrowDown} alt="arrow down" />
+            <a href='#3' className='btnMove'>
+              <input type='image' src={arrowDown} alt='arrow down' />
             </a>
           </Section>
     
-          <Section id="3" style={{ backgroundImage: window.innerWidth > 700 ? `url(${img3})` : `url(${cel3})` }}>
+          <Section id='3' style={{ backgroundImage: window.innerWidth > 700 ? `url(${img3})` : `url(${cel3})` }}>
             <IntroConteiner>
                 <div className='title' style={{ zIndex: 1 }}>ENJOY CREATING YOUR VIDEO GAME</div>
-                <Link to="/create" onClick={() => window.scroll(0, 0)}>
+                <Link to='/create' onClick={() => window.scroll(0, 0)}>
                   <button>CREATE</button>
                 </Link>
             </IntroConteiner>
-            <a href="#1" className="btnMove">
-              <input type="image" src={arrowTop} alt="arrow top" />
+            <a href='#1' className='btnMove'>
+              <input type='image' src={arrowTop} alt='arrow top' />
             </a>
           </Section>
         </>
@@ -67,6 +67,7 @@ const fadeIn = keyframes`
         opacity: 0.2;
     }
 `;
+
 
 const Section = styled.section`
   display: flex;
@@ -83,7 +84,7 @@ const Section = styled.section`
     background-attachment: scroll;
   }
   &::before {
-    content: "";
+    content: '';
     background-color: #000;
     height: 100%;
     width: 100%;
@@ -102,13 +103,22 @@ const Section = styled.section`
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.869));
     position: absolute;
     top: 10rem;
+    opacity: 0;
+    animation: fadeIn1 2s ease-in-out 2s forwards;
     @media screen and (max-width: 700px) {
       align-self: center;
       font-size: 1rem;
       letter-spacing: 1px;
       top: 16.5rem;
-      /* width: 60vw; */
     }
+    @keyframes fadeIn1 {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
   }
   .btnMove {
     position: absolute;
@@ -116,7 +126,7 @@ const Section = styled.section`
     @media screen and (max-width: 700px) {
       top: 80%;
     }
-    input[type="image"] {
+    input[type='image'] {
       padding: 10px;
       width: 20px;
       height: 20px;
