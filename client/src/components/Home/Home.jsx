@@ -11,9 +11,9 @@ import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
-import  slider1  from '../../img/TIRA.png'
-import  slider2  from '../../img/TIRA.png'
-import  slider3  from '../../img/TIRA.png'
+import  slider1  from '../../img/sl1.png'
+import  slider2  from '../../img/sl1.png'
+import  slider3  from '../../img/sl1.png'
 
 
 import './Home.css'
@@ -102,8 +102,7 @@ export const Home = () => {
                         ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
                         : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
                     }
-                    <div className='containSlider'>
-                        {/* <div className='find' >FIND YOUR FAVORITE VIDEO GAME</div> */}
+                    <div className={`containSlider ${!menuOpen ? '' : 'closed'}`}>
                         <img className='imgSlider' src={slider1} alt="img not found"/>
                         <img className='imgSlider' src={slider2} alt="img not found"/>
                         <img className='imgSlider' src={slider3} alt="img not found"/>
@@ -138,9 +137,8 @@ export const Home = () => {
                     ))}
                 </div>
             </div>
-            }
-                
-            <div className='footer'>
+            }                
+            <div className={`footer ${!menuOpen ? 'open' : 'closed'}`}>
                 FOOTER
             </div>
         </>
