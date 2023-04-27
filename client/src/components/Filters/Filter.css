@@ -1,7 +1,7 @@
 .filcontainer {
     display: flex;
     flex-direction: column;
-    margin: 1rem 1.5rem 5rem 1rem;
+    margin: 1rem 1.5rem 1rem 1rem;
 }
 
 .h5 {
@@ -30,4 +30,38 @@
 
 .select:hover {
     background-color: rgb(140, 46, 46);
+}
+
+.containCreated{
+    display: flex;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.created {
+    display: flex;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    border-radius: 0.3rem;
+    padding: 0rem 0.4rem 0rem 0.2rem;
+    background: transparent;
+    font-size: .8rem;
+    height: 1.6rem;
+}
+
+.imgCreated {
+    height: 1.2rem;
+    padding-right: 0.4rem;
+    opacity: 0.1;
+    filter: invert(100%); 
+}
+
+.imgCreatedDA {
+    height: .8rem;
+    opacity: 0.2;
+    filter: invert(100%); 
+}
+
+.imgCreated:hover {
+    opacity: 0.5;
 }

@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter, changeReleased } from "../../redux/actions";
 import './Filter.css'
+import lin from '../../img/in.png'
+import gh from '../../img/gh.png'
+import da from '../../img/da.png'
+
+
 
 export const Filters = () => {
 
@@ -14,6 +19,8 @@ export const Filters = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
     const released = useSelector(state => state.released);
+    const linkedin = 'https://www.linkedin.com/in/luciameyer/'
+    const github = 'https://github.com/LuciaMeyer'
 
     const handleGenreFilter = e => {
         e.preventDefault()
@@ -106,9 +113,16 @@ export const Filters = () => {
                     <option value= 'Best Released'>Best Released</option>
                     <option value= 'Worst Released'>Worst Released</option>
                 </select>
+                <div className="containCreated">
+                    <img className="imgCreatedDA" src={da} alt="not found" />
+                    <span className="created">created by Lucía Meyer</span>
+                    <a href={linkedin} target="_blank"><img className="imgCreated" src={lin} alt="not found" /></a>
+                    <a href={github} target="_blank"><img className="imgCreated" src={gh} alt="not found" /></a>
+                </div>
         </div>
     )
 };
+
 
 
 
