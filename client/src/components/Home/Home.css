@@ -34,7 +34,6 @@
 .topbarContain {
     display: flex;
     flex-direction: column;
-    /* width: 100%; */
     background-color:rgba(53, 48, 48, 0.281); ;
     backdrop-filter: blur(10px);
     transition: all 0.5s ease-out;
@@ -52,20 +51,28 @@
 }
 
 .toggleMenu {
+  position: fixed;
+    margin-top: 1rem;
     width: 1.3rem;
     height: 3rem;
-    background-color: #ffffff83;
+    background-color: #fffafa;
+    box-shadow: rgb(56 54 54 / 98%) 3px 0px 5px 3px;
     border-radius: 0 0.8rem 0.8rem 0 ;
     transition: all 0.5s ease-out;
     border: none;
+    z-index: 3;
+
 }
 
-.toggleMenu:hover{
+.toggleMenu:hover {
+    position: fixed;
+    margin-top: 1rem;
     width: 2rem; 
     font-size: 1.2rem;
     color: rgb(255, 255, 255);
     background: rgb(176, 78, 78);
     transition: all 0.5s ease-out;
+    border: none;
 }
 
 .pag {
@@ -146,59 +153,46 @@
   margin-left: 0;
 }
 
-.containSlider {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.slider-frame {
   width: 100%;
-  height: 300px;
+  height: auto;
+  overflow: hidden;
 }
 
-.containSlider.closed {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.slider-frame.closed {
   width: 100%;
-  height: 300px;
+  height: auto;
+  overflow: hidden;
 }
 
-.imgSlider {
-  position: absolute;
+.slider-frame ul {
+  display: flex;
+  padding: 0;
+  width: 400%;
+  /* animation: slide 16s infinite alternate linear; */
+  animation: slide 16s infinite alternate linear;
+}
+
+.slider-frame li {
+  list-style: none;
+  width: 25%;
+}
+
+.slider-frame img {
+  width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  animation: slide 12s infinite;
-}
-
-.imgSlider:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.imgSlider:nth-child(2) {
-  animation-delay: 3s;
-}
-
-.imgSlider:nth-child(3) {
-  animation-delay: 6s;
 }
 
 @keyframes slide {
-  0% {
-    opacity: 0;
+    0% { transform: translateX(0%); }
+    20% { transform: translateX(0%); }
+    25% { transform: translateX(-25%); }
+    45% { transform: translateX(-25%); }
+    50% { transform: translateX(-50%); }
+    70% { transform: translateX(-50%); }
+    75% { transform: translateX(-75%); }
+    100% { transform: translateX(-75%); }
   }
-  9.09% {
-    opacity: 1;
-  }
-  27.27% {
-    opacity: 1;
-  }
-  36.36% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 
 .find {
   display: flex;
@@ -211,4 +205,4 @@
   font-size: 2rem;
   letter-spacing: 3px;
   filter: drop-shadow(5px 5px 3px rgb(0, 0, 0));
-}
+} 

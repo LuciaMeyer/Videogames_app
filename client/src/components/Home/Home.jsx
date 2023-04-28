@@ -11,9 +11,11 @@ import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
-import  slider1  from '../../img/sl1.png'
-import  slider2  from '../../img/sl1.png'
-import  slider3  from '../../img/sl1.png'
+import  slider1  from '../../img/s1.png'
+import  slider2  from '../../img/s2.png'
+import  slider3  from '../../img/s3.png'
+import  slider4  from '../../img/s4.png'
+
 
 
 import './Home.css'
@@ -102,13 +104,17 @@ export const Home = () => {
                         ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
                         : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
                     }
-                    <div className={`containSlider ${!menuOpen ? '' : 'closed'}`}>
-                        <img className='imgSlider' src={slider1} alt="img not found"/>
-                        <img className='imgSlider' src={slider2} alt="img not found"/>
-                        <img className='imgSlider' src={slider3} alt="img not found"/>
-                    </div>
+                    {!loading && 
+                    <div className={`slider-frame ${!menuOpen ? '' : 'closed'}`}>
+                        <ul>
+                            <li><img  src={slider1} alt="not found"/></li>
+                            <li><img  src={slider2} alt="not found"/></li>
+                            <li><img  src={slider3} alt="not found"/></li>
+                            <li><img  src={slider4} alt="not found"/></li>
+                        </ul>
+                    </div>}
                 </div>
-                {!gameByName.msg &&
+                {!gameByName.msg && !loading &&
                 <div className={`pag ${!menuOpen ? '' : 'closed'}`}>
                     <Pagination games = {games.length} gamesPerPage = {gamesPerPage}/>
                 </div>}
