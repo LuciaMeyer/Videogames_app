@@ -42,26 +42,33 @@
 .topbar {
     display: flex;
     margin-left: 20%;
+    height: 25vh;
     background-color: rgba(53, 48, 48, 0.281);
     transition: all 0.5s ease-out;
 }
 
 .topbar.closed  {
     margin-left: 0%;
-}
+    height: 25vh;
+}   
 
 .toggleMenu {
-  position: fixed;
+    position: fixed;
     margin-top: 1rem;
+    left: 19.96vw;
     width: 1.3rem;
-    height: 3rem;
-    background-color: #fffafa;
+    height: 9vh;
+    background-color: #918f8f;
     box-shadow: rgb(56 54 54 / 98%) 3px 0px 5px 3px;
     border-radius: 0 0.8rem 0.8rem 0 ;
     transition: all 0.5s ease-out;
     border: none;
     z-index: 3;
+    transition: all 0.5s ease-out;
+}
 
+.toggleMenu.closed {
+    left: 0;
 }
 
 .toggleMenu:hover {
@@ -88,12 +95,15 @@
     margin-left: 0%;
 }
 
-.load-notF{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.load-notF {
     width: 120vw;
+    margin-top: 10vh;
     height: 125vh;
+    transition: all 0.5s ease-out;
+}
+
+.load-notF.closed {
+    width: 100vw;
 }
 
 .maincontainer {

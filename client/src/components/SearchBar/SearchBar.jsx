@@ -57,8 +57,12 @@ export const SearchBar = ({ games, loading }) => {
             </div>
                 { loading
                     ? <span className='searchSpan'>✓ looking for results, please wait...</span>                   
-                    : games.length && !gameByName.msg &&
+                    : !!games.length && !gameByName.msg &&
                     <span className='searchSpan'>✓ {games.length} results</span>
+                }
+                {
+                    !games.length && !loading &&
+                    <span className='searchSpan'>✓ no results found, please try again</span>
                 }
                 {!!button.length && !!gameByName.length && <span className='searchSpan'>✓ your search: {button}</span>}
         </form>

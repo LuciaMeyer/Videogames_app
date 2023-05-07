@@ -78,7 +78,7 @@ export const Home = () => {
     };
 
     // defino loading
-    let loading = false
+    let loading = false  
     if ( !games.length && !useFilter && !searchGame) loading = true;
     if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
 
@@ -87,10 +87,13 @@ export const Home = () => {
     if(searchGame && gameByName.msg) notFound = true;
     if(!games.length && useFilter) notFound = true;
     
-
     
     return (
         <>
+            {!menuOpen
+                ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
+                : <button className='toggleMenu closed' onClick={toggleMenu}>&#10095;</button>   
+            }
             <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
                 <Nav />
                 <SearchBar games={games} loading={loading}/>
@@ -100,12 +103,7 @@ export const Home = () => {
  
             <div className='topbarContain'>
                 <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
-                    {!menuOpen
-                        ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
-                        : <button className='toggleMenu' onClick={toggleMenu}>&#10095;</button>   
-                    }
-                    {!loading && 
-                    <div className={`slider-frame ${!menuOpen ? '' : 'closed'}`}>
+                    {<div className={`slider-frame ${!menuOpen ? '' : 'closed'}`}>
                         <ul>
                             <li><img  src={slider1} alt="not found"/></li>
                             <li><img  src={slider2} alt="not found"/></li>
@@ -120,7 +118,7 @@ export const Home = () => {
                 </div>}
             </div>
 
-            {loading && <div className='load-notF'><Loading/></div>}
+            {loading && <div className={`load-notF ${!menuOpen ? 'open' : 'closed'}`}><Loading/></div>}
             {notFound && <div className='load-notF'><NotFound/></div>}
             {!loading && !!currentGames.length && !notFound &&
 
