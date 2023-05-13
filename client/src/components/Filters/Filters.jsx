@@ -116,8 +116,8 @@ export const Filters = () => {
                 <div className="containCreated">
                     <img className="imgCreatedDA" src={da} alt="not found" />
                     <span className="created">created by Lucía Meyer</span>
-                    <a href={linkedin} target="_blank"><img className="imgCreated" src={lin} alt="not found" /></a>
-                    <a href={github} target="_blank"><img className="imgCreated" src={gh} alt="not found" /></a>
+                    <a href={linkedin} target="_blank" rel="noreferrer"><img className="imgCreated" src={lin} alt="not found" /></a>
+                    <a href={github} target="_blank" rel="noreferrer"><img className="imgCreated" src={gh} alt="not found" /></a>
                 </div>
         </div>
     )

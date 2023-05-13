@@ -15,6 +15,9 @@ import  slider1  from '../../img/s1.png'
 import  slider2  from '../../img/s2.png'
 import  slider3  from '../../img/s3.png'
 import  slider4  from '../../img/s4.png'
+import lin from '../../img/in.png'
+import gh from '../../img/gh.png'
+import da from '../../img/da.png'
 
 
 
@@ -36,6 +39,8 @@ export const Home = () => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const released = useSelector(state => state.released)
+    const linkedin = 'https://www.linkedin.com/in/luciameyer/'
+    const github = 'https://github.com/LuciaMeyer'
 
     const [menuOpen, setMenuOpen] = useState(false);
     
@@ -84,7 +89,7 @@ export const Home = () => {
 
     // defino notFound
     let notFound = false;
-    if(searchGame && gameByName.msg) notFound = true;
+    if(searchGame && gameByName.msg) notFound = true; // cambiar
     if(!games.length && useFilter) notFound = true;
     
     
@@ -96,7 +101,7 @@ export const Home = () => {
             }
             <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
                 <Nav />
-                <SearchBar games={games} loading={loading}/>
+                <SearchBar games={games} loading={loading} notFound= {notFound}/>
                 <SetFilters />  
                 {!loading && <Filters />}
             </div>
@@ -143,7 +148,12 @@ export const Home = () => {
             </div>
             }                
             <div className={`footer ${!menuOpen ? 'open' : 'closed'}`}>
-                FOOTER
+                <div className="containCreated1">
+                    <img className="imgCreatedDA" src={da} alt="not found" />
+                    <span className="created">created by Lucía Meyer</span>
+                    <a href={linkedin} target="_blank" rel="noreferrer"><img className="imgCreated" src={lin} alt="not found" /></a>
+                    <a href={github} target="_blank" rel="noreferrer"><img className="imgCreated" src={gh} alt="not found" /></a>
+                </div>
             </div>
         </>
     )

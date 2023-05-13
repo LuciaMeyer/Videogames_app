@@ -151,17 +151,6 @@
     margin-right: 4rem;
 }
 
-.footer {
-    display: flex;
-    align-items: flex-end;
-    background: rgb(53, 48, 48);
-    height: 15rem;
-    margin-left: 20%;
-}
-
-.footer.closed {
-  margin-left: 0;
-}
 
 .slider-frame {
   width: 100%;
@@ -216,3 +205,21 @@
   letter-spacing: 3px;
   filter: drop-shadow(5px 5px 3px rgb(0, 0, 0));
 } 
+
+.footer {
+    display: flex;
+    align-items: flex-end;
+    background: rgb(53, 48, 48);
+    height: 12rem;
+    margin-left: 0 20%;
+    padding: 1.7rem;
+    justify-content: flex-end;
+}
+
+.footer.closed {
+  margin-left: 0;
+}
+.containCreated1 {
+    display: flex;
+    align-items: center;
+}

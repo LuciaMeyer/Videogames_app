@@ -73,10 +73,12 @@ const getAllGames = async (req, res, next) => {
                         platforms: ob.platforms.map(p => p.platform.name)
                     }
             });
+
             let getDbByName = db.filter(e => e.name.toUpperCase().includes(name.toUpperCase()))
             let getGameByName = getDbByName.concat(getApiByName)
-            res.send(getGameByName)
-
+            !getGameByName.length
+            ? res.send({ msg: 'not found' })
+            : res.send(getGameByName)
         } else {
                 res.send(allInfo);
         }

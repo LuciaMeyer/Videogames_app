@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame } from '../../redux/actions';
 import './SearchBar.css'
 
-export const SearchBar = ({ games, loading }) => {
+export const SearchBar = ({ games, loading, notFound }) => {
 
     const dispatch = useDispatch();
     const genresFilter = useSelector(state => state.genresFilter);
@@ -12,7 +12,6 @@ export const SearchBar = ({ games, loading }) => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const gameByName = useSelector(state => state.gameByName);
-    const searchGame = useSelector(state => state.searchGame);
 
     const [input, setInput] = useState('');
     const [button, setButton] = useState('');
@@ -41,7 +40,8 @@ export const SearchBar = ({ games, loading }) => {
     };
 
     let disabled = false
-    if(!!gameByName.length && searchGame) disabled = true
+    if (!!loading || !!notFound) disabled = true
+
     return (
         <form onSubmit={handleSubmit}>
             <div className='serchBar' >
@@ -53,18 +53,20 @@ export const SearchBar = ({ games, loading }) => {
                     maxLength= '30'
                     disabled = {disabled}
                     />
-                <input className={!!button.length && !!gameByName.length ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' />
+                <input className={!!disabled ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' />
+
             </div>
                 { loading
-                    ? <span className='searchSpan'>✓ looking for results, please wait...</span>                   
+                    ? <span className='searchSpan'>✓ looking for results...</span>                   
                     : !!games.length && !gameByName.msg &&
                     <span className='searchSpan'>✓ {games.length} results</span>
                 }
-                {
-                    !games.length && !loading &&
-                    <span className='searchSpan'>✓ no results found, please try again</span>
+                { !!notFound &&
+                    <span className='searchSpan'>✓ no results, try again</span>
                 }
-                {!!button.length && !!gameByName.length && <span className='searchSpan'>✓ your search: {button}</span>}
+                { !!button.length && !!gameByName.length &&
+                    <span className='searchSpan'>✓ your search: {button}</span>
+                }
         </form>
     )
 };
