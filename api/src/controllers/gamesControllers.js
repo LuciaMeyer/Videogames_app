@@ -17,16 +17,16 @@ const getApiGames = async () => {
             res = await axios(res.data.next);
         }
         infoApiGames = infoApiGames.map(ob => {
-                    return {
-                        id: ob.id,
-                        name: ob.name,
-                        img: ob.background_image,
-                        rating: ob.rating,
-                        genres: ob.genres.map(g => g.name),
-                        platforms: ob.platforms.map(p => p.platform.name),
-                        released: ob.released
-                    }
-                });
+            return {
+                id: ob.id,
+                name: ob.name,
+                img: ob.background_image,
+                rating: ob.rating,
+                genres: ob.genres.map(g => g.name),
+                platforms: ob.platforms.map(p => p.platform.name),
+                released: ob.released
+            }
+        });
         return infoApiGames
     } catch (err) {
         console.log(err.message)
@@ -64,14 +64,15 @@ const getAllGames = async (req, res, next) => {
         if(name) {
             let getApiByName = (await axios(urlSearchName))
                 .data.results.slice(0,15).map(ob => {
-                    return {
-                        id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
-                        name: ob.name,
-                        img: ob.background_image,
-                        rating: ob.rating,
-                        genres: ob.genres.map(g => g.name),
-                        platforms: ob.platforms.map(p => p.platform.name)
-                    }
+                return {
+                    id: ob.id, // desde el front voy a acceder como el nombre de la propiedad
+                    name: ob.name,
+                    img: ob.background_image,
+                    rating: ob.rating,
+                    genres: ob.genres.map(g => g.name),
+                    platforms: ob.platforms.map(p => p.platform.name),
+                    released: ob.released
+                }
             });
 
             let getDbByName = db.filter(e => e.name.toUpperCase().includes(name.toUpperCase()))

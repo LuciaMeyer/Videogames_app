@@ -7,7 +7,7 @@ import { Pagination } from '../Pagination/Pagination';
 import { NotFound } from '../NotFound/NotFound'
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Loading } from '../Loading/Loading'
-import { nameASC, nameDES, ratingWORST, ratingBEST } from '../../helpers/sort';
+import { nameASC, nameDES, ratingWORST, ratingBEST, newest, oldest } from '../../helpers/sort';
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
@@ -48,19 +48,18 @@ export const Home = () => {
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
 
-
     // filtrados
-    if(typeFilter === 'Created') games = games.filter(g => typeof g.id === 'string');
-    if(typeFilter === 'Existing') games = games.filter(g => typeof g.id === 'number');       
-    if(nameOrder === 'A - Zasc' ) games.sort(nameASC);
-    if(nameOrder === 'Z - A') games.sort(nameDES);
-    if(ratingOrder === 'Worst Rating rating') games.sort(ratingWORST);          
-    if(ratingOrder === 'Best Rating') games.sort(ratingBEST);
-    if(released === 'Worst Released"') games.sort(ratingWORST);
-    if(released === 'Best Released') games.sort(ratingBEST);
     if(genresFilter.length !== 0 && genresFilter !== 'All Genres') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'All Platforms') games = games.filter(g => g.platforms.includes(platformsFilter));
-    
+    if(typeFilter === 'Created') games = games.filter(g => typeof g.id === 'string');
+    if(typeFilter === 'Existing') games = games.filter(g => typeof g.id === 'number');       
+    if(nameOrder === 'A - Z' ) games.sort(nameASC);
+    if(nameOrder === 'Z - A') games.sort(nameDES);
+    if(ratingOrder === 'Worst Rating') games.sort(ratingWORST);          
+    if(ratingOrder === 'Best Rating') games.sort(ratingBEST);
+    if(released === 'The newest') newest(games)
+    if(released === 'The oldest') oldest(games)
+
     // paginado
     const gamesPerPage = 16;
     const indexLastGame = currentPage * gamesPerPage;

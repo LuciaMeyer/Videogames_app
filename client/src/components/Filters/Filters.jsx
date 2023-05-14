@@ -110,8 +110,8 @@ export const Filters = () => {
                 </select>          
                 <select className="select" value= {released} onChange={handleReleasedOrder}>
                     <option value= '' disabled>Released</option>
-                    <option value= 'Best Released'>Best Released</option>
-                    <option value= 'Worst Released'>Worst Released</option>
+                    <option value= 'The newest'>The newest</option>
+                    <option value= 'The oldest'>The oldest</option>
                 </select>
                 <div className="containCreated">
                     <img className="imgCreatedDA" src={da} alt="not found" />

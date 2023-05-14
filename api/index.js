@@ -23,10 +23,10 @@ const { getApiGenres } = require('./src/controllers/genresControllers')
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => { // cambiar 
+conn.sync({ force: false }).then(() => { // cambiar 
   server.listen(process.env.PORT, async () => { 
     console.log('%s listening at 3001'); 
-    await getApiGenres();
-    await insertPlatform();
+    // await getApiGenres();
+    // await insertPlatform();
   });
 });
