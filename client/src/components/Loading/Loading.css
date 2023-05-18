@@ -30,7 +30,9 @@
 }
 
 .textLoader {
+    text-align: center;
     margin-top: 4rem;
+    line-height: 1.5;
     color: rgb(151, 151, 151);
 }
 
@@ -42,5 +44,11 @@
     color: rgb(151, 151, 151);
 }
 
-
+.imgLoader {
+   height: 9vh; 
+   margin-top: 1rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 
