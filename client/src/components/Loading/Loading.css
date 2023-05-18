@@ -29,3 +29,18 @@
     }
 }
 
+.textLoader {
+    margin-top: 4rem;
+    color: rgb(151, 151, 151);
+}
+
+.text1Loader {
+    width: 50vw;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+    color: rgb(151, 151, 151);
+}
+
+
+
