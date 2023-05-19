@@ -43,6 +43,7 @@ export const Home = () => {
     const github = 'https://github.com/LuciaMeyer'
 
     const [menuOpen, setMenuOpen] = useState(false);
+ 
     
     // defino qué renderizar según los filtros
     let games = []  
@@ -68,12 +69,10 @@ export const Home = () => {
 
     // me traigo info del back en primer renderizado   
     useEffect(() => {
-        if(!games.length && !genres.length && !platforms.length) {
-            dispatch(getGames());
-            dispatch(getGenres());
-            dispatch(getPlatforms());
-            window.scrollTo(0, 0);
-        }
+        if(!games.length ) dispatch(getGames())
+        if(!genres.length) dispatch(getGenres())         
+        if(!platforms.length) dispatch(getPlatforms())
+        window.scrollTo(0, 0);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // menú desplegable 
@@ -82,7 +81,7 @@ export const Home = () => {
     };
 
     // defino loading
-    let loading = false  
+    let loading = true  
     if ( !games.length && !useFilter && !searchGame) loading = true;
     if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
 

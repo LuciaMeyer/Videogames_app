@@ -10,7 +10,7 @@ import cel1 from '../../img/cel1.png'
 import cel2 from '../../img/cel2.png'
 import cel3 from '../../img/cel3.png'
 import { useDispatch } from 'react-redux';
-import { getGames } from '../../redux/actions';
+import { getGames, getGenres, getPlatforms } from '../../redux/actions';
 
 
 export const Landing = () => {
@@ -19,6 +19,8 @@ export const Landing = () => {
   
   useEffect(()=>{
     dispatch(getGames());
+    dispatch(getGenres());
+    dispatch(getPlatforms());
   },[dispatch])  
 
     return (
