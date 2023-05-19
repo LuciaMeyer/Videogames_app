@@ -223,3 +223,10 @@
     display: flex;
     align-items: center;
 }
+
+
+/* RESPONSIVE */
+
+@media (max-width:1430px) {
+
+}

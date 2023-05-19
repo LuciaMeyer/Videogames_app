@@ -4,7 +4,6 @@
     box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
     padding: 1rem;
     margin: 1rem 1.5rem 1rem 1rem;
- 
     list-style-type: none;
 }
 
@@ -19,4 +18,22 @@
 .navbut.active,
 .navbut:hover {
     color: rgb(176, 78, 78);
+}
+
+.selectNav {
+    color: rgba(255, 251, 251, 0.473);
+    border: none;
+    padding: 0rem 0.4rem;
+    background: transparent;
+    font-size: .7rem;
+    height: 1.3rem;
+    width: 100vw;
+}
+
+.selectNav > option {
+    background-color: rgb(76, 26, 26);
+}
+
+.selectNav:hover {
+    background-color: rgb(140, 46, 46);
 }

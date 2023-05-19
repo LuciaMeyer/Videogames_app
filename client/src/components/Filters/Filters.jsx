@@ -67,6 +67,7 @@ export const Filters = () => {
     const handleReleasedOrder = e => {
         e.preventDefault()
         dispatch(changeReleased(e.target.value));
+        dispatch(resetPage(1));
         window.scrollTo(0, 0);
     };
 
