@@ -81,7 +81,7 @@ export const Home = () => {
     };
 
     // defino loading
-    let loading = true  
+    let loading = false  
     if ( !games.length && !useFilter && !searchGame) loading = true;
     if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
 
