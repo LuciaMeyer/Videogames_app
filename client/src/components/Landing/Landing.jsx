@@ -25,18 +25,19 @@ export const Landing = () => {
 
     return (
         <>
-          <Section id='1' style={{ backgroundImage: window.innerWidth > 700 ? `url(${img1})` : `url(${cel1})` }}>
-            
+          <Section id='1' style={{ backgroundImage: window.innerWidth > 700 ? `url(${img1})` : `url(${cel1})` }}>          
             <div className='wlcm' style={{ zIndex: 1 }}>WELCOME TO VIDEO GAMES APP</div>
             <a href='#2' className='btnMove'>
               <input type='image' src={arrowDown} alt='arrow down' />
-            </a>
+            </a>  
           </Section>
     
           <Section id='2' style={{ backgroundImage: window.innerWidth > 700 ? `url(${img2})` : `url(${cel2})` }}>
             <IntroConteiner>
               <div className='title' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAME</div>
+              {window.innerWidth > 700 &&
               <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
+              }
               <Link to='/home' onClick={() => window.scroll(0, 0)}>
                 <button>SEARCH</button>
               </Link>
@@ -102,16 +103,18 @@ const Section = styled.section`
     font-family: 'Rubik Glitch';
     font-size: 3rem;
     letter-spacing: 3px;
+    text-align: center;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.869));
     position: absolute;
     top: 10rem;
     opacity: 0;
     animation: fadeIn1 2s ease-in-out 2s forwards;
     @media screen and (max-width: 700px) {
-      align-self: center;
-      font-size: 1rem;
+      text-align: center;
+      width: 60%;
+      font-size: 1.5rem;
       letter-spacing: 1px;
-      top: 16.5rem;
+      top: 8rem;
     }
     @keyframes fadeIn1 {
     from {
@@ -203,11 +206,12 @@ const IntroConteiner = styled.article`
     width: 60vw;
     padding: 15px 20px 30px 20px;
     .title {
-      font-size: 1rem;
+      text-align: center;
+      width: 60%;
+      font-size: 1.5rem;
       letter-spacing: 1px;
       position: absolute;
-      top: 10rem;
-      width: 60vw;
+      top: 8rem;
     }
     .descr {
       font-size: .6rem;

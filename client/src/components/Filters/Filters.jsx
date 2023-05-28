@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter, changeReleased } from "../../redux/actions";
+import { CreatedBy } from "../CreatedBy/CreatedBy";
 import './Filter.css'
-import lin from '../../img/in.png'
-import gh from '../../img/gh.png'
-import da from '../../img/da.png'
 
 
 
@@ -73,53 +71,47 @@ export const Filters = () => {
 
     return (
         <div className="filcontainer">
-                <h5 className="h5">❱❱❱ filter by:</h5>
-                <select className="select" value= {genresFilter} onChange={handleGenreFilter}>S
-                    <option value= '' disabled>Genre</option>
-                    <option value='All Genres'>All Genres</option>
-                    {
-                        genres?.map(g => (
-                            <option key= {g.id} value={g.name}>{g.name}</option>
-                        ))
-                    }
-                </select>
-                <select className="select" value= {platformsFilter} onChange={handlePaltformsFilter}>
-                    <option value= '' disabled>Platforms</option>
-                    <option value='All Platforms'>All Platforms</option>
-                    {
-                        platforms?.map(p => (
-                            <option key= {p.id} value={p.name}>{p.name}</option>
-                        ))
-                    }
-                </select>
-                <select className="select" value= {typeFilter} onChange={handleTypeFilter}>
-                    <option value= '' disabled>Type</option>
-                    <option value= 'All Types'>All Types</option>
-                    <option value= 'Created'>Created</option>
-                    <option value= 'Existing'>Existing</option>
-                </select>
-                <h5 className="h5">❱❱❱ order by:</h5>
-                <select className="select" value= {nameOrder} onChange={handleNameOrder}>
-                    <option value= '' disabled>Name</option>
-                    <option value= 'A - Z'>A - Z</option>
-                    <option value= 'Z - A'>Z - A</option>
-                </select>
-                <select className="select" value= {ratingOrder} onChange={handleRatingOrder}>
-                    <option value= '' disabled>Rating</option>
-                    <option value= 'Best Rating'>Best Rating</option>
-                    <option value= 'Worst Rating'>Worst Rating</option>
-                </select>          
-                <select className="select" value= {released} onChange={handleReleasedOrder}>
-                    <option value= '' disabled>Released</option>
-                    <option value= 'The newest'>The newest</option>
-                    <option value= 'The oldest'>The oldest</option>
-                </select>
-                <div className="containCreated">
-                    <img className="imgCreatedDA" src={da} alt="not found" />
-                    <span className="created">created by Lucía Meyer</span>
-                    <a href={linkedin} target="_blank" rel="noreferrer"><img className="imgCreated" src={lin} alt="not found" /></a>
-                    <a href={github} target="_blank" rel="noreferrer"><img className="imgCreated" src={gh} alt="not found" /></a>
-                </div>
+            <h5 className="h5">❱❱❱ filter by:</h5>
+            <select className="select" value= {genresFilter} onChange={handleGenreFilter}>S
+                <option value= '' disabled>Genre</option>
+                <option value='All Genres'>All Genres</option>
+                {
+                    genres?.map(g => (
+                        <option key= {g.id} value={g.name}>{g.name}</option>
+                    ))
+                }
+            </select>
+            <select className="select" value= {platformsFilter} onChange={handlePaltformsFilter}>
+                <option value= '' disabled>Platforms</option>
+                <option value='All Platforms'>All Platforms</option>
+                {
+                    platforms?.map(p => (
+                        <option key= {p.id} value={p.name}>{p.name}</option>
+                    ))
+                }
+            </select>
+            <select className="select" value= {typeFilter} onChange={handleTypeFilter}>
+                <option value= '' disabled>Type</option>
+                <option value= 'All Types'>All Types</option>
+                <option value= 'Created'>Created</option>
+                <option value= 'Existing'>Existing</option>
+            </select>
+            <h5 className="h5">❱❱❱ order by:</h5>
+            <select className="select" value= {nameOrder} onChange={handleNameOrder}>
+                <option value= '' disabled>Name</option>
+                <option value= 'A - Z'>A - Z</option>
+                <option value= 'Z - A'>Z - A</option>
+            </select>
+            <select className="select" value= {ratingOrder} onChange={handleRatingOrder}>
+                <option value= '' disabled>Rating</option>
+                <option value= 'Best Rating'>Best Rating</option>
+                <option value= 'Worst Rating'>Worst Rating</option>
+            </select>          
+            <select className="select" value= {released} onChange={handleReleasedOrder}>
+                <option value= '' disabled>Released</option>
+                <option value= 'The newest'>The newest</option>
+                <option value= 'The oldest'>The oldest</option>
+            </select>
         </div>
     )
 };

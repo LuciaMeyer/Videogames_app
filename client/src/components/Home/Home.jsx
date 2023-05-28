@@ -11,16 +11,11 @@ import { nameASC, nameDES, ratingWORST, ratingBEST, newest, oldest } from '../..
 import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
+import { CreatedBy } from '../CreatedBy/CreatedBy'
 import  slider1  from '../../img/s1.png'
 import  slider2  from '../../img/s2.png'
 import  slider3  from '../../img/s3.png'
 import  slider4  from '../../img/s4.png'
-import lin from '../../img/in.png'
-import gh from '../../img/gh.png'
-import da from '../../img/da.png'
-
-
-
 import './Home.css'
 
 export const Home = () => {
@@ -39,9 +34,6 @@ export const Home = () => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const released = useSelector(state => state.released)
-    const linkedin = 'https://www.linkedin.com/in/luciameyer/'
-    const github = 'https://github.com/LuciaMeyer'
-
     const [menuOpen, setMenuOpen] = useState(false);
  
     
@@ -81,7 +73,7 @@ export const Home = () => {
     };
 
     // defino loading
-    let loading = false  
+    let loading = true  
     if ( !games.length && !useFilter && !searchGame) loading = true;
     if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
 
@@ -93,15 +85,25 @@ export const Home = () => {
     
     return (
         <>
-            {!menuOpen
-                ? <button className='toggleMenu' onClick={toggleMenu}>&#10094;</button>
-                : <button className='toggleMenu closed' onClick={toggleMenu}>&#10095;</button>   
-            }
-            <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
+            {<button
+                    className={`toggleMenu ${!menuOpen ? '' : 'closed'}`}
+                    onClick={toggleMenu}
+                    >&#10094;
+            </button>}
+            <div
+                className={window.innerWidth >= 900
+                ? `sidebar ${!menuOpen ? 'open' : 'closed'}`
+                : `sidebarCel ${!menuOpen ? 'open' : 'closed'}`}
+                >   
                 <Nav />
                 <SearchBar games={games} loading={loading} notFound= {notFound}/>
                 <SetFilters />  
                 {!loading && <Filters />}
+                {window.innerWidth >= 1100 &&
+                    <div className={loading ? 'sideBarCrL' : 'sideBarCr' }>
+                        <CreatedBy/>
+                    </div>
+                }  
             </div>
  
             <div className='topbarContain'>
@@ -145,13 +147,8 @@ export const Home = () => {
                 </div>
             </div>
             }                
-            <div className={`footer ${!menuOpen ? 'open' : 'closed'}`}>
-                <div className="containCreated1">
-                    <img className="imgCreatedDA" src={da} alt="not found" />
-                    <span className="created">created by Lucía Meyer</span>
-                    <a href={linkedin} target="_blank" rel="noreferrer"><img className="imgCreated" src={lin} alt="not found" /></a>
-                    <a href={github} target="_blank" rel="noreferrer"><img className="imgCreated" src={gh} alt="not found" /></a>
-                </div>
+            <div className='footer'>
+                <CreatedBy/>
             </div>
         </>
     )

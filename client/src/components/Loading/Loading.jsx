@@ -23,7 +23,7 @@ export const Loading = () => {
         setTime(false);
         setBroken(true);
       }
-    }, 30000);
+    }, 60000);
 
     return () => {
       setIsMounted(false); // Marca el componente como desmontado al limpiar el efecto

@@ -1,0 +1,28 @@
+.containCreated1 {
+    display: flex;
+    align-items: center;
+}
+
+.imgCreatedDA {
+    height: .8rem;
+    opacity: 0.2;
+    filter: invert(100%); 
+}
+
+.created {
+    display: flex;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    border-radius: 0.3rem;
+    padding: 0rem 0.4rem 0rem 0.2rem;
+    background: transparent;
+    font-size: .8rem;
+    height: 1.6rem;
+}
+
+.imgCreated {
+    height: 1.2rem;
+    padding-right: 0.4rem;
+    opacity: 0.1;
+    filter: invert(100%); 
+}

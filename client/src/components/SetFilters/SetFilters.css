@@ -1,6 +1,8 @@
 .setDiv {
    display: block;
    height: 6rem;
+   overflow: hidden;
+   overflow-y:scroll;
 }
 
 .setDiv1 {
