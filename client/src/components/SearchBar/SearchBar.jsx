@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame } from '../../redux/actions';
+import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame, changeReleased } from '../../redux/actions';
 import './SearchBar.css'
 
 export const SearchBar = ({ games, loading, notFound }) => {
@@ -12,6 +12,9 @@ export const SearchBar = ({ games, loading, notFound }) => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const gameByName = useSelector(state => state.gameByName);
+    const released = useSelector(state => state.released)
+
+
 
     const [input, setInput] = useState('');
     const [button, setButton] = useState('');
@@ -27,6 +30,7 @@ export const SearchBar = ({ games, loading, notFound }) => {
         if(typeFilter !== '') dispatch(changeTypeFilter(''));
         if(nameOrder !== '') dispatch(changeNameOrder(''));
         if(ratingOrder !== '') dispatch(changeRatingOrder(''));
+        if(released !== '') dispatch(changeReleased(''))
     }
 
     const handleSubmit = e => {
@@ -56,6 +60,7 @@ export const SearchBar = ({ games, loading, notFound }) => {
                 <input className={!!disabled ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' />
 
             </div>
+            <div className='results'>
                 { loading
                     ? <span className='searchSpan'>✓ looking for results...</span>                   
                     : !!games.length && !gameByName.msg &&
@@ -67,6 +72,7 @@ export const SearchBar = ({ games, loading, notFound }) => {
                 { !!button.length && !!gameByName.length &&
                     <span className='searchSpan'>✓ your search: {button}</span>
                 }
+            </div>
         </form>
     )
 };

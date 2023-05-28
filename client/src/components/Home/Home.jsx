@@ -35,6 +35,8 @@ export const Home = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const released = useSelector(state => state.released)
     const [menuOpen, setMenuOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
  
     
     // defino qué renderizar según los filtros
@@ -67,13 +69,20 @@ export const Home = () => {
         window.scrollTo(0, 0);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
     // menú desplegable 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
+        window.scrollTo(0, 0);
     };
 
     // defino loading
-    let loading = true  
+    let loading = false  
     if ( !games.length && !useFilter && !searchGame) loading = true;
     if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
 
@@ -85,21 +94,16 @@ export const Home = () => {
     
     return (
         <>
-            {<button
-                    className={`toggleMenu ${!menuOpen ? '' : 'closed'}`}
-                    onClick={toggleMenu}
-                    >&#10094;
-            </button>}
             <div
-                className={window.innerWidth >= 900
+                className={windowWidth >= 900
                 ? `sidebar ${!menuOpen ? 'open' : 'closed'}`
                 : `sidebarCel ${!menuOpen ? 'open' : 'closed'}`}
                 >   
                 <Nav />
                 <SearchBar games={games} loading={loading} notFound= {notFound}/>
-                <SetFilters />  
+                <SetFilters toggleMenu={toggleMenu}/>  
                 {!loading && <Filters />}
-                {window.innerWidth >= 1100 &&
+                {windowWidth >= 1030 &&
                     <div className={loading ? 'sideBarCrL' : 'sideBarCr' }>
                         <CreatedBy/>
                     </div>
@@ -108,7 +112,7 @@ export const Home = () => {
  
             <div className='topbarContain'>
                 <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
-                    {<div className={`slider-frame ${!menuOpen ? '' : 'closed'}`}>
+                    {<div className='slider'>
                         <ul>
                             <li><img  src={slider1} alt="not found"/></li>
                             <li><img  src={slider2} alt="not found"/></li>
@@ -117,16 +121,19 @@ export const Home = () => {
                         </ul>
                     </div>}
                 </div>
-                {!gameByName.msg && !loading &&
-                <div className={`pag ${!menuOpen ? '' : 'closed'}`}>
-                    <Pagination games = {games.length} gamesPerPage = {gamesPerPage}/>
-                </div>}
+                <div className={`pagTop ${!menuOpen ? '' : 'closed'}`}>
+                    {!!menuOpen && <button className='butMenu' onClick={toggleMenu}>❯❯❯</button>}
+                    {!gameByName.msg && !loading &&
+                        <Pagination games={games.length} gamesPerPage={gamesPerPage} />
+                    }
+                    {!!menuOpen && <div className='centerPag'></div>}
+                </div>
             </div>
 
             {loading && <div className={`load-notF ${!menuOpen ? 'open' : 'closed'}`}><Loading/></div>}
             {notFound && <div className='load-notF'><NotFound/></div>}
-            {!loading && !!currentGames.length && !notFound &&
 
+            {!loading && !!currentGames.length && !notFound &&
             <div className='maincontainer'>
                 <div className={`cardsContain ${!menuOpen ? 'open' : 'closed'}`}>                           
                     {currentGames?.map(e => (
@@ -146,7 +153,14 @@ export const Home = () => {
                     ))}
                 </div>
             </div>
-            }                
+            }
+            <div className={`pagBott ${!menuOpen ? '' : 'closed'}`}>
+                {!!menuOpen && <button className='butMenu' onClick={toggleMenu}>❯❯❯</button>}
+                {!gameByName.msg && !loading &&
+                    <Pagination games={games.length} gamesPerPage={gamesPerPage} />
+                }
+                {!!menuOpen && <div className='centerPag'></div>}
+            </div>           
             <div className='footer'>
                 <CreatedBy/>
             </div>

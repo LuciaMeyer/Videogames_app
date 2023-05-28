@@ -61,7 +61,6 @@
 .topbar {
     display: flex;
     margin-left: 20%;
-    height: 25vh;
     background-color: rgba(53, 48, 48, 0.281);
     transition: all 0.5s ease-out;
 }
@@ -69,48 +68,34 @@
 .topbar.closed  {
     margin-left: 0%;
     height: 25vh;
-}   
+} 
 
-.toggleMenu {
-    position: fixed;
-    margin-top: 1rem;
-    left: 19.96vw;
-    width: 1.3rem;
-    height: 9vh;
-    background-color: #918f8f;
-    box-shadow: rgb(56 54 54 / 98%) 3px 0px 5px 3px;
-    border-radius: 0 0.8rem 0.8rem 0 ;
-    transition: all 0.5s ease-out;
-    border: none;
-    z-index: 3;
-    transition: all 0.5s ease-out;
-}
-
-.toggleMenu.closed {
-    left: 0;
-}
-
-.toggleMenu:hover {
-    position: fixed;
-    margin-top: 1rem;
-    width: 2rem; 
-    font-size: 1.2rem;
-    color: rgb(255, 255, 255);
-    background: rgb(176, 78, 78);
-    transition: all 0.5s ease-out;
-    border: none;
-}
-
-.pag {
-    position: sticky;
-    top: 20rem;
+.pagTop {
+    display: flex;
+    align-items: center;
     list-style-type: none;
     margin-left: 20%;
+    padding-bottom: 0.5rem;
     background-color:rgba(53, 48, 48, 0.281); ;
     transition: all 0.5s ease-out;
 }
 
-.pag.closed  {
+.pagTop.closed  {
+    margin-left: 0%;
+    padding-top: 0.5rem;
+}
+
+.pagBott {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin-left: 20%;
+    padding-bottom: 0.5rem;
+    background-color:rgba(53, 48, 48, 0.6); ;
+    transition: all 0.5s ease-out;
+}
+
+.pagBott.closed  {
     margin-left: 0%;
 }
 
@@ -171,32 +156,25 @@
 }
 
 
-.slider-frame {
+.slider {
   width: 100%;
   height: auto;
   overflow: hidden;
 }
 
-.slider-frame.closed {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-
-.slider-frame ul {
+.slider ul {
   display: flex;
   padding: 0;
   width: 400%;
-  /* animation: slide 16s infinite alternate linear; */
   animation: slide 16s infinite alternate linear;
 }
 
-.slider-frame li {
+.slider li {
   list-style: none;
   width: 25%;
 }
 
-.slider-frame img {
+.slider img {
   width: 100%;
   height: 100%;
 }
@@ -246,12 +224,30 @@
 .sideBarCr{
     display: flex;
     align-items: flex-end;
+    height: 9%;
     padding: 1.7rem;
     justify-content: flex-end;   
 }
 
-/* RESPONSIVE */
-
-@media (max-width:1430px) {
-
+.butMenu {
+    height: 2rem;
+    letter-spacing: .2rem;
+    margin-left: 1rem;
+    border-color: #3b3a3a57;
+    cursor: pointer;
+    color: rgb(184, 183, 183);
+    background-color: transparent;
+    transition: all 0.5s ease-out;
 }
+
+.butMenu:hover {
+    background: rgb(43, 43, 43);
+    transition: all 0.5s ease-out;
+}
+
+.centerPag{
+    margin-right: 6rem;
+}
+
+
+/* RESPONSIVE */

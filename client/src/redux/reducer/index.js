@@ -99,7 +99,8 @@ export const reducer = (state = initialState, action) => {
                 platformsFilter: '',
                 typeFilter: '',
                 nameOrder:'',
-                ratingOrder: ''
+                ratingOrder: '',
+                released: ''
             }
         case RESET_PAGE:
             return {

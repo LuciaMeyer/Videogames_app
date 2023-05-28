@@ -7,16 +7,10 @@ export const Nav = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
+        const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const handleSelectChange = e => {
