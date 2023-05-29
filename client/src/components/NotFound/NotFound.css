@@ -1,5 +1,7 @@
 .imgnf {
-    height: 50vh;
-    width: 50vh;
-    margin-left: 50vw;
+    display: flex;
+    height: 40vh;
+    width: 40vh;
+    margin-left: auto;
+    margin-right: auto;
 }

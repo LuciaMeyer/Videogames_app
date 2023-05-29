@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeCurrentPage } from '../../redux/actions';
 import './Pagination.css'
 
-export const Pagination = ({ games, gamesPerPage }) => {
+export const Pagination = ({ games, gamesPerPage, menuOpen, toggleMenu, windowWidth }) => {
 
     const dispatch = useDispatch();
     let currentPage = useSelector(state => state.currentPage)
@@ -31,20 +31,28 @@ export const Pagination = ({ games, gamesPerPage }) => {
     };
 
     return (
-        <div className='containPag'>    
-            <ul className='pagul'>
-                <div className='pagli' onClick={handlPrev}>
-                    <span className='pagspan'>&#10094;</span>
-                </div>
-                {pageNumber?.map(num => 
-                    <li className={'pagli' + (currentPage === num ? ' active' : '')} key={num} onClick={() =>handlePage(num)}>
-                        <span className='pagspan'>{num}</span>
-                    </li>
-                )}
-                <div className='pagli' onClick={handlNext}>
-                    <span className='pagspan'>&#10095;</span>
-                </div>
-            </ul>
-        </div>
+        <>
+        {menuOpen && <button className='butMenu' onClick={toggleMenu}>❯❯❯</button>}
+            <div className='containPag'>    
+                <ul className='pagul'>
+                    <div className='pagli' onClick={handlPrev}>
+                        <span className='pagspan'>&#10094;</span>
+                    </div>
+                    {windowWidth > 900 ? pageNumber?.map( num =>
+                        <li className={'pagli' + (currentPage === num ? ' active' : '')} key={num} onClick={() =>handlePage(num)}>
+                            <span className='pagspan'>{num}</span>
+                        </li>
+                        ):( 
+                        <li className='pagli active'>
+                            <span className='pagspan'>{currentPage}</span>
+                        </li>                        
+                    )}
+                    <div className='pagli' onClick={handlNext}>
+                        <span className='pagspan'>&#10095;</span>
+                    </div>
+                </ul>
+            </div>
+        {menuOpen && <div className='centerPag'></div>}
+        </>
     )
 };

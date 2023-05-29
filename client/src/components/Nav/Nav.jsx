@@ -2,16 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink, useHistory  } from "react-router-dom";
 import './Nav.css';
 
-export const Nav = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+export const Nav = ({ windowWidth }) => {
+    
     const history = useHistory();
-
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
 
     const handleSelectChange = e => {
         if(e.target.value != '') history.push(e.target.value);

@@ -1,11 +1,11 @@
-/* .App {
-    text-align: center;
+.App {
+    /* text-align: center; */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 
-    scroll-behavior: smooth;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    /* scroll-behavior: smooth; */
+    /* -ms-overflow-style: none; */
+    /* scrollbar-width: none; */
   }
-   */
+  

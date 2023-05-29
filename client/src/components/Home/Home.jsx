@@ -37,8 +37,6 @@ export const Home = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
- 
-    
     // defino qué renderizar según los filtros
     let games = []  
     searchGame && !gameByName.msg ? games = [...gameByName] : games = [...allGames];
@@ -69,6 +67,7 @@ export const Home = () => {
         window.scrollTo(0, 0);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // escucho tamaño de pantalla 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
@@ -88,79 +87,116 @@ export const Home = () => {
 
     // defino notFound
     let notFound = false;
-    if(searchGame && gameByName.msg) notFound = true; // cambiar
+    if(searchGame && gameByName.msg) notFound = true;
     if(!games.length && useFilter) notFound = true;
     
-    
+
     return (
         <>
+            {/* SIDEBAR */}
             <div
                 className={windowWidth >= 900
                 ? `sidebar ${!menuOpen ? 'open' : 'closed'}`
                 : `sidebarCel ${!menuOpen ? 'open' : 'closed'}`}
                 >   
-                <Nav />
+                <Nav windowWidth={windowWidth}/>
                 <SearchBar games={games} loading={loading} notFound= {notFound}/>
                 <SetFilters toggleMenu={toggleMenu}/>  
                 {!loading && <Filters />}
-                {windowWidth >= 1030 &&
-                    <div className={loading ? 'sideBarCrL' : 'sideBarCr' }>
-                        <CreatedBy/>
-                    </div>
-                }  
-            </div>
- 
-            <div className='topbarContain'>
-                <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
-                    {<div className='slider'>
-                        <ul>
-                            <li><img  src={slider1} alt="not found"/></li>
-                            <li><img  src={slider2} alt="not found"/></li>
-                            <li><img  src={slider3} alt="not found"/></li>
-                            <li><img  src={slider4} alt="not found"/></li>
-                        </ul>
-                    </div>}
-                </div>
-                <div className={`pagTop ${!menuOpen ? '' : 'closed'}`}>
-                    {!!menuOpen && <button className='butMenu' onClick={toggleMenu}>❯❯❯</button>}
-                    {!gameByName.msg && !loading &&
-                        <Pagination games={games.length} gamesPerPage={gamesPerPage} />
-                    }
-                    {!!menuOpen && <div className='centerPag'></div>}
+                <div className={loading ? 'createdSBWithLoad' : 'createdSB' }>
+                    <CreatedBy/>
                 </div>
             </div>
 
-            {loading && <div className={`load-notF ${!menuOpen ? 'open' : 'closed'}`}><Loading/></div>}
-            {notFound && <div className='load-notF'><NotFound/></div>}
-
-            {!loading && !!currentGames.length && !notFound &&
-            <div className='maincontainer'>
-                <div className={`cardsContain ${!menuOpen ? 'open' : 'closed'}`}>                           
-                    {currentGames?.map(e => (
-                        <div key={e.id} className={`card ${!menuOpen ? 'open' : 'closed'}`}>
-                            <Link to={'/game/' + e.id }>
-                                <Card
-                                    key= {e.id}
-                                    name={e.name}
-                                    img={e.img}
-                                    rating={e.rating}
-                                    genres={e.genres}
-                                    platforms={e.platforms}
-                                    released= {e.released}
-                                />
-                            </Link>
-                        </div>                           
-                    ))}
-                </div>
+            {/* TOPBAR */}
+            <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
+                <div className='slider'>
+                    <ul>
+                        <li><img  src={slider1} alt="not found"/></li>
+                        <li><img  src={slider2} alt="not found"/></li>
+                        <li><img  src={slider3} alt="not found"/></li>
+                        <li><img  src={slider4} alt="not found"/></li>
+                    </ul>
+                </div>                  
             </div>
+
+            {/* PAGINATION-TOP   */}
+            <div className={`pagTop ${!menuOpen ? '' : 'closed'}`}>
+                <Pagination
+                    games={games.length}
+                    gamesPerPage={gamesPerPage}
+                    menuOpen={menuOpen}
+                    toggleMenu={toggleMenu}
+                    windowWidth={windowWidth}
+                />
+            </div>
+            
+            {/* LOADING */}
+            {loading &&
+                <div className={`load-notF${
+                    !menuOpen && windowWidth > 900 ? '' :
+                    menuOpen && windowWidth > 900 ? ' closed' :
+                    !menuOpen && windowWidth <= 900 ? 'none' : 
+                    menuOpen && windowWidth <= 900 && ' closed'               
+                }`}>
+                   <Loading/>
+                </div>
             }
+
+            {/* NOTFOUND */}
+            {notFound &&
+                // <div className='load-notF'>
+                //     <NotFound/>
+                // </div>
+                <div className={`load-notF${
+                    !menuOpen && windowWidth > 900 ? '' :
+                    menuOpen && windowWidth > 900 ? ' closed' :
+                    !menuOpen && windowWidth <= 900 ? 'none' : 
+                    menuOpen && windowWidth <= 900 && ' closed'               
+                }`}>
+                    <NotFound/>
+                </div>
+            }
+            
+            {/* CARDS */}
+            {!loading && !!currentGames.length && !notFound &&        
+                <div className={
+                    menuOpen && windowWidth < 900 ? 'maincontainer' :
+                    !menuOpen && windowWidth < 900 ? 'maincontainernone' :
+                    windowWidth >= 900 && 'maincontainer' 
+                }>
+                    <div className={`cardsContain ${!menuOpen ? '' : 'closed'}`}>                           
+                        {currentGames?.map(e => (
+                            <div key={e.id} className={`card ${!menuOpen ? '' : 'closed'}`}>
+                                <Link to={'/game/' + e.id }>
+                                    <Card
+                                        key= {e.id}
+                                        name={e.name}
+                                        img={e.img}
+                                        rating={e.rating}
+                                        genres={e.genres}
+                                        platforms={e.platforms}
+                                        released= {e.released}
+                                    />
+                                </Link>
+                            </div>                           
+                        ))}
+                    </div>
+                </div>
+            }
+            
+            {/* PAGINATION-BOTTOM */}
             <div className={`pagBott ${!menuOpen ? '' : 'closed'}`}>
-                {!!menuOpen && <button className='butMenu' onClick={toggleMenu}>❯❯❯</button>}
-                {!gameByName.msg && !loading &&
-                    <Pagination games={games.length} gamesPerPage={gamesPerPage} />
-                }
-                {!!menuOpen && <div className='centerPag'></div>}
-            </div>           
+                <Pagination
+                        games={games.length}
+                        gamesPerPage={gamesPerPage}
+                        menuOpen={menuOpen}
+                        toggleMenu={toggleMenu}
+                        windowWidth={windowWidth}
+                />
+            </div>
+
+            {/* FOOTER */}
             <div className='footer'>
                 <CreatedBy/>
             </div>
