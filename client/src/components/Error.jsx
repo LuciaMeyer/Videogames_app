@@ -1,7 +1,15 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom'
 
 
 export const Error = () => {
+    
+    const history = useHistory();
+
+
+    useEffect(() => {
+        history.push('/home');
+    },[])
 
     return (
         <div >

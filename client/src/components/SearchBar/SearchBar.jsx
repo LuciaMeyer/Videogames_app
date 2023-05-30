@@ -61,7 +61,6 @@ export const SearchBar = ({ games, loading, notFound }) => {
                 <button type='submit' className={!!disabled ? 'inSubDes' : 'inSub'}>
                     <img src={lupa} alt='Lupa' className='lupa-icon' />
                 </button>
-                {/* <input className={!!disabled ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' /> */}
             </div>
             <div className='results'>
                 { loading
