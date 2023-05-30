@@ -4,7 +4,7 @@ import './Filter.css'
 
 
 
-export const Filters = () => {
+export const Filters = ({ notFound }) => {
 
     const dispatch = useDispatch()
     const genres = useSelector(state => state.genres);
@@ -66,10 +66,13 @@ export const Filters = () => {
         window.scrollTo(0, 0);
     };
 
+    let disabled  = false
+    if(notFound) disabled = true
+
     return (
         <div className="filcontainer">
             <h5 className="h5">❱❱❱ filter by:</h5>
-            <select className="select" value= {genresFilter} onChange={handleGenreFilter}>S
+            <select disabled={disabled} className="select" value= {genresFilter} onChange={handleGenreFilter}>S
                 <option value= '' disabled>Genre</option>
                 <option value='All Genres'>All Genres</option>
                 {
@@ -78,7 +81,7 @@ export const Filters = () => {
                     ))
                 }
             </select>
-            <select className="select" value= {platformsFilter} onChange={handlePaltformsFilter}>
+            <select disabled={disabled} className="select" value= {platformsFilter} onChange={handlePaltformsFilter}>
                 <option value= '' disabled>Platforms</option>
                 <option value='All Platforms'>All Platforms</option>
                 {
@@ -87,24 +90,24 @@ export const Filters = () => {
                     ))
                 }
             </select>
-            <select className="select" value= {typeFilter} onChange={handleTypeFilter}>
+            <select disabled={disabled} className="select" value= {typeFilter} onChange={handleTypeFilter}>
                 <option value= '' disabled>Type</option>
                 <option value= 'All Types'>All Types</option>
                 <option value= 'Created'>Created</option>
                 <option value= 'Existing'>Existing</option>
             </select>
             <h5 className="h5">❱❱❱ order by:</h5>
-            <select className="select" value= {nameOrder} onChange={handleNameOrder}>
+            <select disabled={disabled} className="select" value= {nameOrder} onChange={handleNameOrder}>
                 <option value= '' disabled>Name</option>
                 <option value= 'A - Z'>A - Z</option>
                 <option value= 'Z - A'>Z - A</option>
             </select>
-            <select className="select" value= {ratingOrder} onChange={handleRatingOrder}>
+            <select disabled={disabled} className="select" value= {ratingOrder} onChange={handleRatingOrder}>
                 <option value= '' disabled>Rating</option>
                 <option value= 'Best Rating'>Best Rating</option>
                 <option value= 'Worst Rating'>Worst Rating</option>
             </select>          
-            <select className="select" value= {released} onChange={handleReleasedOrder}>
+            <select disabled={disabled} className="select" value= {released} onChange={handleReleasedOrder}>
                 <option value= '' disabled>Released</option>
                 <option value= 'The newest'>The newest</option>
                 <option value= 'The oldest'>The oldest</option>

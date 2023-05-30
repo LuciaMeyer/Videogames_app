@@ -59,6 +59,16 @@ export const Home = () => {
     const indexFirstGame = indexLastGame - gamesPerPage;
     const currentGames = games.slice(indexFirstGame, indexLastGame);
 
+    // defino loading
+    let loading = false  
+    if ( !games.length && !useFilter && !searchGame) loading = true;
+    if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
+
+    // defino notFound
+    let notFound = false;
+    if(searchGame && gameByName.msg) notFound = true;
+    if(!games.length && useFilter) notFound = true;
+
     // me traigo info del back en primer renderizado   
     useEffect(() => {
         if(!games.length ) dispatch(getGames())
@@ -74,21 +84,20 @@ export const Home = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    useEffect(()=> { // para que solo se actualice al cambiar la búsqueda
+        if(!!gameByName.length &&  windowWidth <= 900 && !menuOpen) toggleMenu()
+    },[gameByName.length]) // eslint-disable-line react-hooks/exhaustive-deps
+   
+
+    useEffect(()=> { // para que solo se actualice al cambiar el notFound
+        if(!!notFound &&  windowWidth <= 900 && !menuOpen) toggleMenu()
+    },[notFound]) // eslint-disable-line react-hooks/exhaustive-deps
+
     // menú desplegable 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
         window.scrollTo(0, 0);
     };
-
-    // defino loading
-    let loading = false  
-    if ( !games.length && !useFilter && !searchGame) loading = true;
-    if ( searchGame && !gameByName.msg && !gameByName.length ) loading = true;
-
-    // defino notFound
-    let notFound = false;
-    if(searchGame && gameByName.msg) notFound = true;
-    if(!games.length && useFilter) notFound = true;
     
 
     return (
@@ -98,7 +107,7 @@ export const Home = () => {
                 <Nav windowWidth={windowWidth}/>
                 <SearchBar games={games} loading={loading} notFound= {notFound}/>
                 <SetFilters toggleMenu={toggleMenu}/>  
-                {!loading && <Filters />}
+                {!loading && <Filters notFound={notFound}/>}
                 <div className={loading ? 'creatLoad' : 'creat' }>
                     <CreatedBy/>
                 </div>
@@ -153,7 +162,7 @@ export const Home = () => {
             
             {/* CARDS */}
             {!loading && !!currentGames.length && !notFound &&        
-                <div className={`maincontainer${!menuOpen && windowWidth < 900 ? ' none' : ''}`}>
+                <div className={`maincontainer${!menuOpen && windowWidth <= 900 ? ' none' : ''}`}>
                     <div className={`cardsContain ${!menuOpen ? '' : 'closed'}`}>                           
                         {currentGames?.map(e => (
                             <div key={e.id} className={`card ${!menuOpen ? '' : 'closed'}`}>

@@ -8,6 +8,7 @@
 }
 
 .navbut {
+    color: rgb(206, 205, 205);
     text-decoration: none;
     border-bottom: 1px solid rgb(176, 78, 78);
     text-transform: uppercase;
@@ -21,13 +22,16 @@
 }
 
 .selectNav {
-    color: rgba(255, 251, 251, 0.473);
+    color: rgb(206, 205, 205);
     border: none;
     padding: 0rem 0.4rem;
     background: transparent;
+    font-weight: 700;
     font-size: .7rem;
     height: 1.3rem;
     width: 100vw;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 .selectNav > option {

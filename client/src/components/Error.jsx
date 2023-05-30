@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { Loading } from './Loading/Loading'
 
 
 export const Error = () => {
@@ -9,13 +10,16 @@ export const Error = () => {
 
     useEffect(() => {
         history.push('/home');
-    },[])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div >
-            <Link to='/home'>
-                    <button type='button'>RETURN TO HOME</button>
-            </Link>
+        <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh'
+        }}>
+            <Loading />
         </div>
     );
 }

@@ -21,7 +21,7 @@ export function Card({ name, img, rating, genres, platforms, released }) {
                     <div className='detail'>
                         <h4 className='card2'>›› GENRE: <span className='card3'>{genres.join(' ・ ')}</span></h4>
                         <h4 className='card2'>›› PLATFORMS: <span className='card3'>{platforms.join(' ・ ')}</span></h4>
-                        {/* <h4 className='card2'>›› RELEASED: <span className='card3'>{released.split('-').reverse().join('-')}</span></h4> */}
+                        <h4 className='card2'>›› RELEASED: <span className='card3'>{released?.split('-').reverse().join('-')}</span></h4>
                     </div>
                 </div>
             </div>

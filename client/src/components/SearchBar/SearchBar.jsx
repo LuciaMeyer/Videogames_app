@@ -13,13 +13,11 @@ export const SearchBar = ({ games, loading, notFound }) => {
     const nameOrder = useSelector(state => state.nameOrder);
     const ratingOrder = useSelector(state => state.ratingOrder);
     const gameByName = useSelector(state => state.gameByName);
-    const released = useSelector(state => state.released)
-
-
-
+    const released = useSelector(state => state.released);
     const [input, setInput] = useState('');
     const [button, setButton] = useState('');
 
+        
     const handleInputChange = e => {
         setInput(e.target.value);
         setButton(e.target.value);
@@ -40,15 +38,15 @@ export const SearchBar = ({ games, loading, notFound }) => {
         if(input) { // sino despacharia la accion de busqueda sin valor
             dispatch(getGameByName(input));
             dispatch(changeSearchGame(true));
-            cleanFilters()
+            cleanFilters();
         }
     };
 
-    let disabled = false
-    if (!!loading || !!notFound) disabled = true
+    let disabled = false;
+    if (!!loading || !!notFound || gameByName.length) disabled = true;
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>        
             <div className='serchBar' >
                 <input className='inText'
                     type='text'
@@ -61,7 +59,7 @@ export const SearchBar = ({ games, loading, notFound }) => {
                 <button type='submit' className={!!disabled ? 'inSubDes' : 'inSub'}>
                     <img src={lupa} alt='Lupa' className='lupa-icon' />
                 </button>
-            </div>
+            </div>          
             <div className='results'>
                 { loading
                     ? <span className='searchSpan'>✓ looking for results...</span>                   

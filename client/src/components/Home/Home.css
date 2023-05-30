@@ -236,4 +236,34 @@ height: 100%;
     .sidebar.closed {
         transform: translateX(-100%);
     }
+
+    .topbar.closed  {
+        margin-left: 0%;
+        height: 16vh;
+    }
+
+    .slider ul {
+        display: flex;
+        margin: 1rem 0 0 0;
+        padding: 0;
+        width: 800%;
+        animation: slide 16s infinite alternate linear;
+    }
+
+    .maincontainer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .cardsContain.closed,
+    .cardsContain {
+        display: flex
+    }
+
+    .card.closed,
+    .card {
+        border-radius: 0.5rem;
+        overflow: hidden;
+        margin: 0 2rem 1rem 2rem
+    }
 }
