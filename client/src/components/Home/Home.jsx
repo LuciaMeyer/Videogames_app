@@ -94,16 +94,12 @@ export const Home = () => {
     return (
         <>
             {/* SIDEBAR */}
-            <div
-                className={windowWidth >= 900
-                ? `sidebar ${!menuOpen ? 'open' : 'closed'}`
-                : `sidebarCel ${!menuOpen ? 'open' : 'closed'}`}
-                >   
+            <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
                 <Nav windowWidth={windowWidth}/>
                 <SearchBar games={games} loading={loading} notFound= {notFound}/>
                 <SetFilters toggleMenu={toggleMenu}/>  
                 {!loading && <Filters />}
-                <div className={loading ? 'createdSBWithLoad' : 'createdSB' }>
+                <div className={loading ? 'creatLoad' : 'creat' }>
                     <CreatedBy/>
                 </div>
             </div>
@@ -145,9 +141,6 @@ export const Home = () => {
 
             {/* NOTFOUND */}
             {notFound &&
-                // <div className='load-notF'>
-                //     <NotFound/>
-                // </div>
                 <div className={`load-notF${
                     !menuOpen && windowWidth > 900 ? '' :
                     menuOpen && windowWidth > 900 ? ' closed' :
@@ -160,11 +153,7 @@ export const Home = () => {
             
             {/* CARDS */}
             {!loading && !!currentGames.length && !notFound &&        
-                <div className={
-                    menuOpen && windowWidth < 900 ? 'maincontainer' :
-                    !menuOpen && windowWidth < 900 ? 'maincontainernone' :
-                    windowWidth >= 900 && 'maincontainer' 
-                }>
+                <div className={`maincontainer${!menuOpen && windowWidth < 900 ? ' none' : ''}`}>
                     <div className={`cardsContain ${!menuOpen ? '' : 'closed'}`}>                           
                         {currentGames?.map(e => (
                             <div key={e.id} className={`card ${!menuOpen ? '' : 'closed'}`}>
@@ -197,7 +186,7 @@ export const Home = () => {
             </div>
 
             {/* FOOTER */}
-            <div className='footer'>
+            <div className={`footer ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''}`}>
                 <CreatedBy/>
             </div>
         </>

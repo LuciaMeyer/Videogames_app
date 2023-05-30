@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameByName, changeGenresFilter, changeNameOrder, changePlatformsFilter, changeRatingOrder, changeTypeFilter, changeSearchGame, changeReleased } from '../../redux/actions';
 import './SearchBar.css'
+import lupa from '../../img/lupa.svg'
 
 export const SearchBar = ({ games, loading, notFound }) => {
 
@@ -51,14 +52,16 @@ export const SearchBar = ({ games, loading, notFound }) => {
             <div className='serchBar' >
                 <input className='inText'
                     type='text'
-                    placeholder={!!button.length && !!gameByName.length ? 'Reset for a New Search' :  "Search Game"}
+                    placeholder={!!button.length && !!gameByName.length ? 'Reset for a New Search' :  'Search Game'}
                     onChange={handleInputChange}
                     value={input}
                     maxLength= '30'
                     disabled = {disabled}
                     />
-                <input className={!!disabled ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' />
-
+                <button type='submit' className={!!disabled ? 'inSubDes' : 'inSub'}>
+                    <img src={lupa} alt='Lupa' className='lupa-icon' />
+                </button>
+                {/* <input className={!!disabled ? 'inSubDes' : 'inSub'} type='submit' value='🔍︎' /> */}
             </div>
             <div className='results'>
                 { loading

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeGenresFilter, changeTypeFilter, changeNameOrder, changeRatingOrder, resetPage, changePlatformsFilter, changeUseFilter, changeReleased } from "../../redux/actions";
-import { CreatedBy } from "../CreatedBy/CreatedBy";
 import './Filter.css'
 
 
@@ -17,8 +16,6 @@ export const Filters = () => {
     const ratingOrder = useSelector(state => state.ratingOrder);
     const useFilter = useSelector(state => state.useFilter);
     const released = useSelector(state => state.released);
-    const linkedin = 'https://www.linkedin.com/in/luciameyer/'
-    const github = 'https://github.com/LuciaMeyer'
 
     const handleGenreFilter = e => {
         e.preventDefault()
