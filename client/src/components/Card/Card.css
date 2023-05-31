@@ -120,6 +120,112 @@
     font-style: italic
 }
 
+@media  (max-width:900px){
+    .rating {
+        display: flex;
+        width: 4vw;
+        margin-right: 0.2rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .star {
+        font-size: 1.7rem;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: rgb(233, 94, 94);
+    }
+    .numRating {
+        font-size: 1.2rem;
+        transform: rotate(-90deg);
+        color: rgb(179, 178, 178);
+    }
+    .imgCont {
+        display: flex;
+        justify-content: flex-start;
+        width: 40%;
+    }
+    .imgcard {
+        object-fit: initial;
+        width: 30vw;
+        box-shadow: rgba(66, 13, 13, 0.979) 0px 0px 50px 0px;
+    }
+    .name {
+        font-size: 1.2rem;
+        margin-left: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: rgb(230, 228, 228);
+        text-shadow: 2px 2px 4px rgb(209, 78, 78);
+    }
+    .card2 {
+        font-size: 1rem;
+        margin: 0;
+        color: rgb(212, 85, 85);
+        line-height: 1.2rem;
+    }
+    .card3 {
+        font-size: .8rem;
+        font-weight: 300;
+        color: rgb(179, 178, 178);
+        font-style: italic;
+    }
+}
+
+@media (max-width:500px){
+    .spanopen{
+        display: none;
+    }
+
+    .star {
+        font-size: 1.2rem;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: rgb(233, 94, 94);
+    }
+    .numRating {
+        font-size: .8rem;
+        transform: rotate(-90deg);
+        color: rgb(179, 178, 178);
+    }
+    .imgCont {
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+    }
+    .imgcard {
+        object-fit: initial;
+        width: 50vw;
+        box-shadow: rgba(66, 13, 13, 0.979) 0px 0px 50px 0px;
+
+    }
+    .name {
+        font-size: 0.9em;
+        margin-left: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: rgb(230, 228, 228);
+        text-shadow: 2px 2px 4px rgb(209, 78, 78);
+    }
+    .card2 {
+        font-size: .6rem;
+        margin: 0;
+        color: rgb(212, 85, 85);
+        line-height: 1.2rem;
+    }
+    .card3 {
+        font-size: .6rem;
+        font-weight: 300;
+        color: rgb(179, 178, 178);
+        font-style: italic;
+    }
+}
+
 
 
 

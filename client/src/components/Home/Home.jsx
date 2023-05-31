@@ -12,11 +12,12 @@ import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
 import { CreatedBy } from '../CreatedBy/CreatedBy'
-import  slider1  from '../../img/s1.png'
-import  slider2  from '../../img/s2.png'
-import  slider3  from '../../img/s3.png'
-import  slider4  from '../../img/s4.png'
+// import  slider1  from '../../img/s1.png'
+// import  slider2  from '../../img/s2.png'
+// import  slider3  from '../../img/s3.png'
+// import  slider4  from '../../img/s4.png'
 import './Home.css'
+import { TopBar } from '../TopBar/TopBar';
 
 export const Home = () => {
 
@@ -69,7 +70,13 @@ export const Home = () => {
     if(searchGame && gameByName.msg) notFound = true;
     if(!games.length && useFilter) notFound = true;
 
-    // me traigo info del back en primer renderizado   
+    // menú desplegable 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+        window.scrollTo(0, 0);
+    };
+
+    // info del back   
     useEffect(() => {
         if(!games.length ) dispatch(getGames())
         if(!genres.length) dispatch(getGenres())         
@@ -84,21 +91,17 @@ export const Home = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    useEffect(()=> { // para que solo se actualice al cambiar la búsqueda
+    // se ejecuta la fn solo al al cambiar la búsqueda
+    useEffect(()=> { 
         if(!!gameByName.length &&  windowWidth <= 900 && !menuOpen) toggleMenu()
     },[gameByName.length]) // eslint-disable-line react-hooks/exhaustive-deps
    
-
-    useEffect(()=> { // para que solo se actualice al cambiar el notFound
+    // se ejecuta la fn solo al cambiar el notFound
+    useEffect(()=> { 
         if(!!notFound &&  windowWidth <= 900 && !menuOpen) toggleMenu()
     },[notFound]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    // menú desplegable 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-        window.scrollTo(0, 0);
-    };
-    
+
 
     return (
         <>
@@ -115,14 +118,7 @@ export const Home = () => {
 
             {/* TOPBAR */}
             <div className={`topbar ${!menuOpen ? '' : 'closed'}`}>
-                <div className='slider'>
-                    <ul>
-                        <li><img  src={slider1} alt="not found"/></li>
-                        <li><img  src={slider2} alt="not found"/></li>
-                        <li><img  src={slider3} alt="not found"/></li>
-                        <li><img  src={slider4} alt="not found"/></li>
-                    </ul>
-                </div>                  
+                <TopBar/>
             </div>
 
             {/* PAGINATION-TOP   */}

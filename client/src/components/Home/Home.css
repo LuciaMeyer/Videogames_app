@@ -60,32 +60,7 @@
 .topbar.closed  {
     margin-left: 0%;
     height: 26vh;
-    /* 16 para cel */
 } 
-
-.slider {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-  
-.slider ul {
-display: flex;
-margin: 1rem 0 0 0;
-padding: 0;
-width: 400%;
-animation: slide 16s infinite alternate linear;
-}
-
-.slider li {
-list-style: none;
-width: 25%;
-}
-
-.slider img {
-width: 100%;
-height: 100%;
-}
   
 @keyframes slide {
     0% { transform: translateX(0%); }
@@ -155,7 +130,6 @@ height: 100%;
     grid-column-gap: 0.5rem;
     justify-content: center;
     width: 100%;
-    /* margin: 1.5rem auto 5%; */
     margin-top: 2rem;
 }
 
@@ -203,7 +177,6 @@ height: 100%;
     align-items: flex-end;
     background: rgb(53, 48, 48);
     height: 12rem;
-    padding-right: 1.7rem;
     justify-content: flex-end;
 }
 
@@ -212,12 +185,11 @@ height: 100%;
     align-items: flex-end;
     background: rgb(53, 48, 48);
     height: 12rem;
-    padding-right: 1.7rem;
     justify-content: center;
 }
-/* RESPONSIVE */
 
-@media (max-width:900px) {
+/* RESPONSIVE */
+@media  (max-width:900px){
     .sidebar {
         position: absolute;
         height: 100%;
@@ -229,41 +201,59 @@ height: 100%;
         overflow-y:scroll;
     }
     
-    .sidebar.open {
-        transform: translateX(0);
-    }
-      
-    .sidebar.closed {
-        transform: translateX(-100%);
-    }
-
     .topbar.closed  {
         margin-left: 0%;
         height: 16vh;
     }
 
-    .slider ul {
-        display: flex;
-        margin: 1rem 0 0 0;
-        padding: 0;
-        width: 800%;
-        animation: slide 16s infinite alternate linear;
-    }
-
-    .maincontainer {
+    .cardsContain.closed,
+    .cardsContain {
         display: flex;
         justify-content: center;
+        align-items: center;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    .card.closed:nth-child(even)  {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card.closed:nth-child(odd) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width:500px) {
+    .sidebar {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgb(53, 48, 48);
+        z-index: 2;
+        box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
+        transition: all 0.5s ease-out;
+        overflow-y:scroll;
     }
 
     .cardsContain.closed,
     .cardsContain {
-        display: flex
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+    }
+    
+    .card.closed:nth-child(even)  {
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .card.closed,
-    .card {
-        border-radius: 0.5rem;
-        overflow: hidden;
-        margin: 0 2rem 1rem 2rem
+    .card.closed:nth-child(odd) {
+        margin-left: auto;
+        margin-right: auto;
     }
 }

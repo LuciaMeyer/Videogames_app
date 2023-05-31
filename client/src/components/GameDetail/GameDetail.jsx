@@ -7,6 +7,7 @@ import { NotFound } from '../NotFound/NotFound'
 import { Loading } from '../Loading/Loading'
 import { deleteGame } from '../../helpers/deleteGame';
 import { Nav } from '../Nav/Nav';
+import { TopBar } from '../TopBar/TopBar';
 import './GameDetail.css'
 
 export const GameDetail = (props) => {
@@ -14,9 +15,9 @@ export const GameDetail = (props) => {
     const dispatch = useDispatch();
     const history = useHistory()
     const gameDetail = useSelector(state => state.gameDetail)
-
     const id = props.match.params.id
     const idDb = id.length === 36
+
     
     useEffect(()=> {
         dispatch(getGameDetail(id))
@@ -41,15 +42,19 @@ export const GameDetail = (props) => {
         return {__html: gameDetail?.description};
     }
 
+    const windowWidth = 1180
+
     let loading = false
     if (!Object.keys(gameDetail).length) loading = true;
-
     if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>)
     
     return (
-        <div className='condet1'>
-            <div className='imgback'><img  alt='' /></div>
-            <div className='contdet2 '><Nav /></div>
+        <div>
+            <TopBar/>
+            <div className='NavGD'><div className='NavGD_ '><Nav windowWidth={windowWidth}/>  </div></div>
+                     
+            {/* <div className='NavGD'></div> */}
+            
             { loading ? <Loading /> :
             <div className='contdet3'>
                 <div className='contdet4'>
@@ -86,6 +91,8 @@ export const GameDetail = (props) => {
                 </div>
             </div>
             }
+
+            {/* JUEGO DE LA DB */}
             {idDb && 
                 <div className='detbutcont'>
                     <Link to={`/game/${id}/update`}>
@@ -94,8 +101,7 @@ export const GameDetail = (props) => {
                     <button className='detbut1' type="button" onClick={handleDelete}>Delete</button>
                 </div>
             }
-            <div className='slidesdet'></div>
-            <div className='pagdet'></div>
+
         </div>                  
     )
 };
