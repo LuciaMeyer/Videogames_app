@@ -33,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50vw;
+    width: 48vw;
     margin: 3rem auto 0 auto;
     padding: 1rem 1rem 0 1rem;
     overflow: hidden;
@@ -49,7 +49,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 50vw;
+    width: 48vw;
     margin: 0 auto 0 auto;
     padding: 0 1rem 1rem 1rem;
     overflow: hidden;
@@ -72,20 +72,83 @@
     border: 0.2rem solid rgba(255, 255, 255, 0.603);
     border-radius: 0.5rem;
 }
+.contBuGD {
+    display: flex;
+    width: 100%; 
+    text-align: left;
+}
+
+.contButEditGD{
+    margin-left: auto;
+}
+
+.butBack {
+    margin-right: 2rem;
+    font-size: .7rem;
+    height: 2rem;
+    padding: 0rem 0.8rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    color: rgb(184, 183, 183);
+    background-color: transparent;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+}
+
+.butGD {
+    font-size: .7rem;
+    height: 2rem;
+    padding: 0rem 0.8rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    color: rgb(184, 183, 183);
+    background-color: transparent;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+}
+
+.butDeleteGD {
+    font-size: .7rem;
+    margin-left: 1rem;
+    height: 2rem;
+    padding: 0rem 0.8rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    color: rgb(184, 183, 183);
+    background-color: transparent;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+}
+
+.butGD:hover,
+.butDeleteGD:hover,
+.butBack:hover {
+    background-color: transparent;
+    color: rgb(243, 156, 156);
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 10px 0px;
+    border-color: rgb(176, 78, 78);
+    list-style: none;
+    transition: all 0.5s ease-out;
+}
 
 .nameGD {
     font-size: 2rem;
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
     color: rgb(230, 228, 228);
     text-shadow: 2px 2px 4px rgb(209, 78, 78);
     margin: 0;
+    text-align: center;
 }
 
 .ratingGD {
+    margin-left: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 0.5rem;
 }
+
 .starGD {
     font-size: 2rem;
     margin: 0;
@@ -94,6 +157,7 @@
     justify-content: center;
     align-items: center;
     color: rgb(199, 78, 78);
+    height: 2rem;
 }
 
 .numRatingGD {
@@ -108,28 +172,35 @@
 .imgGD {
     padding: .5rem;
     object-fit: cover;
-    width: 50vw;
-    height: 50vh;    
+    width: 48vw;
+    height: auto;
 }
 
-.contH4Span {
+.contDetSpan {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contTextSpan {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .h4GD {
     margin: 0;
-    padding-top: 1rem;
+    padding-top: .5rem;
     padding-bottom: .5rem;
-    padding-right: 1rem;
+    text-align: center;
     font-size: 1.2rem;
     color: rgb(199, 78, 78);
     line-height: 1.2rem;
 }
 
-.spanGD {
+.detGD {
     margin: 0;
-    padding-top: 1rem;
+    text-align: center;
     font-size: 1rem;
     font-weight: 300;
     color: rgb(202, 201, 201);
@@ -148,18 +219,23 @@
     text-align: justify;
 }
 
+.lineGD{
+    height: .1rem;
+    color: white;
+    background-image: linear-gradient(to right, transparent, rgba(202, 201, 201, 0.425), transparent);
+}
+
 .footerGD {
     display: flex;
     align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: center;
     background: rgb(53, 48, 48);
     height: 12rem;
     margin-top: 5rem;
-    justify-content: flex-end;
 }
 
 
-@media  (max-width:900px){
+@media  (max-width:900px) {
     .topbarGD {
         height: 16vh;
     }
@@ -174,3 +250,19 @@
         width: 80vw;
     }
 }
+
+@media  (max-width:500px) {
+    .nameGD {
+        font-size: 1.2rem;
+    }
+    .h4GD {
+        font-size: .8rem;
+    }
+    .detGD {
+        font-size: .7rem;
+    }
+    .textGD{
+        height: 30vh;
+    }
+}
+

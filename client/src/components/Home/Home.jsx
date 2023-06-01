@@ -12,10 +12,6 @@ import { Filters } from '../Filters/Filters';
 import { Nav } from '../Nav/Nav';
 import { SetFilters } from "../SetFilters/SetFilters";
 import { CreatedBy } from '../CreatedBy/CreatedBy'
-// import  slider1  from '../../img/s1.png'
-// import  slider2  from '../../img/s2.png'
-// import  slider3  from '../../img/s3.png'
-// import  slider4  from '../../img/s4.png'
 import './Home.css'
 import { TopBar } from '../TopBar/TopBar';
 
@@ -82,6 +78,7 @@ export const Home = () => {
         if(!genres.length) dispatch(getGenres())         
         if(!platforms.length) dispatch(getPlatforms())
         window.scrollTo(0, 0);
+        if(windowWidth <= 900 && !menuOpen) toggleMenu()
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // escucho tamaño de pantalla 
@@ -154,14 +151,29 @@ export const Home = () => {
                     !menuOpen && windowWidth <= 900 ? 'none' : 
                     menuOpen && windowWidth <= 900 && ' closed'               
                 }`}>
+
+                <div className={`maincontainer${
+                    games.length === 1 && ' one' ? ' one' :
+                    !menuOpen && windowWidth <= 900 ? ' none' : ''
+              
+                }`}></div>
+
+
+
                     <NotFound/>
                 </div>
             }
             
             {/* CARDS */}
             {!loading && !!currentGames.length && !notFound &&        
-                <div className={`maincontainer${!menuOpen && windowWidth <= 900 ? ' none' : ''}`}>
-                    <div className={`cardsContain ${!menuOpen ? '' : 'closed'}`}>                           
+                <div className={`maincontainer${
+                    games.length === 1 ? ' one' :
+                    !menuOpen && windowWidth <= 900 ? ' none' : ''
+                }`}>
+                    <div className={`cardsContain${
+                        menuOpen && games.length === 1 ? ' closedOne' :
+                        !menuOpen ? '' : ' closed'
+                    }`}>                           
                         {currentGames?.map(e => (
                             <div key={e.id} className={`card ${!menuOpen ? '' : 'closed'}`}>
                                 <Link to={'/game/' + e.id }>
@@ -193,7 +205,9 @@ export const Home = () => {
             </div>
 
             {/* FOOTER */}
-            <div className={`footer ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''}`}>
+            <div className={`footer
+                ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''
+                }`}>
                 <CreatedBy/>
             </div>
         </>

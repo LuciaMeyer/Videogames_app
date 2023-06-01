@@ -17,20 +17,21 @@ export const GameDetail = (props) => {
     const dispatch = useDispatch();
     const history = useHistory()
     const gameDetail = useSelector(state => state.gameDetail)
+    const windowWidth = 1180
     const id = props.match.params.id
     const idDb = id.length === 36
 
     
     useEffect(()=> {
         dispatch(getGameDetail(id))
+        window.scrollTo(0, 0);
         return () => { 
             dispatch(cleanGameDetail({}))
         }
     }, [dispatch, id]);
 
     const handleUpdate = () => {
-        dispatch(gameUpdate(gameDetail));
-        
+        dispatch(gameUpdate(gameDetail));        
     };
 
     const handleDelete = () => {
@@ -42,9 +43,7 @@ export const GameDetail = (props) => {
 
     const modifyDescription = () => {
         return {__html: gameDetail?.description};
-    }
-
-    const windowWidth = 1180
+    };
 
     let loading = false
     if (!Object.keys(gameDetail).length) loading = true;
@@ -52,86 +51,84 @@ export const GameDetail = (props) => {
     
     return (
         <>
-            <div>
-                <div className='topbarGD'>
-                    <TopBar/>
-                </div>
+            <div className='topbarGD'>
+                <TopBar/>
+            </div>
 
-                <div className='NavGD'>
-                    <div className='NavGD_ '>
-                        <Nav windowWidth={windowWidth}/>
-                    </div>
+            <div className='NavGD'>
+                <div className='NavGD_ '>
+                    <Nav windowWidth={windowWidth}/>
                 </div>
-                            
-                { loading ? <div className='loadGD'><Loading /></div> :
-                <>
-                    <div className='conteinerGD'>
-                        {gameDetail.rating &&
+            </div>
+                        
+            { loading ? <div className='loadGD'><Loading /></div> : <>
+                <div className='conteinerGD'>
+
+                    <div className='contBuGD'>
+                        <button className='butBack' onClick={()=>window.history.go(-1)}>BACK</button>
+                        {!!gameDetail.rating &&
                             <div className='ratingGD'> 
                                 <span className="starGD">&#9733;</span>
                                 <h3 className='numRatingGD'>{gameDetail.rating}</h3>
                             </div>
                         }
-                        <h2 className='nameGD'>{gameDetail?.name}</h2> 
-                        <img className='imgGD' src={gameDetail?.img} alt={gameDetail?.name} />
-                    </div>
-
-                    <div className='conteinerGD_'>
-
-                        {gameDetail.released &&
-                            <div className='contH4Span'>
-                                <h4 className='h4GD'>›› RELEASED:</h4>
-                                <span className='spanGD'>{gameDetail.released}</span>
+                        {idDb &&  
+                            <div className='contButEditGD'>
+                                <Link to={`/game/${id}/update`}>
+                                    <button className='butGD' type="button" onClick={handleUpdate}>EDIT</button>
+                                </Link>
+                                <button className='butDeleteGD' type="button" onClick={handleDelete}>X</button>
                             </div>
                         }
-                        
-                        <div className='contH4Span'>
-                            <h4 className='h4GD'>›› GENRES:</h4>
-                                {gameDetail.genres?.map((g, i) => 
-                                    <>
-                                        {typeof gameDetail.genres[0] === 'string' ?
-                                            <span className='spanGD' key={i}>
-                                                {g}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
-                                            </span>
-                                            :
-                                            <span className='spanGD' key={i}>
-                                                {g.name}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
-                                            </span>
-                                        }
+                    </div>
+                    <h2 className='nameGD'>{gameDetail?.name}</h2> 
+                    <img className='imgGD' src={gameDetail?.img} alt={gameDetail?.name} />
+                </div>
 
-                                    </>
-                                )}
+                <div className='conteinerGD_'>
+                    {gameDetail.released &&
+                        <div className='contDetSpan'>
+                            <h4 className='h4GD'>›› RELEASED ‹‹</h4>
+                            <h4 className='detGD'>{gameDetail.released?.split('-').reverse().join('-')}</h4>
                         </div>
+                    }
+                    
+                    <div className='contDetSpan'>
+                        <h4 className='h4GD'>›› GENRES ‹‹</h4>
+                            {gameDetail.genres?.map((g, i) => 
+                                <>
+                                    {typeof gameDetail.genres[0] === 'string' ?
+                                        <span className='detGD' key={i}>
+                                            {g}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
+                                        </span>
+                                        :
+                                        <span className='detGD' key={i}>
+                                            {g.name}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
+                                        </span>
+                                    }
 
-                        <div >
-                            <h4 className='h4GD'>›› PLATFORMS:</h4>                  
-                                {gameDetail.platforms?.map((p, i) => 
-                                    <span className='spanGD' key={i}>
-                                        {p}{i < gameDetail.platforms.length - 1 && ' -'}&nbsp;
-                                    </span>
-                                )}
-                        </div>
+                                </>
+                            )}
+                    </div>
+
+                    <div className='contDetSpan'>
+                        <h4 className='h4GD'>›› PLATFORMS ‹‹</h4>                  
+                            {gameDetail.platforms?.map((p, i) => 
+                                <span className='detGD' key={i}>
+                                    {p}{i < gameDetail.platforms.length - 1 && ' -'}&nbsp;
+                                </span>
+                            )}
+                    </div>
+                    <div className='contTextSpan'>
                         <h3 className='h4GD'>›› DESCRIPTION</h3>
+                        <span className='lineGD'></span>
                         <span className='textGD'dangerouslySetInnerHTML={modifyDescription()}></span>
                     </div>
-                </>
-            }
-
-            {/* JUEGO DE LA DB */}
-            {/* {idDb && 
-                <div className='detbutcont'>
-                    <Link to={`/game/${id}/update`}>
-                    <button className='detbut' type="button" onClick={handleUpdate}>Update</button>
-                    </Link>
-                    <button className='detbut1' type="button" onClick={handleDelete}>Delete</button>
                 </div>
-            } */}
-
-        </div>
-        <div className='footerGD'>
-                <CreatedBy/>
-        </div>   
-
+            </>}
+            <div className='footerGD'>
+                    <CreatedBy/>
+            </div>   
         </>               
     )
 };

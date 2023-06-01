@@ -119,6 +119,12 @@
     display: none;
 }
 
+.maincontainer.one {
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    height: 50vh;
+}
+
 .cardsContain {
     display: flex;
     flex-direction: column;
@@ -131,6 +137,15 @@
 .cardsContain.closed {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.cardsContain.closedOne {
+    display: grid;
+    /* grid-template-columns: repeat(2, minmax(0, 1fr)); */
     grid-column-gap: 0.5rem;
     justify-content: center;
     width: 100%;

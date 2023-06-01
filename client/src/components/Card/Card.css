@@ -50,6 +50,7 @@
 .imgcard {  
     object-fit: initial;
     width: 18vw;
+    height: 20vh;
     box-shadow: rgba(66, 13, 13, 0.979) 0px 0px 50px 0px;
 }
 
