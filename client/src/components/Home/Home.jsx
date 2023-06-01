@@ -106,8 +106,10 @@ export const Home = () => {
     return (
         <>
             {/* SIDEBAR */}
-            <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>   
-                <Nav windowWidth={windowWidth}/>
+            <div className={`sidebar ${!menuOpen ? 'open' : 'closed'}`}>
+                <div className='marginNav'>
+                    <Nav windowWidth={windowWidth}/>
+                </div>      
                 <SearchBar games={games} loading={loading} notFound= {notFound}/>
                 <SetFilters toggleMenu={toggleMenu}/>  
                 {!loading && <Filters notFound={notFound}/>}

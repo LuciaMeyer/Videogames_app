@@ -32,6 +32,10 @@
     border-radius: 10px;
 }
 
+.marginNav{
+    margin: 1rem 1.5rem 1.5rem 1rem;
+}
+
 .creatLoad {
     display: flex;
     align-items: flex-end;
@@ -218,11 +222,13 @@
     .card.closed:nth-child(even)  {
         margin-left: auto;
         margin-right: auto;
+        width: 100%;
     }
 
     .card.closed:nth-child(odd) {
         margin-left: auto;
         margin-right: auto;
+        width: 100%;
     }
 }
 
@@ -250,10 +256,12 @@
     .card.closed:nth-child(even)  {
         margin-left: auto;
         margin-right: auto;
+        width: 100%;
     }
 
     .card.closed:nth-child(odd) {
         margin-left: auto;
         margin-right: auto;
+        width: 100%;
     }
 }

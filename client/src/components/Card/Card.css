@@ -3,14 +3,16 @@
     flex-direction: row;
     height: 20vh;
     padding: .3rem 0 .3rem 0;
-    background-color: rgba(255, 255, 255, 0.249);
+    /* background-color: rgba(255, 255, 255, 0.249); */
+    background-color: rgba(73, 67, 67, 0.623);
     border: 0.2rem solid transparent;
     border-radius: 0.5rem;
     transition: all 0.3s ease-out;
 }
 
 .card0:hover{
-    background-color: rgba(255, 255, 255, 0.103);
+    /* background-color: rgba(255, 255, 255, 0.103); */
+    background-color: rgba(255, 255, 255, 0.249);
     border: 0.2rem solid rgba(255, 255, 255, 0.603);
     border-radius: 0.5rem;
 }

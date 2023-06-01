@@ -8,6 +8,8 @@ import { Loading } from '../Loading/Loading'
 import { deleteGame } from '../../helpers/deleteGame';
 import { Nav } from '../Nav/Nav';
 import { TopBar } from '../TopBar/TopBar';
+import { CreatedBy } from '../CreatedBy/CreatedBy'
+
 import './GameDetail.css'
 
 export const GameDetail = (props) => {
@@ -49,59 +51,87 @@ export const GameDetail = (props) => {
     if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>)
     
     return (
-        <div>
-            <TopBar/>
-            <div className='NavGD'><div className='NavGD_ '><Nav windowWidth={windowWidth}/>  </div></div>
-                     
-            {/* <div className='NavGD'></div> */}
-            
-            { loading ? <Loading /> :
-            <div className='contdet3'>
-                <div className='contdet4'>
+        <>
+            <div>
+                <div className='topbarGD'>
+                    <TopBar/>
+                </div>
 
-                        <h2 className='detname'>{gameDetail?.name}</h2> 
+                <div className='NavGD'>
+                    <div className='NavGD_ '>
+                        <Nav windowWidth={windowWidth}/>
+                    </div>
+                </div>
+                            
+                { loading ? <div className='loadGD'><Loading /></div> :
+                <>
+                    <div className='conteinerGD'>
+                        {gameDetail.rating &&
+                            <div className='ratingGD'> 
+                                <span className="starGD">&#9733;</span>
+                                <h3 className='numRatingGD'>{gameDetail.rating}</h3>
+                            </div>
+                        }
+                        <h2 className='nameGD'>{gameDetail?.name}</h2> 
+                        <img className='imgGD' src={gameDetail?.img} alt={gameDetail?.name} />
+                    </div>
 
-                        <img className='imgdet' src={gameDetail?.img} alt={gameDetail?.name} />
-                        <div className='divdet'>
-                            <span className="stardet">&#9733;</span>
-                            { gameDetail.rating && <h3 className='deth3'>Rating: {gameDetail.rating}</h3> }
-                        </div>
+                    <div className='conteinerGD_'>
 
-                        { gameDetail.released && <h3 className='deth3'>Released | {gameDetail.released}</h3> }
+                        {gameDetail.released &&
+                            <div className='contH4Span'>
+                                <h4 className='h4GD'>›› RELEASED:</h4>
+                                <span className='spanGD'>{gameDetail.released}</span>
+                            </div>
+                        }
                         
-                        <div className='divdet'><h3 className='deth3'>Genres | </h3> 
-                            { gameDetail.genres?.map((g, i) => {
-                                if (typeof gameDetail.genres[0] === 'string') {
-                                    return <h3 className='deth3' key={i}>{g}<span> | </span></h3>
-                                            
-                                } else {
-                                    return <h3 className='deth3' key={i}>{g.name}<span> | </span></h3>
-                                }
-                            })}                           
+                        <div className='contH4Span'>
+                            <h4 className='h4GD'>›› GENRES:</h4>
+                                {gameDetail.genres?.map((g, i) => 
+                                    <>
+                                        {typeof gameDetail.genres[0] === 'string' ?
+                                            <span className='spanGD' key={i}>
+                                                {g}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
+                                            </span>
+                                            :
+                                            <span className='spanGD' key={i}>
+                                                {g.name}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
+                                            </span>
+                                        }
+
+                                    </>
+                                )}
                         </div>
-                        <div className='divdet'><h3 className='deth3'>Platforms | </h3> 
-                            { gameDetail.platforms?.map((p, i) => 
-                                <h3 className='deth3' key={i}>{p}<span> | </span></h3>
-                            )}
-                        </div>                      
-                </div>
-                <div>
-                    <h3 className='deth3'>Description</h3>
-                    <div className='divdet2' dangerouslySetInnerHTML={modifyDescription()} />
-                </div>
-            </div>
+
+                        <div >
+                            <h4 className='h4GD'>›› PLATFORMS:</h4>                  
+                                {gameDetail.platforms?.map((p, i) => 
+                                    <span className='spanGD' key={i}>
+                                        {p}{i < gameDetail.platforms.length - 1 && ' -'}&nbsp;
+                                    </span>
+                                )}
+                        </div>
+                        <h3 className='h4GD'>›› DESCRIPTION</h3>
+                        <span className='textGD'dangerouslySetInnerHTML={modifyDescription()}></span>
+                    </div>
+                </>
             }
 
             {/* JUEGO DE LA DB */}
-            {idDb && 
+            {/* {idDb && 
                 <div className='detbutcont'>
                     <Link to={`/game/${id}/update`}>
                     <button className='detbut' type="button" onClick={handleUpdate}>Update</button>
                     </Link>
                     <button className='detbut1' type="button" onClick={handleDelete}>Delete</button>
                 </div>
-            }
+            } */}
 
-        </div>                  
+        </div>
+        <div className='footerGD'>
+                <CreatedBy/>
+        </div>   
+
+        </>               
     )
 };
