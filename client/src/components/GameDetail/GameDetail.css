@@ -61,15 +61,9 @@
     transition: all 0.3s ease-out;
 }
 
-.conteinerGD:hover{
+.conteinerGD:hover, .conteinerGD_:hover{
     background-color: rgba(255, 255, 255, 0.116);
-    border: 0.2rem solid rgba(255, 255, 255, 0.432);
-    border-radius: 0.3rem;
-}
-
-.conteinerGD_:hover{
-    background-color: rgba(255, 255, 255, 0.116);
-    border: 0.2rem solid rgba(255, 255, 255, 0.432);
+    border: 0.15rem solid rgba(255, 255, 255, 0.432);
     border-radius: 0.3rem;
 }
 
@@ -85,9 +79,9 @@
 
 .butBack {
     margin-right: 2rem;
-    font-size: .7rem;
     height: 2rem;
     padding: 0rem 0.8rem;
+    font-size: .7rem;
     letter-spacing: .1rem;
     cursor: pointer;
     color: rgb(184, 183, 183);
@@ -124,11 +118,7 @@
 .butGD:hover,
 .butDeleteGD:hover,
 .butBack:hover {
-    background-color: transparent;
-    color: rgb(243, 156, 156);
-    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 10px 0px;
-    border-color: rgb(176, 78, 78);
-    list-style: none;
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 8px 0px;
     transition: all 0.5s ease-out;
 }
 
@@ -137,7 +127,7 @@
     padding-bottom: .5rem;
     padding-top: .5rem;
     color: rgb(230, 228, 228);
-    text-shadow: 2px 2px 4px rgb(209, 78, 78);
+    text-shadow: 2px 2px 10px rgb(209, 78, 78);
     margin: 0;
     text-align: center;
 }
@@ -167,7 +157,7 @@
     padding-top: 0.3rem;
     padding-left: .5rem;
     color: rgb(230, 228, 228);
-    text-shadow: 2px 2px 4px rgb(209, 78, 78);
+    text-shadow: 2px 2px 10px rgb(209, 78, 78);
 }
 
 .imgGD {
@@ -213,11 +203,11 @@
     padding: 0 1rem 0 0;
     font-size: 1rem;
     font-weight: 300;
-    color: rgb(202, 201, 201);
     font-style: italic; 
+    line-height: 1.5;
+    color: rgb(202, 201, 201);
     height: 50vh; 
     overflow-y:scroll;
-    /* text-align: justify; */
 }
 
 .lineGD{
@@ -257,10 +247,10 @@
         font-size: 1.5rem;
     }
     .h4GD {
-        font-size: .8rem;
+        font-size: .9rem;
     }
     .detGD {
-        font-size: .7rem;
+        font-size: .9rem;
     }
     .textGD{
         height: 30vh;

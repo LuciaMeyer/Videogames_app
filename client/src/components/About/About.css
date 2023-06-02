@@ -32,8 +32,9 @@
     padding: 0 1rem 1rem 0;
     font-size: 1rem;
     font-weight: 300;
-    color: rgb(202, 201, 201);
     font-style: italic; 
+    line-height: 1.7;
+    color: rgb(202, 201, 201);
     height: 100%; 
     overflow-y:scroll;
 }
@@ -52,8 +53,8 @@
 }
 
 .imgLG {
-    width: 30%;
-    opacity: 0.5; 
+    width: 35%;
+    opacity: 0.7; 
     transition: all 0.5s ease-out;
 }
 
@@ -71,6 +72,9 @@
 @media (max-width:500px) {
     .textAB {        
         font-size: .9rem;
+    }
+    .imgLG {
+        width: 50%;
     }
 
 }

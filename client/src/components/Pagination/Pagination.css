@@ -2,12 +2,21 @@
     padding: .4rem 1rem;
     letter-spacing: .2rem;
     margin-left: 1rem;
-    border-color: #3b3a3a57;
+    /* border-color: #3b3a3a57; */
     cursor: pointer;
+
+    color: rgb(184, 183, 183);
     background-color: transparent;
     transition: all 0.5s ease-out;
-    box-shadow: rgba(176, 78, 78, 0.192) 3px 3px 5px 0px;
+    /* box-shadow: rgba(176, 78, 78, 0.192) 3px 3px 5px 0px; */
 }
+
+
+.butMenu:hover {
+  box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 8px 0px;
+  transition: all 0.5s ease-out;
+}
+
 
 .iconWrapper {
     display: flex;
@@ -27,11 +36,6 @@
       transform: translateX(0);
     }
   }
-
-.butMenu:hover {
-    background: rgb(43, 43, 43);
-    transition: all 0.5s ease-out;
-}
 
 .containPag {
     margin-left: auto;
