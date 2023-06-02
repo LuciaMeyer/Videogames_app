@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -96,9 +96,9 @@ export const GameDetail = (props) => {
                     <div className='contDetSpan'>
                         <h4 className='h4GD'>›› GENRES ‹‹</h4>
                             {gameDetail.genres?.map((g, i) => 
-                                <>
+                                <Fragment key={i}>
                                     {typeof gameDetail.genres[0] === 'string' ?
-                                        <span className='detGD' key={i}>
+                                        <span className='detGD' >
                                             {g}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
                                         </span>
                                         :
@@ -106,8 +106,7 @@ export const GameDetail = (props) => {
                                             {g.name}{i < gameDetail.genres.length - 1 && ' -'}&nbsp;
                                         </span>
                                     }
-
-                                </>
+                                </Fragment>
                             )}
                     </div>
 

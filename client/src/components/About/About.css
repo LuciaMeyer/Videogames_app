@@ -23,7 +23,7 @@
     object-fit: cover;
     width: 20vw;
     height: auto;
-    border-radius: 15rem;
+    border-radius: 10rem;
 }
 
 .textAB {
@@ -38,8 +38,15 @@
     overflow-y:scroll;
 }
 
-@media  (max-width:900px) {
+@media (max-width:900px) {
     .imgAB {
         width: 30vw;
     }
+}
+
+@media (max-width:500px) {
+    .textAB {        
+        font-size: .7rem;
+    }
+
 }
