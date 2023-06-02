@@ -32,30 +32,34 @@ export const Pagination = ({ games, gamesPerPage, menuOpen, toggleMenu, windowWi
 
     return (
         <>
-            {menuOpen && <button className='butMenu' onClick={toggleMenu}>❯❯❯</button>}
-                <div className='containPag'>    
-                    <ul className='pagul'>
-                        <div className='pagli' onClick={handlPrev}>
-                            <span className='pagspan'>&#10094;</span>
-                        </div>
-                        {windowWidth > 900 ? pageNumber?.map( num =>
-                            <li className={'pagli' + (currentPage === num ? ' active' : '')} key={num} onClick={() =>handlePage(num)}>
-                                <span className='pagspan'>{num}</span>
-                            </li>
-                            ):(
-                            <>
-                                {!!games &&
-                                    <li className='pagli active'>
-                                        <span className='pagspan'>{currentPage}</span>
-                                    </li>
-                                }                
-                            </>
-                        )}
-                        <div className='pagli' onClick={handlNext}>
-                            <span className='pagspan'>&#10095;</span>
-                        </div>
-                    </ul>
-                </div>
+            {menuOpen &&
+                <button className='butMenu' onClick={toggleMenu}>
+                        <span className='iconWrapper'>❯❯❯</span>
+                </button>
+            }
+            <div className='containPag'>    
+                <ul className='pagul'>
+                    <div className='pagli' onClick={handlPrev}>
+                        <span className='pagspan'>&#10094;</span>
+                    </div>
+                    {windowWidth > 900 ? pageNumber?.map( num =>
+                        <li className={'pagli' + (currentPage === num ? ' active' : '')} key={num} onClick={() =>handlePage(num)}>
+                            <span className='pagspan'>{num}</span>
+                        </li>
+                        ):(
+                        <>
+                            {!!games &&
+                                <li className='pagli active'>
+                                    <span className='pagspan'>{currentPage}</span>
+                                </li>
+                            }                
+                        </>
+                    )}
+                    <div className='pagli' onClick={handlNext}>
+                        <span className='pagspan'>&#10095;</span>
+                    </div>
+                </ul>
+            </div>
             {menuOpen && <div className='centerPag'></div>}
         </>
     )

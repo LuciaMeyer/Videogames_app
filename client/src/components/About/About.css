@@ -4,6 +4,7 @@
     margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 1rem;
 }
 
 .lineAB{
@@ -21,9 +22,9 @@
     margin-top: 1rem;
     padding: .5rem;
     object-fit: cover;
-    width: 20vw;
+    width: 15vw;
     height: auto;
-    border-radius: 10rem;
+    border-radius: 20rem;
 }
 
 .textAB {
@@ -31,11 +32,34 @@
     padding: 0 1rem 1rem 0;
     font-size: 1rem;
     font-weight: 300;
-    text-align: justify;
     color: rgb(202, 201, 201);
     font-style: italic; 
     height: 100%; 
     overflow-y:scroll;
+}
+
+.butLen {
+    width: 20%;
+    padding-right: 0.5rem;
+    padding-bottom: 0.8rem;
+    margin-left: auto;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+    border: none;
+    background-color: transparent;
+    color: transparent;
+    z-index: 1;
+}
+
+.imgLG {
+    width: 30%;
+    opacity: 0.5; 
+    transition: all 0.5s ease-out;
+}
+
+.imgLG:hover {
+    opacity: 1; 
+    transition: all 0.5s ease-out;
 }
 
 @media (max-width:900px) {
@@ -46,7 +70,7 @@
 
 @media (max-width:500px) {
     .textAB {        
-        font-size: .7rem;
+        font-size: .9rem;
     }
 
 }

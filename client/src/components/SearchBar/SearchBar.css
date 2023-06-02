@@ -20,7 +20,7 @@
     appearance: none;
     border-top-left-radius: .6rem;
     border-bottom-left-radius: .6rem;
-    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 10px 0px;
 }
 
 .inText:focus {
@@ -35,7 +35,7 @@
     left: 20rem;
     top: 0;
     background: rgb(176, 78, 78);
-    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
+    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 10px 0px;
     border-radius: 0 6px 6px 0;
     cursor: pointer;
     border: none;

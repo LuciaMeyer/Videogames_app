@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,10 +17,9 @@ export const GameDetail = (props) => {
     const dispatch = useDispatch();
     const history = useHistory()
     const gameDetail = useSelector(state => state.gameDetail)
-    const windowWidth = 1180
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const id = props.match.params.id
     const idDb = id.length === 36
-
     
     useEffect(()=> {
         dispatch(getGameDetail(id))
@@ -29,6 +28,13 @@ export const GameDetail = (props) => {
             dispatch(cleanGameDetail({}))
         }
     }, [dispatch, id]);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        window.scrollTo(0, 0);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleUpdate = () => {
         dispatch(gameUpdate(gameDetail));        
@@ -47,7 +53,7 @@ export const GameDetail = (props) => {
 
     let loading = false
     if (!Object.keys(gameDetail).length) loading = true;
-    if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>)
+    if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>);
     
     return (
         <>

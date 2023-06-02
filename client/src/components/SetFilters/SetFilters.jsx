@@ -66,7 +66,9 @@ export const SetFilters = ({ toggleMenu }) => {
         <>
             <div className='containBtn'>
                 <button className='butR' onClick={handleResetAll}>RESET</button>
-                <button className='butMenu' onClick={toggleMenu}>❮❮❮</button>                     
+                <button className='butMenu' onClick={toggleMenu}>
+                        <span className='iconWrapper'>❮❮❮</span>
+                </button>
             </div>
             <div className='setDiv'>
                 <div className='setDiv1'>

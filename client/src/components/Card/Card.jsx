@@ -8,7 +8,8 @@ export function Card({ name, img, rating, genres, platforms, released }) {
         < >
             <div className='card0'>
                 <div className='rating'>
-                    <span className="star">&#9733;<h3 className='numRating'>{rating}</h3></span>
+                    <span className="star">&#9733;</span>
+                    <h3 className='numRating'>{rating}</h3>
                 </div>
                 <div className='imgCont'>
                     <img className='imgcard' src={img} alt='img not found' /> 
