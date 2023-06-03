@@ -1,3 +1,25 @@
+.conteinerAB {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48vw;
+    margin: 3rem auto 0 auto;
+    padding: 1rem 1rem 0 1rem;
+    overflow: hidden;
+    background-color: rgba(73, 67, 67, 0.623);
+    backdrop-filter: blur(10px);
+    border: 0.2rem solid transparent;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-out;
+}
+
+.conteinerAB:hover {
+    background-color: rgba(255, 255, 255, 0.116);
+    border: 0.15rem solid rgba(255, 255, 255, 0.432);
+    border-radius: 0.3rem;
+}
+
 .contTextAB {
     display: flex;
     flex-direction: column;
@@ -16,15 +38,16 @@
 
 .containerImgAB {
     display: flex;
+    justify-content: center;
 }
 
 .imgAB {
     margin-top: 1rem;
     padding: .5rem;
     object-fit: cover;
-    width: 15vw;
+    width: 30%;
     height: auto;
-    border-radius: 20rem;
+    border-radius: 30rem;
 }
 
 .textAB {
@@ -65,7 +88,10 @@
 
 @media (max-width:900px) {
     .imgAB {
-        width: 30vw;
+        width: 40%;
+    }
+    .conteinerAB {
+        width: 80vw;
     }
 }
 

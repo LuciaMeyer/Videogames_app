@@ -4,7 +4,7 @@ import { Landing } from './components/Landing/Landing';
 import { Home } from './components/Home/Home'
 import { Create } from './components/Create/Create';
 import { About } from './components/About/About';
-import { GameDetail } from './components/GameDetail/GameDetail';
+import { GameDetail } from './components/GameDetail/GameDetail';  
 import { Error } from './components/Error'
 import { UpDate } from "./components/UpDate/Update";
 import { SetGame } from "./components/SetGame/SetGame";

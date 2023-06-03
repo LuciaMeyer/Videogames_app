@@ -99,7 +99,6 @@ export const Home = () => {
     },[notFound]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
-
     return (
         <>
             {/* SIDEBAR */}
@@ -151,16 +150,7 @@ export const Home = () => {
                     !menuOpen && windowWidth <= 900 ? 'none' : 
                     menuOpen && windowWidth <= 900 && ' closed'               
                 }`}>
-
-                <div className={`maincontainer${
-                    games.length === 1 && ' one' ? ' one' :
-                    !menuOpen && windowWidth <= 900 ? ' none' : ''
-              
-                }`}></div>
-
-
-
-                    <NotFound/>
+                   <NotFound/>
                 </div>
             }
             
@@ -206,8 +196,8 @@ export const Home = () => {
 
             {/* FOOTER */}
             <div className={`footer
-                ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''
-                }`}>
+                ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''}
+                `}>
                 <CreatedBy/>
             </div>
         </>

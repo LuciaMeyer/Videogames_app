@@ -12,7 +12,7 @@ export const formControl = input => {
     if(!input.genres.length) errText.genres = 'Genres cannot be empty'
 
     if(!input.released) errText.released = 'Released is required'
-    else if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(input.released)) errText.released = 'Release date must be in the format yyyy-mm-dd"'
+    else if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(input.released)) errText.released = 'Date format: yyyy-mm-dd"'
     
     if(!input.rating) errText.rating = 'Rating is required'
     else if (input.rating < 0 || input.rating > 5) errText.rating = 'Rating must be a number between 0 and 5';

@@ -132,7 +132,7 @@ export const GameDetail = (props) => {
                 </div>
             </>}
             <div className='footerGD'>
-                    <CreatedBy/>
+                <CreatedBy/>
             </div>   
         </>               
     )

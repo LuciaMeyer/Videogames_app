@@ -36,7 +36,7 @@ export const About = () => {
                     <Nav windowWidth={windowWidth}/>
                 </div>
             </div>
-            <div className='conteinerGD'>
+            <div className='conteinerAB'>
                 <div className='contBuGD'>
                     <button className='butBack' onClick={()=>window.history.go(-1)}>BACK</button>
                 </div>
