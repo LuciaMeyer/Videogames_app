@@ -7,7 +7,7 @@ import { About } from './components/About/About';
 import { GameDetail } from './components/GameDetail/GameDetail';  
 import { Error } from './components/Error'
 import { SetGame } from "./components/SetGame/SetGame";
-import { Update } from "./components/Update/Update";
+import { Update } from "./components/UpDate/Update";
 
 export const App = () => {
   return (
