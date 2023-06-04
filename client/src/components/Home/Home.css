@@ -47,7 +47,8 @@
 .creat {
     display: flex;
     align-items: flex-end;
-    height: 9%;
+    /* height: 9%; */
+    height: 24vh;
     padding: 0.5rem;
     justify-content: center;
 }
@@ -269,6 +270,7 @@
     }
     
     .creat{
-        margin-bottom: 5rem;
+        /* margin-bottom: 5rem; */
+        height: 10vh;
     }
 }
