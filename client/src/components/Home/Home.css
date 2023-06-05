@@ -175,7 +175,7 @@
 }
 
 /* PAGINATION-BOTTOM */
-.pagBott {
+.up {
     display: flex;
     align-items: center;
     list-style-type: none;
@@ -186,8 +186,24 @@
     transition: all 0.5s ease-out;
 }
 
-.pagBott.closed  {
+.up.closed  {
     margin-left: 0%;
+}
+
+.butUp {
+    padding: .4rem 1rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.5s ease-out;
+    color: rgb(110, 110, 110);
+    border-color: rgb(65, 65, 65) black black rgb(65, 65, 65);
+}
+
+.butUp:hover {
+  box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 8px 0px;
+  transition: all 0.5s ease-out;
 }
 
 /* FOOTER */
