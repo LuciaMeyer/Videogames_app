@@ -29,7 +29,7 @@
 
 - Tener instalado ```Node.js```
 - Tener instalado ```PostgreSQL``` y crear previamente una db llamada ```videogames```
-- crear archivo ```.env``` en la raiz de carpeta /client con las siguientes variables:
+- crear archivo ```.env``` en la raiz de la carpeta /client con las siguientes variables:
 
 ```
  DB_USER= tu usuario de PostgreSQL
@@ -45,6 +45,6 @@
 
 - Tener acceso a una terminal para seguir los siguientes pasos:
 - dentro de la carpeta /client y luego dentro de la carpeta /api ```npm install``` para instalar las dependencias
-- en la carpeta raiz del proyecto ```npm start``` para levantar el sitio
+- en la carpeta raiz del proyecto ```npm start``` para levantar la aplicación 
 
 <hr/>
