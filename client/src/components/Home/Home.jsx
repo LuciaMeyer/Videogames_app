@@ -42,7 +42,7 @@ export const Home = () => {
     if(genresFilter.length !== 0 && genresFilter !== 'All Genres') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'All Platforms') games = games.filter(g => g.platforms.includes(platformsFilter));
     if(typeFilter === 'Created') games = games.filter(g => typeof g.id === 'string');
-    if(typeFilter === 'Existing') games = games.filter(g => typeof g.id === 'number');       
+    if(typeFilter === 'API') games = games.filter(g => typeof g.id === 'number');       
     if(nameOrder === 'A - Z' ) games.sort(nameASC);
     if(nameOrder === 'Z - A') games.sort(nameDES);
     if(ratingOrder === 'Worst Rating') games.sort(ratingWORST);          

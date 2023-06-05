@@ -65,6 +65,7 @@ export const About = () => {
                         - Detailed information pages<br/>
                         - Search by name<br/>
                         - Controlled form for creating new video games<br/>
+                        - Functionality to modify or delete the created video game<br/>
                         <br/>
                         Technologies used:<br/>
                         - Language: JavaScript<br/>
@@ -91,6 +92,7 @@ export const About = () => {
                         - Páginas con información detallada<br/>
                         - Búsqueda por nombre<br/>
                         - Formulario controlado para la creación de nuevos videojuegos<br/>
+                        - Funcionalidad de modificar o eliminar el videojuego creado<br/>
                         <br/>
                         Tecnologías empleadas:<br/>
                         - Lenguaje: JavaScript<br/>

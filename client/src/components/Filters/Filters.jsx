@@ -92,9 +92,9 @@ export const Filters = ({ notFound }) => {
             </select>
             <select disabled={disabled} className="select" value= {typeFilter} onChange={handleTypeFilter}>
                 <option value= '' disabled>Type</option>
-                <option value= 'All Types'>All Types</option>
+                <option value= 'All Types'>All</option>
                 <option value= 'Created'>Created</option>
-                <option value= 'Existing'>Existing</option>
+                <option value= 'API'>API</option>
             </select>
             <h5 className="h5">❱❱❱ order by:</h5>
             <select disabled={disabled} className="select" value= {nameOrder} onChange={handleNameOrder}>

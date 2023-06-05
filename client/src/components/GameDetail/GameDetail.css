@@ -20,6 +20,44 @@
     margin-right: auto;
 }
 
+.containNoDetail {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.noDetail {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgb(202, 201, 201);
+    font-style: italic;  
+}
+
+.butNoDetail {
+    margin-top: 2rem;
+    font-size: .9rem;
+    width: 7rem;
+    height: 3rem;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    border-color: rgb(176, 78, 78);
+    cursor: pointer;
+    list-style: none;
+    color: rgb(216, 216, 216);
+    transition: all 0.5s ease-out;
+}
+
+.butNoDetail:hover {
+    color:white;
+    background-color: rgba(255, 255, 255, 0.183);
+    transition: all 0.5s ease-out;
+}
+
 .topbarGD {
     display: flex;
     background-color:rgba(53, 48, 48, 0.623);

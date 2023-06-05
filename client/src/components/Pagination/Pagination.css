@@ -17,7 +17,7 @@
 .iconWrapper {
     display: flex;
     border: none;
-    color: rgb(97, 97, 97);
+    color: rgb(110, 110, 110);
     animation: animateArrow 2s infinite;
   }
   
