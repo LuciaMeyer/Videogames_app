@@ -3,7 +3,7 @@
 
 ##### [IR AL SITIO](https://cliente-videogames.onrender.com/)
 
-<a href="https://www.youtube.com/watch?v=-TOVqECdiIw" target="_BLANK"><img src="https://res.cloudinary.com/pflet/image/upload/v1685997746/Let/GitHub/Lu/pi_video_hdltju.png" alt="git"/></a> 
+<a href="https://www.youtube.com/watch?v=eN4L032QNhw&feature=youtu.be" target="_BLANK"><img src="https://res.cloudinary.com/pflet/image/upload/v1685997746/Let/GitHub/Lu/pi_video_hdltju.png" alt="git"/></a> 
 
 👉 Esta SPA (Single Page Application) se desarrolló como parte del cursado de la carrera de Full Stack Developer, en la etapa de Proyecto Individual. Su objetivo es el desarrollo de una aplicación web que consume datos de una API externa y consultas a la base de datos propia.
 
