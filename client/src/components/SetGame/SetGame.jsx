@@ -1,26 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Nav } from '../Nav/Nav';
-// import './About.css'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { TopBar } from '../TopBar/TopBar';
+import { CreatedBy } from '../CreatedBy/CreatedBy'
+import  emoji2  from '../../img/emoji2.png'
 import './SetGame.css'
 
 
 export const SetGame = () => {
-   
+    const [time, setTime] = useState(false);
+    const [isMounted, setIsMounted] = useState(true); // Variable de estado para rastrear si el componente está montado
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+      const timeoutId = setTimeout(() => {
+        if (isMounted) setTime(true)        
+      }, 4000);
+    
+      return () => {
+        setIsMounted(false);
+        clearTimeout(timeoutId);
+      };
+    }, [isMounted]);
+      
 
     return (
-        <div className='congc1'>
-            <div className='contgc2 '><Nav /></div>
-            <div className='contgc3'>
-                <div className='contgc4'>
-                    <div className='imgbackgc1'><img  alt='' /></div>
-                    <div className='imgbackgc'><img  alt='' /></div>
-                    <Link to='/home'><button className="gcrbut">Back</button></Link>
-                </div>
+        <>
+            <div className='topbarGD'>
+                <TopBar/>
             </div>
-            <div className='slidesgc'></div>
-            <div className='paggc'></div>
-        </div>  
+            <div className='containSG'> 
+            {
+              !time ?
+              <>
+                <div className="spinner"></div>
+                <span className='textSG'>Saving changes...</span>
+              </>
+              :
+              <>
+                <img className='imgSG' alt='home' src={emoji2}/>
+                <span className='textSG'>
+                    Your changes were saved!
+                    <br />
+                    Go Home to see it!
+                </span>
+                <div className='containbutCR'>
+                <Link to='/home'><button className='butCR'>Home</button></Link>
+                </div>
+              </>
+            }
+
+            </div>
+            <div className='footerGD'>
+                <CreatedBy/>
+            </div>
+        </>  
     )
 };
 

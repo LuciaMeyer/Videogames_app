@@ -1,78 +1,49 @@
-.condcr1 { 
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 7px;
-    grid-row-gap: 7px; 
-}
-.imgbackcr {
-    background: url(../../img/back_detail.png);
-    content: "";
-    position: fixed;
-    height: 90vh;
-    width: 20vw;
-    top: 4rem;
-    z-index: -10;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    z-index: 200;
-}
-.contcr2 { 
-    height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 30px 0px;
-    position: fixed;
-    z-index: 100;
-    background: rgb(45, 45, 45);
-    
-}
-.contcr3 {
-    grid-area: 1 / 2 / 6 / 6;
-    margin-top: 6rem;
-    padding: 2rem;
-}
-.pagcr {
-    align-items: center;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    background: rgb(53, 48, 48);
-    height: 80px;
-}
-.slidescr {
-    position: fixed;
-    width: 100%;
-    background: rgb(53, 48, 48);
-    height: 80px;
-}
-
-.contcr4 {
-    border-radius: 2em;
-    padding-bottom: 6rem;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.13);
+.conteinerCR {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48vw;
+    margin: 3rem auto 0 auto;
+    padding: 1rem 1rem 3rem 1rem;
+    overflow: hidden;
+    background-color: rgba(73, 67, 67, 0.623);
+    backdrop-filter: blur(10px);
+    border: 0.2rem solid transparent;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    transition: all 0.3s ease-out;
 }
 
-/* //////// */
-.redspan {
-    color: red;
-    font-size: .8rem;
+.conteinerCR:hover {
+    background-color: rgba(255, 255, 255, 0.116);
+    border: 0.15rem solid rgba(255, 255, 255, 0.432);
+    border-radius: 0.3rem;
+}
+.label-span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.itemForm {
-    align-self: center;
-    width: 100%;
-    text-align: start;
+.labelform {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    line-height: 1rem;
+    color: rgb(202, 201, 201);
+}
+
+.errorSpan {
+    color: rgb(199, 78, 78);
+    font-size: .9rem;
 }
 
 .inputform {
-    position: relative;
     display: flex;
-    width: 30rem;
+    width: 35vw;
     padding: 1rem 1.5rem;
     color: #fff;
     background-color: transparent;
@@ -84,73 +55,153 @@
     box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 20px 0px;
 }
 
-.labelform {
-    position: relative;
+.maincontchecks {
     display: flex;
-    font-size: 1rem;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
-    letter-spacing: 2px
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .contchecks {
     display: flex;
-    position: relative;
+    flex-direction: column;
     font-size: .9rem;
     letter-spacing: 1.4px;
-    line-height: 1.1rem;
-    padding-left: 1rem;
-    
+    line-height: 1.1rem;    
+}
+
+.labelcheck {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    line-height: 1rem;
+    color: rgb(202, 201, 201);
+}
+
+.check {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+
+.aligncheck{
+    display: flex;
+    margin-bottom: 0.2rem;
 }
 
 .inputcheck {
-    padding: 1rem;
-
+    margin-top: auto;
+    margin-bottom: auto;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+    background-color: transparent;
+    width: .7rem;
+    height: .7rem;
+    appearance: none;
+    border: 2px solid #888;
+    border-radius: 5rem;
 }
-
 .inputcheck:checked {
-    margin-left: 10px;
-    color: #fff;
-
+    margin-left: 1rem;
+    background-color: rgb(176, 78, 78);
+    border-color: rgb(176, 78, 78);
+    transition: all 0.5s ease-out;
 }
 
-
-
-.contizq {
-    position: relative;
-    width: 40%;
-    left: 15rem;
-    top: 2rem;
-}
-
-.contder {
+.contchecks_ {
     display: flex;
-    position: absolute;
-    width: 100%;
-    top: 10rem;
-    left: 78rem;
-}
-
-.crbut {
-    position: absolute;
-    top:40rem;
-    left: 79rem;
+    flex-direction: column;
     font-size: .9rem;
+    margin-left: 2rem;
+    letter-spacing: 1.4px;
+    line-height: 1.1rem;    
+}
+
+.optioncheck {
+    font-size: .8rem;
+    font-weight: 300;
+    color: rgb(179, 178, 178);
+    font-style: italic
+}
+
+.containbutCR {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+}
+
+.butCR {
+    font-size: .9rem;
     width: 7rem;
     height: 3rem;
     background-color: transparent;
     border-radius: 0.5rem;
     border-color: rgb(176, 78, 78);
-    box-shadow: rgba(176, 78, 78, 0.7) 0px 0px 30px 0px;
     cursor: pointer;
     list-style: none;
-    color: rgb(243, 156, 156);
-    border-radius: 6px 6px 6px 6px; 
+    color: rgb(216, 216, 216);
+    transition: all 0.5s ease-out;
 }
-.crbut:hover {
+
+.butCRnone {
+    font-size: .9rem;
+    width: 7rem;
+    height: 3rem;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    border-color: rgb(97, 97, 97);
+    cursor: pointer;
+    list-style: none;
+    color: rgb(108, 108, 108);
+}
+
+.butCR:hover {
     color:white;
-    background-color: rgba(255, 255, 255, 0.183)
+    background-color: rgba(255, 255, 255, 0.183);
+    transition: all 0.5s ease-out;
+}
+
+.alignspan{
+    display: flex;
+    justify-content: center;
+}
+
+@media  (max-width:900px) {
+    .inputform {
+        width: 70vw;
+    }
+    .conteinerCR {
+        width: 80vw;
+    }
+}
+
+@media  (max-width:500px) {
+    .inputform {
+        width: 60vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+    }
+    .label-span {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .labelform{
+       font-size: .9rem;
+       margin-bottom: 0;
+    }
+    .errorSpan {
+        font-size: .8rem;
+    }
+    .maincontchecks {
+        margin-left: 2rem; 
+    }
+    .containbutCR {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    .optioncheck {
+        font-size: .7;
+    }
 }

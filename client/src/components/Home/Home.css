@@ -47,7 +47,8 @@
 .creat {
     display: flex;
     align-items: flex-end;
-    height: 9%;
+    /* height: 9%; */
+    height: 24vh;
     padding: 0.5rem;
     justify-content: center;
 }
@@ -97,7 +98,7 @@
 .load-notF {
     margin-left: 23%;
     margin-top: 15vh;
-    height: 80vh;
+    height: 60vh;
     transition: all 0.5s ease-out;
 }
 
@@ -120,9 +121,9 @@
 }
 
 .maincontainer.one {
-    /* display: flex; */
-    /* justify-content: flex-end; */
-    height: 50vh;
+    height: 80vh;
+    display: flex;
+    align-items: flex-start;
 }
 
 .cardsContain {
@@ -266,5 +267,10 @@
         margin-left: auto;
         margin-right: auto;
         width: 100%;
+    }
+    
+    .creat{
+        /* margin-bottom: 5rem; */
+        height: 10vh;
     }
 }

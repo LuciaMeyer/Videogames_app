@@ -9,6 +9,7 @@ import { deleteGame } from '../../helpers/deleteGame';
 import { Nav } from '../Nav/Nav';
 import { TopBar } from '../TopBar/TopBar';
 import { CreatedBy } from '../CreatedBy/CreatedBy'
+import swal from "sweetalert";
 
 import './GameDetail.css'
 
@@ -41,10 +42,32 @@ export const GameDetail = (props) => {
     };
 
     const handleDelete = () => {
-        deleteGame(id);
-        dispatch(getGames());
-        dispatch(cleanAllFilters());
-        history.push('/setgame');
+        swal({
+            title: "Are you sure you want to delete the game?",
+            icon: "warning",
+            buttons: {
+              cancel: {
+                text: "Cancel",
+                value: null,
+                visible: true,
+                closeModal: true,
+              },
+              confirm: {
+                text: "OK",
+                value: true,
+                visible: true,
+                closeModal: true,
+              },
+            },
+        }).then((value) => {
+            console.log(value)
+            if(value){
+                deleteGame(id);
+                dispatch(getGames());
+                dispatch(cleanAllFilters());
+                history.push('/setgame');
+            }
+        });
     };
 
     const modifyDescription = () => {
@@ -53,7 +76,7 @@ export const GameDetail = (props) => {
 
     let loading = false
     if (!Object.keys(gameDetail).length) loading = true;
-    if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>);
+    // if (gameDetail.msg) return (<><button><Link to='/home'>Back</Link></button><NotFound /></>);
     
     return (
         <>
@@ -66,8 +89,15 @@ export const GameDetail = (props) => {
                     <Nav windowWidth={windowWidth}/>
                 </div>
             </div>
-                        
-            { loading ? <div className='loadGD'><Loading /></div> : <>
+            {gameDetail.msg ? (
+                <div className='containNoDetail'>
+                    <NotFound />
+                    <span className='noDetail'>This game has no details</span>
+                    <Link to='/home'><button className='butNoDetail'>Back</button></Link>
+                </div>
+
+            ):(
+             loading ? <div className='loadGD'><Loading /></div> : <>
                 <div className='conteinerGD'>
 
                     <div className='contBuGD'>
@@ -130,9 +160,9 @@ export const GameDetail = (props) => {
                         <span className='textGD'dangerouslySetInnerHTML={modifyDescription()}></span>
                     </div>
                 </div>
-            </>}
+            </>)}
             <div className='footerGD'>
-                    <CreatedBy/>
+                <CreatedBy/>
             </div>   
         </>               
     )

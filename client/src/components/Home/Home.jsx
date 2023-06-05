@@ -42,7 +42,7 @@ export const Home = () => {
     if(genresFilter.length !== 0 && genresFilter !== 'All Genres') games = games.filter(g => g.genres.includes(genresFilter));
     if(platformsFilter.length !== 0 && platformsFilter !== 'All Platforms') games = games.filter(g => g.platforms.includes(platformsFilter));
     if(typeFilter === 'Created') games = games.filter(g => typeof g.id === 'string');
-    if(typeFilter === 'Existing') games = games.filter(g => typeof g.id === 'number');       
+    if(typeFilter === 'API') games = games.filter(g => typeof g.id === 'number');       
     if(nameOrder === 'A - Z' ) games.sort(nameASC);
     if(nameOrder === 'Z - A') games.sort(nameDES);
     if(ratingOrder === 'Worst Rating') games.sort(ratingWORST);          
@@ -99,7 +99,6 @@ export const Home = () => {
     },[notFound]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
-
     return (
         <>
             {/* SIDEBAR */}
@@ -151,16 +150,7 @@ export const Home = () => {
                     !menuOpen && windowWidth <= 900 ? 'none' : 
                     menuOpen && windowWidth <= 900 && ' closed'               
                 }`}>
-
-                <div className={`maincontainer${
-                    games.length === 1 && ' one' ? ' one' :
-                    !menuOpen && windowWidth <= 900 ? ' none' : ''
-              
-                }`}></div>
-
-
-
-                    <NotFound/>
+                   <NotFound/>
                 </div>
             }
             
@@ -206,8 +196,8 @@ export const Home = () => {
 
             {/* FOOTER */}
             <div className={`footer
-                ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''
-                }`}>
+                ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''}
+                `}>
                 <CreatedBy/>
             </div>
         </>
