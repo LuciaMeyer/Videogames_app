@@ -6,8 +6,6 @@
 👉 Esta SPA (Single Page Application) se desarrolló como parte del cursado de la carrera de Full Stack Developer, en la etapa de Proyecto Individual. Su objetivo es el desarrollo de una aplicación web que consume datos de una API externa y consultas a la base de datos propia.
 
 #### ⇢ Features:
-- Conectarse a la api externa rawg.io para traer los videojuegos
-- Crear base de datos para guardar parte de la información
 - Paginado
 - Filtros acumulativos
 - Ordenamientos ascendentes y descendentes
