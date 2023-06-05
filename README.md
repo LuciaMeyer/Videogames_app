@@ -29,7 +29,7 @@
 
 - Tener instalado ```Node.js```
 - Tener instalado ```PostgreSQL``` y crear previamente una db llamada ```videogames```
-- crear archivo ```env```` en la raiz de carpeta /client con las siguientes variables:
+- crear archivo ```.env``` en la raiz de carpeta /client con las siguientes variables:
 
 ```
  DB_USER= tu usuario de PostgreSQL
