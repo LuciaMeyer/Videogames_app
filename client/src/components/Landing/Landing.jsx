@@ -36,7 +36,7 @@ export const Landing = () => {
             <IntroConteiner>
               <div className='title' style={{ zIndex: 1 }}>FIND YOUR FAVORITE VIDEO GAME</div>
               {window.innerWidth > 700 &&
-              <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically yordenar or by rating.</span>
+              <span className='descr'>You can search all available Video Games from our page. Your search can be filtered by genre, platform, and sorted alphabetically, by rating, and by released.</span>
               }
               <Link to='/home' onClick={() => window.scroll(0, 0)}>
                 <button>SEARCH</button>
@@ -140,10 +140,12 @@ const Section = styled.section`
       border: 1px solid white;
       border-radius: 50px;
       cursor: pointer;
+      transition: all 0.5s ease-out;
       &:hover {
         background-color: rgba(255, 255, 255, 0.1);
         border: none;
-        box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px; ;
+        box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px;
+        transition: all 0.5s ease-out;
       }
       &:active {
         background-color: rgba(255, 255, 255, 0.1);
@@ -171,10 +173,12 @@ const IntroConteiner = styled.article`
     padding: 12px 40px 12px 40px;
     font-size: 1rem;
     cursor: pointer;
+    transition: all 0.5s ease-out;
     &:hover {
       background-color: #ffffff;
       color: #3d3c3c;
       box-shadow: rgba(250, 250, 250, 0.7) 0px 0px 20px 0px;
+      transition: all 0.5s ease-out;
     }
     @media screen and (max-width: 700px) {
       &:active {
