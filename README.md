@@ -5,7 +5,7 @@
 
 <a href="https://www.youtube.com/watch?v=eN4L032QNhw&feature=youtu.be" target="_BLANK"><img src="https://res.cloudinary.com/pflet/image/upload/v1685997746/Let/GitHub/Lu/pi_video_hdltju.png" alt="git" target="_BLANK"/></a> 
 
-👉 Esta SPA (Single Page Application) se desarrolló como parte del cursado de la carrera de Full Stack Developer, en la etapa de Proyecto Individual. Su objetivo es el desarrollo de una aplicación web que consume datos de una API externa y consultas a la base de datos propia.
+👉 Esta SPA (Single Page Application) la desarrollé como parte del cursado de la carrera de Full Stack Developer, en la etapa de Proyecto Individual. Su objetivo es el desarrollo de una aplicación web que consume datos de una API externa y consultas a la base de datos propia.
 
 #### ⇢ Features:
 - Paginado
@@ -14,7 +14,7 @@
 - Sección con información detallada
 - Búsqueda por nombre
 - Formulario controlado para la creación de nuevos videojuegos
-- Funcionalidad para modificar o eliminar los videojuegos creados
+- Funcionalidad para modificar o eliminar los creados
 
 #### ⇢ Tecnologías:
 - Lenguaje: JavaScript
@@ -29,8 +29,8 @@
 
 ⇢ Setup:
 
-- Tener instalado ```Node.js```
-- Tener instalado ```PostgreSQL``` y crear previamente una db llamada ```videogames```
+- Tener instalado ```Node.js``` y ```PostgreSQL```
+- Crear previamente una base de datos llamada ```videogames```
 - crear archivo ```.env``` en la raiz de la carpeta /client con las siguientes variables:
 
 ```
