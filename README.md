@@ -46,7 +46,8 @@
 
 
 - Tener acceso a una terminal para seguir los siguientes pasos:
-- dentro de la carpeta /client y luego dentro de la carpeta /api ```npm install``` para instalar las dependencias
-- en la carpeta raiz del proyecto ```npm start``` para levantar la aplicación 
-
+- dentro de la carpeta ```/client ⇢ npm install``` para instalar las dependencias y luego ```npm start``` para levantar el front en ```http://localhost:3000/```
+- dentro de la carpeta ```/api ⇢ npm install``` para instalar las dependencias
+- en el archivo ```/api/index.js``` linea 26 pasar el force a true y descomentar las funciones de las lineas 29 y 30
+- dentro de la carpeta ```/api ⇢ npm start``` para levantar el back en ```http://localhost:3001/```
 <hr/>
