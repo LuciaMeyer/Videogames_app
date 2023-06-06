@@ -1,7 +1,7 @@
 ### ✔️ Video Games App
 #### Individual Project - [Henry](https://www.soyhenry.com/?utm_source=google&utm_medium=cpc&utm_campaign=GADS_SEARCH_ARG_BRAND&utm_content=Brand&gad=1&gclid=Cj0KCQjwj_ajBhCqARIsAA37s0wwgGv6FdgDTWEdl9AWVSx5OBvqZd474QqlY6-8C8VvOroqUUuuSsgaAmWMEALw_wcB)
 
-##### [IR AL SITIO](https://cliente-videogames.onrender.com/)
+##### [Visitar el Sitio](https://cliente-videogames.onrender.com/)
 
 <a href="https://www.youtube.com/watch?v=eN4L032QNhw&feature=youtu.be" target="_BLANK"><img src="https://res.cloudinary.com/pflet/image/upload/v1685997746/Let/GitHub/Lu/pi_video_hdltju.png" alt="git" target="_BLANK"/></a> 
 
