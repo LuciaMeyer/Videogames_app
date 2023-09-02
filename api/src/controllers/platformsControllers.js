@@ -20,7 +20,9 @@ const insertPlatform = async () => {
         {name: 'Xbox'},
         {name: 'Xbox 360'},
         {name: 'Xbox One'},
-        {name: 'Xbox Series S/X'}
+        {name: 'Xbox Series S/X'},
+        {name: 'SEGA'}
+
     ]
     await Platform_.bulkCreate(typeOfPlatforms);
     console.log('platform loaded in the db');  

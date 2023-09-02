@@ -182,18 +182,9 @@ export const Home = () => {
                     </div>
                 </div>
             }
-            
-            {/* PAGINATION-BOTTOM */}
-            <div className={`pagBott ${!menuOpen ? '' : 'closed'}`}>
-                <Pagination
-                        games={games.length}
-                        gamesPerPage={gamesPerPage}
-                        menuOpen={menuOpen}
-                        toggleMenu={toggleMenu}
-                        windowWidth={windowWidth}
-                />
+            <div className={`up ${!menuOpen ? '' : 'closed'}`}>
+                <button className='butUp' onClick={()=> window.scrollTo(0, 0)}>GO UP</button>
             </div>
-
             {/* FOOTER */}
             <div className={`footer
                 ${menuOpen && windowWidth <= 900 ? ' closedResp' : ''}
