@@ -47,7 +47,7 @@
     object-fit: cover;
     width: 30%;
     height: auto;
-    border-radius: 30rem;
+    /* border-radius: 30rem; */
 }
 
 .textAB {
